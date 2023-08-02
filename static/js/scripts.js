@@ -47,8 +47,6 @@ for (let i = 0; i < maxSlide; i++) {
 }
 
 const paginationItems = document.querySelectorAll(".slide_pagination > li");
-
-
 const startSlide = slideItems[0];
 const endSlide = slideItems[slideItems.length - 1];
 const startElem = document.createElement("div");
@@ -83,6 +81,7 @@ function nextMove() {
     paginationItems.forEach((i) => i.classList.remove("active"));
     paginationItems[currSlide - 1].classList.add("active");
   } else {
+    currSlide = 0;
     let offset = slideWidth * currSlide;
     slideItems.forEach((i) => {
       i.setAttribute("style", `transition: ${0}s; left: ${-offset}px`);
