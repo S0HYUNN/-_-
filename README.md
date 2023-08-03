@@ -1,7 +1,7 @@
 # Style_Focus
 #SWBootCamp_Levware Team Project
 
-main.py required library <br> <br>
+main.py required library <br>
 
 pip install Flask <br>
 pip install Flask-Migrate <br>
