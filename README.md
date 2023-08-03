@@ -1,9 +1,9 @@
 # Style_Focus
 #SWBootCamp_Levware Team Project
 
-main.py required library
+main.py required library <br> <br>
 
-pip install Flask
-pip install Flask-Migrate
-pip install Flask-SQLAlchemy
+pip install Flask <br>
+pip install Flask-Migrate <br>
+pip install Flask-SQLAlchemy <br>
 pip install -U Flask-WTF
