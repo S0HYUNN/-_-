@@ -375,6 +375,32 @@
                 </div>
         </div>
         </header>
+                    <!-- input section -->
+                    <section class="bg-light">
+                        <div class="container px-5 text-center">
+                            <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline"> Analyze Your Item! </span></h2>
+                            <div class="input_form">
+                                <form method="post">
+                                    {{form.hidden_tag()}}
+                                    <div>{{form.user_id.label}} {{form.user_id()}}</div>
+                                    <br>
+                                    <div>{{form.type.label}} {{form.type()}}</div>
+                                    <div>{{form.tags.label}} {{form.tags()}}</div>
+                                    <div>{{form.price.label}} {{form.price()}}</div>
+                                    <div>{{form.submit()}}</div>
+                                </form>
+                                <br>
+                            </div>
+                            <p class="lead fw-light mb-4">My name is Start Bootstrap and I help brands grow.</p>
+                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit dolorum itaque qui unde quisquam consequatur autem. Eveniet quasi nobis aliquid cumque officiis sed rem iure ipsa! Praesentium ratione atque dolorem?</p>
+                            <div class="d-flex justify-content-center fs-2 gap-4">
+                                <a class="text-gradient" href="#!"><i class="bi bi-twitter"></i></a>
+                                <a class="text-gradient" href="#!"><i class="bi bi-linkedin"></i></a>
+                                <a class="text-gradient" href="#!"><i class="bi bi-github"></i></a>
+                            </div>
+        
+                        </div>
+                    </section>
         <!-- About Section-->
         <section class="bg-light py-5">
             <div class="container px-5">
