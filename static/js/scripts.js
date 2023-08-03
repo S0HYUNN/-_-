@@ -6,6 +6,63 @@
 //
 // Scripts
 // 
+// function slide(){
+//     document.querySelector(".device").style.display = "none";
+// }
+
+// document.querySelector("#next").addEventListener('click', slide);
+
+// 현재 노드 뒤의 Element Node를 탐색하는 함수
+function setElementNodeNext(node){
+	while(node.nodeType !== 1){
+		node = node.nextSibling;
+	}
+	return node;
+}
+// 현재 노드 앞의 Element Node를 탐색하는 함수
+function setElementNodePre(node){
+	while(node.nodeType !== 1){
+		node = node.previousSibling;
+	}
+	return node;
+}
+ 
+function nodeRotate() {
+	
+	var list = document.getElementById("list");
+	var firstChild = list.firstChild, 
+		lastChild = list.lastChild;
+ 
+	function swapNodes(){
+ 
+		// Element 노드 선택
+		firstChild = setElementNodeNext(list.firstChild);
+		lastChild = setElementNodePre(list.lastChild);
+ 
+		// 마지막 목록을 처음으로 이동하여 목록을 순환시킴
+		list.insertBefore(lastChild, firstChild); 
+ 
+		// 첫째 elment node 선택
+		firstChild = setElementNodeNext(list.firstChild);
+ 
+		// css 슬라이더 위치 초기화(CSS transition 중단)
+		list.className = ""; 
+ 
+		// transitionend 이벤트 리스너 초기화
+		list.removeEventListener("transitionend", swapNodes);
+ 
+	}
+ 
+	// 슬라이더 이동 효과(css trasition)를 위란 클래스 지정
+	list.className = "animate";
+ 
+	// list 목록의  트랜지션이 끝난 후, 다음 보여줄 목록들의 배치 수행
+	list.addEventListener("transitionend", swapNodes);
+ 
+}
+
+var btn = document.getElementById("btn_r");
+btn.addEventListener("click", nodeRotate, false);
 
 window.addEventListener('DOMContentLoaded', event => {
 
@@ -17,6 +74,16 @@ window.addEventListener('DOMContentLoaded', event => {
             offset: 74,
         });
     };
+
+    // const buttonNav = document.body.querySelector('#next');
+    // if (buttonNav) {
+    //     alert('ddd');
+    // };
+    // var btn = document.querySelector("input");
+    // btn.addEventListener("click",updateBtn);
+    // function updateBtn(){
+    //     alert("dd");
+    // }
 
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
@@ -31,51 +98,4 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-});
-
-let slideWrap = $(".slide_wrap"),
-slideShow = slideWrap.find(".slide_show"),
-slideList = slideShow.find(".slide_list"),
-slides = slideList.find(".slide"),
-slideBtn = slideWrap.find(".slide_btn");
-
-let slideCount = slides.length,
-slideWidth = slides.innerWidth(),
-showNum = 3,
-num = 0,
-currentIndex = 0,
-
-slideCopy = $(".slide:lt("+ showNum +")").clone();
-slideList.append(slideCopy);
-
-//이미지 움직이기
-function backShow(){
-if( num == 0 ){
-//시작
-num= slideCount;
-slideList.css("left", -num * slideWidth + "px");
-}
-num--;
-slideList.stop().animate({ left : -slideWidth * num +"px"}, 400);
-}
-
-function nextShow(){
-if( num == slideCount ){
-//마지막
-num= 0;
-slideList.css("left", num);
-}
-num++;
-slideList.stop().animate({ left : -slideWidth * num +"px"}, 400);
-}
-
-//왼쪽, 오른쪽 버튼 설정
-slideBtn.on("click","button",function(){
-if( $(this).hasClass("prev")){
-//왼쪽 버튼을 클릭
-backShow();
-} else {
-//오른쪽 버튼을 클릭
-nextShow();
-}
 });

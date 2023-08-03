@@ -11132,7 +11132,7 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .right-trans1{
   position: absolute;
-  right: 5%;
+  right: 75%;
 }
 .right-trans2{
   position: absolute;
@@ -11140,7 +11140,15 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .right-trans3{
   position: absolute;
-  right: 75%;
+  right: 5%;
+}
+.right-trans4{
+  position: absolute;
+  right: -30%;
+}
+.right-trans5{
+  position: absolute;
+  right: -65%;
 }
 .button-design{
   background-color: rgba(0,0,0,0);
@@ -11163,6 +11171,25 @@ footer a:hover, footer a:active, footer a:focus {
 .height-size{
   height: 80px;
 }
+
+*{margin:0;padding: 0;}
+.row{ position: relative;}
+.row:after{ content: "";clear: both;display: block;}
+ 
+/* 슬라이더 기본 위치 */
+#list{ position: relative; left: 5%;}
+ 
+/* 슬라이더 이동(우) 위치 */
+#list.animate{ 
+	margin-left: 200px;
+	transition: .5s ease;
+}
+#list li{ float: left; width: 250px; list-style: none;}
+#list img{ border:1px solid;}
+ 
+.active{ background-color: yellow;}
+button{width: 50px;padding: 5px;}
+li[data-roll="2"]{}
 
 @media (min-width: 576px) {
   .masthead .masthead-device-mockup .circle {
