@@ -6,7 +6,7 @@ from forms import InForm
 
 ## setup
 app = Flask(__name__)
-app.config["SECRETE_KEY"] = "key"
+app.config['SECRET_KEY'] = 'SECRET_KEY'
 
 ## DB setup
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -35,7 +35,7 @@ class Input(input_db.Model):
 
 @app.route('/', methods=['GET','POST']) 
 def index():
-    form=Inform()
+    form=InForm()
 
     if form.validate_on_submit():
         user_id = form.user_id.data
@@ -44,7 +44,7 @@ def index():
         new_input = Input(user_id, type, tags)
         input_db.session.add(new_input)
         input_db.session.commit()
-    return render_template('input.html', form=form)
+    return render_template( 'input.html', form=form )
 
 if __name__ == '__main__':
     app.run(port="5000", debug = True)

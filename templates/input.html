@@ -31,7 +31,13 @@
 										Your message was sent, thank you!
 									</div>
 									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
-										<div class="row">
+										<div class="row">											<form method="post">
+												{{form.hidden_tag()}}
+												<div>{{form.user_id.label}} {{form.user_id(class="custom-label-class")}}</div>
+												<br>
+												<div>{{form.type.label}} {{form.type()}}</div>
+												<div>{{form.tags.label}} {{form.tags()}}</div>
+												<div>{{form.submit()}}</div>
 											<!-- <div class="col-md-12">
 												<div class="form-group">
 													<input type="text" class="form-control" name="id" id="id"
@@ -49,7 +55,7 @@
 													<textarea name="tag" class="form-control" id="tag" cols="30"
 														rows="6" placeholder="Hashtag"></textarea>
 												</div>
-											</div>
+											</div> --->
 											<div class="col-md-12">
 												<div class="form-group">
 													<img src="./static/img/button.png" class="submit" input
@@ -57,15 +63,8 @@
 														onclick="printView()">
 													<div class="submitting"></div>
 												</div>
-											</div> -->
-											<form method="post">
-												{{form.hidden_tag()}}
-												<div>{{form.user_id.label}} {{form.user_id()}}</div>
-												<br>
-												<div>{{form.type.label}} {{form.type()}}</div>
-												<div>{{form.tags.label}} {{form.tags()}}</div>
-												<div>{{form.price.label}} {{form.price()}}</div>
-												<div>{{form.submit()}}</div>
+											</div>
+
 											</form>
 										</div>
 									</form>
