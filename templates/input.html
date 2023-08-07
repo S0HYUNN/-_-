@@ -32,7 +32,7 @@
 									</div>
 									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
 										<div class="row">
-											<div class="col-md-12">
+											<!-- <div class="col-md-12">
 												<div class="form-group">
 													<input type="text" class="form-control" name="id" id="id"
 														placeholder="ID">
@@ -57,7 +57,16 @@
 														onclick="printView()">
 													<div class="submitting"></div>
 												</div>
-											</div>
+											</div> -->
+											<form method="post">
+												{{form.hidden_tag()}}
+												<div>{{form.user_id.label}} {{form.user_id()}}</div>
+												<br>
+												<div>{{form.type.label}} {{form.type()}}</div>
+												<div>{{form.tags.label}} {{form.tags()}}</div>
+												<div>{{form.price.label}} {{form.price()}}</div>
+												<div>{{form.submit()}}</div>
+											</form>
 										</div>
 									</form>
 								</div>
