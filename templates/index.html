@@ -376,31 +376,64 @@
         </div>
         </header>
                     <!-- input section -->
-                    <section class="bg-light">
-                        <div class="container px-5 text-center">
-                            <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline"> Analyze Your Item! </span></h2>
-                            <div class="input_form">
-                                <form method="post">
-                                    {{form.hidden_tag()}}
-                                    <div>{{form.user_id.label}} {{form.user_id()}}</div>
-                                    <br>
-                                    <div>{{form.type.label}} {{form.type()}}</div>
-                                    <div>{{form.tags.label}} {{form.tags()}}</div>
-                                    <div>{{form.price.label}} {{form.price()}}</div>
-                                    <div>{{form.submit()}}</div>
-                                </form>
-                                <br>
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="wrapper">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <div class="contact-wrap w-100 p-lg-5 p-4">
+                                        <h3 class="row" >Product Info</h3>
+                                        <div id="form-message-warning" class="mb-4"></div>
+                                        <div id="form-message-success" class="mb-4">
+                                            Your message was sent, thank you!
+                                        </div>
+                                        <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                            <div class="row form">											
+                                                <form class="row" method="post">
+                                                    {{form.hidden_tag()}}
+                                                    <br>
+                                                    <div>{{form.user_id.label(class="form_id")}} {{form.user_id(id="id")}}</div>
+                                                    <div class="type">{{form.type.label}} {{form.type(class="type_input", id="type")}}</div>
+                                                    <div>{{form.tags.label}} {{form.tags(class="tag_box", id="tag")}}</div>
+                                                    <div>{{form.style.label}} {{form.style}} </div>
+                                                    <div>{{form.submit(class="submit")}}</div>
+                                                </form>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 d-flex align-items-stretch">
+                                    <div class="info-wrap w-100 p-lg-5 p-4">
+                                        <h3>Preview</h3>
+                                        <br>
+                                        <img src="./static/img/id.png" class="img">
+                                        <div id="resultId"></div>
+                                        <br>
+                                        <img src="./static/img/type.png" class="img">
+                                        <div id="resultType"></div>
+                                        <br>
+                                        <img src="./static/img/tag.png" class="tagimg">
+                                        <div class="tagBox">
+                                            <div id="resultTag">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div><button type="button" class="next">▶</button></div>
+                                </div>
+                                </div>
                             </div>
-                            <p class="lead fw-light mb-4">My name is Start Bootstrap and I help brands grow.</p>
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit dolorum itaque qui unde quisquam consequatur autem. Eveniet quasi nobis aliquid cumque officiis sed rem iure ipsa! Praesentium ratione atque dolorem?</p>
-                            <div class="d-flex justify-content-center fs-2 gap-4">
-                                <a class="text-gradient" href="#!"><i class="bi bi-twitter"></i></a>
-                                <a class="text-gradient" href="#!"><i class="bi bi-linkedin"></i></a>
-                                <a class="text-gradient" href="#!"><i class="bi bi-github"></i></a>
-                            </div>
-        
                         </div>
-                    </section>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </section>
+    
         <!-- About Section-->
         <section class="bg-light py-5">
             <div class="container px-5">
