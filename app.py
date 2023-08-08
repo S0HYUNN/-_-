@@ -23,11 +23,13 @@ class Input(input_db.Model):
     user_id = input_db.Column(input_db.Text)
     type = input_db.Column(input_db.Text)
     tags = input_db.Column(input_db.Text)
+    style = input_db.Column(input_db.Text)
 
-    def __init__(self, user_id, type, tags, price):
+    def __init__(self, user_id, type, tags, style):
         self.user_id = user_id
         self.type = type
         self.tags = tags
+        self.style = style
     
     def __repr__(self):
         return f"{self.type}: {self.price}won"
@@ -40,7 +42,8 @@ def index():
         user_id = form.user_id.data
         type = form.type.data
         tags = form.tags.data
-        new_input = Input(user_id, type, tags)
+        style = form.style.data
+        new_input = Input(user_id, type, tags, style)
         input_db.session.add(new_input)
         input_db.session.commit()
     return render_template( 'input.html', form=form )
