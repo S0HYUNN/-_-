@@ -34,13 +34,54 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
                         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/resume">Resume</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
-                            <li class="nav-item"><a class="nav-link text-primary" href="/contact">Log-In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/resume">Resume</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link text-primary" href="/login">Log-In</a></li>
+                        <!-- Right -->
+                        <ul class="navbar-nav nav-flex-icons">
+                            {% if session.loginUser %}
+                            <li class="nav-item">
+                                <a href="/logout" class="nav-link waves-effect">
+                                    <i class="fas fa-user"></i> {{session.loginUser.name}}
+                                </a>
+                            </li>
+
+                            {% else %}
+                            <li class="nav-item">
+                                <a href="/oauth2authorize" id="btnGoogleSignin" class="nav-link waves-effect">
+                                    <i class="fab fa-google"></i> Google Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/login" id="btnSingin" class="nav-link waves-effect">
+                                    <i class="fas fa-sign-in-alt"></i> Sign-In
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            <!-- <li class="nav-item">
+              <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li> -->
+                            <li class="nav-item">
+                                <a href="https://github.com/S0HYUNN/Style_Focus"
+                                    class="nav-link border border-light rounded waves-effect" target="_blank">
+                                    <i class="fab fa-github mr-2"></i>GitHub
+                                </a>
+                            </li>
+                        </ul>
                     </ul>
                 </div>
             </div>
+
+
+
+            </div>
         </nav>
+
+
+
         <!-- Header-->
 
         <div class="col-xxl-7">
@@ -375,32 +416,34 @@
                 </div>
         </div>
         </header>
-                    <!-- input section -->
-                    <section class="bg-light">
-                        <div class="container px-5 text-center">
-                            <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline"> Analyze Your Item! </span></h2>
-                            <div class="input_form">
-                                <form method="post">
-                                    {{form.hidden_tag()}}
-                                    <div>{{form.user_id.label}} {{form.user_id()}}</div>
-                                    <br>
-                                    <div>{{form.type.label}} {{form.type()}}</div>
-                                    <div>{{form.tags.label}} {{form.tags()}}</div>
-                                    <div>{{form.price.label}} {{form.price()}}</div>
-                                    <div>{{form.submit()}}</div>
-                                </form>
-                                <br>
-                            </div>
-                            <p class="lead fw-light mb-4">My name is Start Bootstrap and I help brands grow.</p>
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit dolorum itaque qui unde quisquam consequatur autem. Eveniet quasi nobis aliquid cumque officiis sed rem iure ipsa! Praesentium ratione atque dolorem?</p>
-                            <div class="d-flex justify-content-center fs-2 gap-4">
-                                <a class="text-gradient" href="#!"><i class="bi bi-twitter"></i></a>
-                                <a class="text-gradient" href="#!"><i class="bi bi-linkedin"></i></a>
-                                <a class="text-gradient" href="#!"><i class="bi bi-github"></i></a>
-                            </div>
-        
-                        </div>
-                    </section>
+        <!-- input section -->
+        <section class="bg-light">
+            <div class="container px-5 text-center">
+                <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline"> Analyze Your Item! </span></h2>
+                <div class="input_form">
+                    <form method="post">
+                        {{form.hidden_tag()}}
+                        <div>{{form.user_id.label}} {{form.user_id()}}</div>
+                        <br>
+                        <div>{{form.type.label}} {{form.type()}}</div>
+                        <div>{{form.tags.label}} {{form.tags()}}</div>
+                        <div>{{form.price.label}} {{form.price()}}</div>
+                        <div>{{form.submit()}}</div>
+                    </form>
+                    <br>
+                </div>
+                <p class="lead fw-light mb-4">My name is Start Bootstrap and I help brands grow.</p>
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit dolorum itaque qui
+                    unde quisquam consequatur autem. Eveniet quasi nobis aliquid cumque officiis sed rem iure ipsa!
+                    Praesentium ratione atque dolorem?</p>
+                <div class="d-flex justify-content-center fs-2 gap-4">
+                    <a class="text-gradient" href="#!"><i class="bi bi-twitter"></i></a>
+                    <a class="text-gradient" href="#!"><i class="bi bi-linkedin"></i></a>
+                    <a class="text-gradient" href="#!"><i class="bi bi-github"></i></a>
+                </div>
+
+            </div>
+        </section>
         <!-- About Section-->
         <section class="bg-light py-5">
             <div class="container px-5">
