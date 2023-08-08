@@ -28,7 +28,6 @@ class Input(input_db.Model):
         self.user_id = user_id
         self.type = type
         self.tags = tags
-        self.price = price
     
     def __repr__(self):
         return f"{self.type}: {self.price}won"

@@ -2406,9 +2406,6 @@ textarea.form-control {
   height: auto;
 }
 
-.form-group {
-  margin-bottom: 1rem;
-}
 
 .form-text {
   display: block;
@@ -11715,7 +11712,7 @@ body {
   line-height: 1.8;
   font-weight: normal;
   background: #fafafa;
-  color: #666666;
+  color: white;
 }
 
 a {
@@ -11986,7 +11983,7 @@ textarea.form-control {
 
 .submit {
   margin-top: 30px;
-  width: 60px;
+  width: 70px;
 }
 
 .img {
@@ -12013,25 +12010,15 @@ textarea.form-control {
 #resultTag {
   padding-top: 10px;
   padding-left: 15px;
-  color: white;
+  color: black;
   font-weight: bold;
 }
 
 .tagBox {
   margin-top: 10px;
-  background: #7f279c;
-  background: -moz-linear-gradient(-45deg, #7f279c 0%, #2e279d 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, #7f279c), color-stop(100%, #2e279d));
-  background: -webkit-linear-gradient(-45deg, #7f279c 0%, #2e279d 100%);
-  background: -o-linear-gradient(-45deg, #7f279c 0%, #2e279d 100%);
-  background: -ms-linear-gradient(-45deg, #7f279c 0%, #2e279d 100%);
-  background: -webkit-linear-gradient(315deg, #7f279c 0%, #2e279d 100%);
-  background: -o-linear-gradient(315deg, #7f279c 0%, #2e279d 100%);
-  background: linear-gradient(135deg, #7f279c 0%, #2e279d 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7f279c', endColorstr='#2e279d', GradientType=1);
-  opacity: 0.2;
-  width: 100%;
   height: 45%;
+  width: 100%;
+  background:	#ccbbd8;
 }
 
 .next{
@@ -12048,4 +12035,22 @@ textarea.form-control {
   background: -o-linear-gradient(315deg, #7f279c 0%, #2e279d 100%);
   background: linear-gradient(135deg, #7f279c 0%, #2e279d 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7f279c', endColorstr='#2e279d', GradientType=1);
+}
+.form {
+  gap: 10px;
+}
+.tag_box {
+  width: 100%;
+  height: 100%;
+}
+.form {
+  gap: 20px;
+  align-items: center;
+}
+.type {
+  width: 100%;
+}
+.info-wrap {
+  color: black !important;
+  opacity: 100% !important;
 }

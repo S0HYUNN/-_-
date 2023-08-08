@@ -23,39 +23,22 @@
 				<div class="col-md-10">
 					<div class="wrapper">
 						<div class="row no-gutters">
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="contact-wrap w-100 p-lg-5 p-4">
-									<h3 class="mb-4">Send a message</h3>
+									<h3 class="row" >Product Info</h3>
 									<div id="form-message-warning" class="mb-4"></div>
 									<div id="form-message-success" class="mb-4">
 										Your message was sent, thank you!
 									</div>
 									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
-										<div class="row">											<form method="post">
+										<div class="row form">											
+											<form class="row" method="post">
 												{{form.hidden_tag()}}
-												<div>{{form.user_id.label}} {{form.user_id(class="custom-label-class")}}</div>
 												<br>
-												<div>{{form.type.label}} {{form.type()}}</div>
-												<div>{{form.tags.label}} {{form.tags()}}</div>
-												<div>{{form.submit()}}</div>
-											<!-- <div class="col-md-12">
-												<div class="form-group">
-													<input type="text" class="form-control" name="id" id="id"
-														placeholder="ID">
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<input type="text" class="form-control" name="type" id="type"
-														placeholder="Type">
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<textarea name="tag" class="form-control" id="tag" cols="30"
-														rows="6" placeholder="Hashtag"></textarea>
-												</div>
-											</div> --->
+												<div>{{form.user_id.label(class="form_id")}} {{form.user_id(id="id")}}</div>
+												<div class="type">{{form.type.label}} {{form.type(class="type_input", id="type")}}</div>
+												<div>{{form.tags.label}} {{form.tags(class="tag_box", id="tag")}}</div>
+												<div>{{form.submit(class="submit")}}</div>
 											<div class="col-md-12">
 												<div class="form-group">
 													<img src="./static/img/button.png" class="submit" input
@@ -70,7 +53,7 @@
 									</form>
 								</div>
 							</div>
-							<div class="col-md-6 d-flex align-items-stretch">
+							<div class="col-md-8 d-flex align-items-stretch">
 								<div class="info-wrap w-100 p-lg-5 p-4">
 									<h3>Preview</h3>
 									<br>
