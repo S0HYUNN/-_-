@@ -85,8 +85,11 @@ def index():
         input_db.session.add(new_input)
         input_db.session.commit()
         return redirect(url_for('list'))
-        
-    return render_template('index.html', form=form)
+    
+    if 'name' in session:
+        return render_template('index.html', name=session['name'], form=form)
+    else:
+        return render_template('index.html', form=form)
 
 def login_is_required(function):
     def wrapper(*args, **kwargs):
@@ -127,7 +130,6 @@ def callback():
     # return f"Email: {email}, Name: {name} <a href='/'><button>main</button></a>"
 
     # return id_info
-    
     session["google_id"] = id_info.get("sub")
     session["name"] = id_info.get("name")
     return redirect("/")
