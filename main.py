@@ -1,6 +1,9 @@
-
-from flask import Flask, render_template, request, send_file, session, redirect
 import os
+import pathlib
+
+import google.auth.transport.requests
+import requests
+from flask import Flask, render_template, request, send_file, session, redirect, abort
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from forms import InForm
@@ -8,18 +11,17 @@ from oauth2client.contrib.flask_util import UserOAuth2
 from werkzeug.utils import secure_filename
 from sqlalchemy import MetaData, Table, Column, String
 from dbconn import get_con
+from google.oauth2 import id_token
+from google_auth_oauthlib.flow import Flow
+from pip._vendor import cachecontrol
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 ###########################
 ###### DB setup ###########
 ###########################
 app.config['SECRET_KEY'] = 'mysecretkey'
 
-app.config['GOOGLE_OAUTH2_CLIENT_SECRETS_FILE'] = 'secret.json'
-#app.config['GOOGLE_OAUTH2_CLIENT_ID'] = os.environ['OAUTH_CLIENT']
-#app.config['GOOGLE_OAUTH2_CLIENT_SECRET'] = os.environ['OAUTH_SECRET']
-
-oauth2 = UserOAuth2(app)
 
 ######## DB Section ##########
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -28,9 +30,17 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 input_db=SQLAlchemy(app)
 Migrate(app, input_db)
 
-# GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", '516475944042-psbar5tjohs8qqdfcjibejuhv9nnscpe.apps.googleusercontent.com')
-# GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", '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')
 
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+
+GOOGLE_CLIENT_ID = "516475944042-psbar5tjohs8qqdfcjibejuhv9nnscpe.apps.googleusercontent.com"
+client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
+
+flow = Flow.from_client_secrets_file(
+    client_secrets_file=client_secrets_file,
+    scopes = ["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
+    redirect_uri = "http://localhost:5000/callback"
+    )
 
 ######## MODELS ##############
 class Input(input_db.Model):
@@ -75,37 +85,63 @@ def index():
         input_db.session.add(new_input)
         input_db.session.commit()
         return redirect(url_for('list'))
+        
     return render_template('index.html', form=form)
 
-@app.route('/login')
+def login_is_required(function):
+    def wrapper(*args, **kwargs):
+        if "google_id" not in session:
+            return abort(401)
+        else:
+            return function() 
+             
+    return wrapper
+
+@app.route("/login")
 def login():
-    test_db = Input.query.all()
-    return render_template('login.html', test_db = test_db)
+    authorization_url, state = flow.authorization_url()
+    session["state"] = state
+    return redirect(authorization_url)
 
-@app.route('/oauth2authorize')
-@oauth2.required
-def google_oauth():
-    print("Google OAuth>> {} ({})".format(oauth2.email, oauth2.user_id))
-    print("email : ", oauth2.email)
-    print("name : ", oauth2.name)
-    return redirect('/')
-    # u = User.query.filter('email = : email').params(email=oauth2.email).first()
-    # if u is not None:
-    #     session['loginUser'] = {'userid' : u.id, 'name' : u.nickname}
-    #     return redirect('/')
+@app.route("/callback")
+def callback():
+    flow.fetch_token(authorization_response=request.url)
+
+    if not session["state"] == request.args["state"]:
+        abort(500)  # State does not match!
+
+    credentials = flow.credentials
+    request_session = requests.session()
+    cached_session = cachecontrol.CacheControl(request_session)
+    token_request = google.auth.transport.requests.Request(session=cached_session)
+
+    id_info = id_token.verify_oauth2_token(
+        id_token=credentials._id_token,
+        request=token_request,
+        audience=GOOGLE_CLIENT_ID
+    )
     
-    # else:
-    #     flask("해당 사용자가 없습니다!!")
-    #     return render_template("login.html", email = oauth2.email)    
+    email = id_info.get("email")
+    name = id_info.get("name")
 
-@app.route('/logout')
+    # return f"Email: {email}, Name: {name} <a href='/'><button>main</button></a>"
+
+    # return id_info
+    
+    session["google_id"] = id_info.get("sub")
+    session["name"] = id_info.get("name")
+    return redirect("/")
+
+@app.route("/logout")
 def logout():
-    if session.get('loginUser'):
-        del session['loginUser']
-        session.modified = True
-        oauth2.storage.delete()
-        
-    return redirect('/')
+    session.clear()
+    return redirect("/")
+
+@app.route("/protected_area")
+@login_is_required
+def protected_area():
+    return "Protected! <a href='/logout'><button>Logout</button></a>"
+
 
 @app.route('/list')
 def list():
