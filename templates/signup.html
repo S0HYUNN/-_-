@@ -1,41 +1,49 @@
-{% block main %}
-<form action="/login" method="POST" class="text-center border border-light p-5">
-    {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>{{message}}</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    {% endfor %}
-    <p class="h4 mb-4"><strong>Sign In</strong></p>
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- Email -->
-    <input type="email" id="defaultLoginFormEmail" name="email" class="form-control mb-4" placeholder="E-mail" value="{{email}}" required>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>#Style_Focus</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="./static/assets/favicon.png" />
 
-    <!-- Password -->
-    <input type="password" id="defaultLoginFormPassword" name="passwd" class="form-control mb-4" placeholder="Password" required>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="./static/css/style2.css">
+</head>
 
-    <div class="d-flex justify-content-around">
-        <div>
-            <!-- Remember me -->
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+<body>
+    <br>
+    <h2><a class="title" href="/">#Style_Focus</a></h2>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <a class="text" href="/"><button class="ghost" id="signUp">#Style_Focus</button></a>
+                </div>
             </div>
         </div>
-        <div>
-            <!-- Forgot password -->
-            <a href="">Forgot password?</a>
+        <div class="overlay-container">
+            <form action="#">
+                <h1>Sign Up</h1>
+                <br><br><br>
+                <span>or use your account</span>
+                <input type="email" placeholder="Email" />
+                <input type="name" placeholder="Name" />
+                <input type="username" placeholder="Userame" />
+                <br>
+                <button class="bg-gradient-primary-to-secondary">Sign Up</button>
+            </form>
         </div>
     </div>
 
-    <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+    
 
-    <!-- Register -->
-    <p>Not a member?
-        <a href="/regist">Register</a>
-    </p>
-</form>
-{% endblock %}
+    <script src="./static/js/scripts.js"></script>
+</body>
+
+</html>
