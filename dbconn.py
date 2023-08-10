@@ -19,7 +19,7 @@ def connect(user, password, db, host='121.140.47.102', port=35432):
 
 
 def get_con():
-    return connect('postgres', 'levware1234', 'levtest')
+    return connect('style_focus', '1234', 'style_focus')
 
 # connection
 # conn = connect('postgres', 'levware1234', 'levtest')

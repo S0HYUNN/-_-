@@ -8,3 +8,5 @@ class InForm(FlaskForm):
     style = RadioField("Choose Style: ", choices=[('Sungsu', 'Sungsu'), ('Hongdae', 'Hongdae'), ('Gangnam','Gangnam'), ('Sinsa', 'Sinsa')])
     submit = SubmitField()
 
+class Login(FlaskForm):
+    username = StringField("User ID: ")
