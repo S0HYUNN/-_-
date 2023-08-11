@@ -95,6 +95,8 @@ def callback():
     )
     email = id_info.get("email")
     name = id_info.get("name")
+    session["email"] = email
+    session["name"] = name
     ## 이미 회원인지 확인
     sql = "select email from login"
     conn = get_con()
@@ -102,12 +104,25 @@ def callback():
     result = sql_result.to_dict('records')
     email_list = [record["email"] for record in result]
     if email in email_list:
-        return redirect() ## main page로 redirect
+        return redirect("/") ## input main page로 redirect
+
+
+    ## 회원 가입 절차 시작 ##
 
     form = Login()
     if form.validate_on_submit():
         username= form.username.data
+        ## username unique 한지 확인
+        sql = "select username from login"
+        conn = get_con()
+        sql_result = pd.read_sql(sql, conn)
+        result = sql_result.to_dict('records')
+        username_list = [record['username'] for record in result]
+        if (username in username_list):
+            ## 이 방법 말고 페이지에서 바로 보여주는 방법을 찾자!
+            return '<h1>Username already taken! </h1>'
 
+        ## DB insert
         meta = MetaData()
         new_user = Table(
             "login", meta, 
@@ -117,9 +132,11 @@ def callback():
         ins = new_user.insert().values(email=email, name=name, username=username)
         conn = get_con()
         conn.execute(ins)
-        return redirect() ## main page로
-    return render_template()    ##form 보여주는 회원가입 페이지
+        ## ############ ##
+        return redirect("/") ## input main page로
+    return render_template("signup.html", form=form, email=session['email'], name=session['name'] )    ##form 보여주는 회원가입 페이지
 
+## sign up page
 
 ## login 후 mainpage
 

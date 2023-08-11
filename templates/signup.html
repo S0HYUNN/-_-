@@ -28,22 +28,29 @@
             </div>
         </div>
         <div class="overlay-container">
-            <form action="#">
+            <form action="#" methdo="POST">
+                {{ form.hidden_tag() }}
                 <h1>Sign Up</h1>
                 <br><br><br>
-                <span>or use your account</span>
-                <input type="email" placeholder="Email" />
+                <div>{{email}}</div>
+                <div>{{name}}</div>
+                {{form.username}}
+                {{form.submit(class="bg-gradient-primary-to-secondary")}}
+                <h1>Sign Up</h1>
+                <br><br><br>
+                <!-- <span>or use your account</span> -->
+                <!-- <input type="email" placeholder="Email" />
                 <input type="name" placeholder="Name" />
                 <input type="username" placeholder="Userame" />
                 <br>
-                <button class="bg-gradient-primary-to-secondary">Sign Up</button>
+                <button class="bg-gradient-primary-to-secondary">Sign Up</button> -->
             </form>
         </div>
     </div>
 
     
 
-    <script src="./static/js/scripts.js"></script>
+    <!-- <script src="./static/js/scripts.js"></script> -->
 </body>
 
 </html>
