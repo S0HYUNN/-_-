@@ -166,5 +166,9 @@ def resume():
 def signup():
     return render_template('signup.html')
 
+@app.route('/index2')
+def index2():
+    return render_template('index2.html')
+
 if __name__ == '__main__':
     app.run(port="5000", debug = True)
