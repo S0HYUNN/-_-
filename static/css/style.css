@@ -482,6 +482,7 @@
     --bs-navbar-toggler-border-radius: 0.375rem;
     --bs-navbar-toggler-focus-width: 0.25rem;
     --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
+    /* background-color: rgba(216, 223, 255, 0.842); */
     position: relative;
     display: flex;
     flex-wrap: wrap;

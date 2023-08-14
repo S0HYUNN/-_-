@@ -11615,7 +11615,7 @@ fieldset:disabled .ajax-upload-dragdrop a.ajax-file-upload,
 }
 
 .btn-lg, .btn-group-lg > .btn, .ajax-upload-dragdrop .btn-group-lg > .ajax-file-upload {
-  padding: 1rem 3rem;
+  padding: 1rem 1rem;
   font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.1875rem;
