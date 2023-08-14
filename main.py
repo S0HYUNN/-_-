@@ -61,8 +61,8 @@ def index():
         ins = new_input.insert().values(uid=uid, user_id=user_id, type=type, tags=tags, style=style)
         conn = get_con()
         conn.execute(ins)
-        return redirect(url_for('list'))
-    return render_template('index.html', form=form)
+        return redirect("/input", )
+    return render_template("index.html", form=form)
 
 
 ##               로그인 페이지              ##
@@ -141,11 +141,50 @@ def callback():
 ## login 후 mainpage
 
 
-## log-out
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect("/")
+# ## log-out
+# @app.route("/logout")
+# def logout():
+#     session.clear()
+#     return redirect("/")
+
+# @app.route("/input")
+# def input():
+#     form = InForm()
+#     if form.validate_on_submit():
+#         uid = uuid.uuid4()
+#         user_id = form.user_id.data
+#         type = form.type.data
+#         tags = form.tags.data
+#         style = form.style.data
+
+#         meta = MetaData()
+
+#         new_input = Table(
+#             "input_db", meta,
+#             Column("uid", String),
+#             Column("user_id", String),
+#             Column("type", String),
+#             Column("tags", String),
+#             Column("style", String)
+#         )
+
+#         ins = new_input.insert().values(uid=uid, user_id=user_id, type=type, tags=tags, style=style)
+#         conn = get_con()
+#         conn.execute(ins)
+#         return redirect("/input", )
+#     return render_template("", form=form)
+
+# @app.route("/output")
+# def output():
+
+#     return redirect('/')
+
+
+# @app.route('/projects')
+# def projects():
+#     return render_template("")
+
+
 
 
 ##               회원정보 확인 or 회원가입              ##
