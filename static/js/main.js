@@ -78,6 +78,13 @@
         }
     });
 
-    
+    // const trans = document.querySelector(".profile-card");
+
+    // trans.addEventListener("click", clickHandler);
+
+    // function clickHandler(){
+    //     window.location.href = "./templates/dashboard.html";
+    // }
+
 })(jQuery);
 

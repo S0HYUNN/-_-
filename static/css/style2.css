@@ -13235,7 +13235,7 @@ input[type="button"].btn-block {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid #e4e4f4;
+  border: 5px solid #e4e4f4;
   border-radius: 0.25rem;
 }
 
@@ -21080,10 +21080,11 @@ code {
 
 /* Cards */
 .card {
-  box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88);
+  box-shadow: 0 1rem 2rem 0.25rem rgba(46, 43, 55, 0.3);
+  /* box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88);
   -webkit-box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88);
   -moz-box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88);
-  -ms-box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88);
+  -ms-box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88); */
 }
 
 .card .card-body {
@@ -25956,5 +25957,7 @@ div.tagsinput span.tag a {
   width: 100%;
 }
 
-
+.testimonial-item{
+  box-shadow: 0 2rem 4rem 0.25rem rgba(46, 43, 55, 0.575);
+}
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */

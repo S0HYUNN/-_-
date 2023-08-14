@@ -520,3 +520,17 @@
     border-radius:6px;
     background-color: #1E30F3;
 }
+
+.blur{
+    filter: blur(2px);
+}
+
+.major{
+    position: absolute;
+    left: 37%;
+}
+
+.minor{
+    position: absolute;
+    left: 20%;
+}
