@@ -105,6 +105,8 @@ def login():
     authorization_url, state = flow.authorization_url()
     session["state"] = state
     return redirect(authorization_url)
+    # session["google_id"] = "Test"
+    # return redirect("/protected_area")
 
 @app.route("/callback")
 def callback():
