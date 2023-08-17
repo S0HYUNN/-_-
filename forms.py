@@ -9,5 +9,5 @@ class InForm(FlaskForm):
     submit = SubmitField()
 
 class Login(FlaskForm):
-    username = StringField("Username: ", placeholder="Username")
+    username = StringField(render_kw={"placeholder":"Username"})
     submit = SubmitField("SIGN UP")

@@ -101,7 +101,11 @@ def callback():
         session["google_id"] = id_info.get("sub")
         session["name"] = id_info.get("name")
         return redirect("/") ## input main page로 redirect
-    
+
+    return redirect("signup.html") 
+
+@app.route('/signup')
+def signup():
     ## 회원 가입 절차 시작 ##
     form = Login()
     if form.validate_on_submit():
@@ -123,11 +127,11 @@ def callback():
             Column("email", String),
             Column("name", String)
         )
-        ins = new_user.insert().values(email=email, name=name, username=username)
+        ins = new_user.insert().values(email=session['email'], name=session['name'], username=username)
         conn = get_con()
         conn.execute(ins)
         return redirect("/") ## input main page로
-    return render_template("signup.html", form=form, email=session['email'], name=session['name'] ) 
+    return render_template('signup.html', form=form, email=session['email'], name=session['name'] )
 
 @app.route("/logout")
 def logout():
@@ -152,9 +156,7 @@ def projects():
 def resume():
     return render_template('resume.html')
 
-@app.route('/signup')
-def signup():
-    return render_template('signup.html')
+
 
 @app.route('/index2')
 def index2():
