@@ -76,15 +76,15 @@ class login(input_db.Model):
 def index():
     form = InForm()
     # 받아온 input으로 class instance 만들고 db에 저장
-    if form.validate_on_submit():
-        user_id = form.user_id.data
-        type = form.type.data
-        tags = form.tags.data
-        price = form.price.data
-        new_input = Input(user_id, type, tags , price)
-        input_db.session.add(new_input)
-        input_db.session.commit()
-        return redirect(url_for('list'))
+    # if form.validate_on_submit():
+    #     user_id = form.user_id.data
+    #     type = form.type.data
+    #     tags = form.tags.data
+    #     price = form.price.data
+    #     new_input = Input(user_id, type, tags , price)
+    #     input_db.session.add(new_input)
+    #     input_db.session.commit()
+    #     return redirect(url_for('list'))
     
     if 'name' in session:
         return render_template('index.html', name=session['name'], form=form)
@@ -147,10 +147,10 @@ def protected_area():
     return "Protected! <a href='/logout'><button>Logout</button></a>"
 
 
-@app.route('/list')
-def list():
-    test_db = Input.query.all()
-    return render_template('list.html', test_db = test_db)
+# @app.route('/list')
+# def list():
+#     test_db = Input.query.all()
+#     return render_template('list.html', test_db = test_db)
 
 @app.route('/contact')
 def contact():
