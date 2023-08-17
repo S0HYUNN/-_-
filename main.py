@@ -23,14 +23,6 @@ app.config['JSON_AS_ASCII'] = False
 app.config['SECRET_KEY'] = 'mysecretkey'
 
 
-######## DB Section ##########
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir, 'data.sqlite')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-input_db=SQLAlchemy(app)
-Migrate(app, input_db)
-
-
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 GOOGLE_CLIENT_ID = "516475944042-psbar5tjohs8qqdfcjibejuhv9nnscpe.apps.googleusercontent.com"
@@ -42,35 +34,7 @@ flow = Flow.from_client_secrets_file(
     redirect_uri = "http://localhost:5000/callback"
     )
 
-######## MODELS ##############
-class Input(input_db.Model):
-    __tablename__ = 'input'
-    id = input_db.Column(input_db.Integer, primary_key = True)
-    user_id = input_db.Column(input_db.Text)
-    type = input_db.Column(input_db.Text)
-    tags = input_db.Column(input_db.Text)
-    price = input_db.Column(input_db.Integer)
 
-    def __init__(self, user_id, type, tags, price):
-        self.user_id = user_id
-        self.type = type
-        self.tags = tags
-        self.price = price
-    
-    def __repr__(self):
-        return f"{self.type}: {self.price}won"
-
-class login(input_db.Model):
-    __tablename__ = 'login'
-    email = input_db.Column(input_db.Text, primary_key = True)
-    name = input_db.Column(input_db.Text)
-    
-    def __init__(self, email, name):
-        self.email = email
-        self.name = name
-        
-    def __repr__(self):
-        return f"email : {self.email} name : {self.name}"
     
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -183,6 +147,10 @@ def minor():
 @app.route('/minor2')
 def minor2():
     return render_template('minor2.html')
+
+@app.route('/output')
+def output():
+    return render_template('output.html')
 
 if __name__ == '__main__':
     app.run(port="5000", debug = True)
