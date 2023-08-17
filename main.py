@@ -1,19 +1,20 @@
 import os
 import pathlib
-
-import google.auth.transport.requests
+import pandas as pd
 import requests
-from flask import Flask, render_template, request, send_file, session, redirect, abort
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from forms import InForm
+import google.auth.transport.requests
 from oauth2client.contrib.flask_util import UserOAuth2
-from werkzeug.utils import secure_filename
-from sqlalchemy import MetaData, Table, Column, String
-from dbconn import get_con
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
+from flask import Flask, render_template, request, send_file, session, redirect, abort
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import MetaData, Table, Column, String
+from forms import InForm, Login
+from werkzeug.utils import secure_filename
+from sqlalchemy import MetaData, Table, Column, String
+from dbconn import get_con
+import json
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -22,7 +23,7 @@ app.config['JSON_AS_ASCII'] = False
 ###########################
 app.config['SECRET_KEY'] = 'mysecretkey'
 
-
+app.config['JSON_AS_ASCII'] = False
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 GOOGLE_CLIENT_ID = "516475944042-psbar5tjohs8qqdfcjibejuhv9nnscpe.apps.googleusercontent.com"
@@ -34,26 +35,18 @@ flow = Flow.from_client_secrets_file(
     redirect_uri = "http://localhost:5000/callback"
     )
 
+##############################################################################
+##                                  사이트 구현                                ##
+##############################################################################
 
-    
+
+##              메인 페이지              ##
 @app.route('/', methods=['GET', 'POST'])
-def index():
-    form = InForm()
-    # 받아온 input으로 class instance 만들고 db에 저장
-    # if form.validate_on_submit():
-    #     user_id = form.user_id.data
-    #     type = form.type.data
-    #     tags = form.tags.data
-    #     price = form.price.data
-    #     new_input = Input(user_id, type, tags , price)
-    #     input_db.session.add(new_input)
-    #     input_db.session.commit()
-    #     return redirect(url_for('list'))
-    
+def index():    
     if 'name' in session:
         return render_template('index.html', name=session['name'], form=form)
     else:
-        return render_template('index.html', form=form)
+        return render_template('index.html')
 
 def login_is_required(function):
     def wrapper(*args, **kwargs):
@@ -64,6 +57,8 @@ def login_is_required(function):
              
     return wrapper
 
+##               로그인 페이지              ##
+
 @app.route("/login")
 def login():
     authorization_url, state = flow.authorization_url()
@@ -71,6 +66,8 @@ def login():
     return redirect(authorization_url)
     # session["google_id"] = "Test"
     # return redirect("/protected_area")
+
+##               회원정보 확인 or 회원가입              ##
 
 @app.route("/callback")
 def callback():
@@ -92,13 +89,45 @@ def callback():
     
     email = id_info.get("email")
     name = id_info.get("name")
+    session["email"] = email
+    session["name"] = name
+    ## 이미 회원인지 확인
+    sql = "select email from login"
+    conn = get_con()
+    sql_result = pd.read_sql(sql, conn)
+    result = sql_result.to_dict('records')
+    email_list = [record["email"] for record in result]
+    if email in email_list:
+        session["google_id"] = id_info.get("sub")
+        session["name"] = id_info.get("name")
+        return redirect("/") ## input main page로 redirect
+    
+    ## 회원 가입 절차 시작 ##
+    form = Login()
+    if form.validate_on_submit():
+        username= form.username.data
+        ## username unique 한지 확인
+        sql = "select username from login"
+        conn = get_con()
+        sql_result = pd.read_sql(sql, conn)
+        result = sql_result.to_dict('records')
+        username_list = [record['username'] for record in result]
+        if (username in username_list):
+            ## 이 방법 말고 페이지에서 바로 보여주는 방법을 찾자!
+            return '<h1>Username already taken! </h1>'
 
-    # return f"Email: {email}, Name: {name} <a href='/'><button>main</button></a>"
-
-    # return id_info
-    session["google_id"] = id_info.get("sub")
-    session["name"] = id_info.get("name")
-    return redirect("/")
+        ## DB insert
+        meta = MetaData()
+        new_user = Table(
+            "login", meta, 
+            Column("email", String),
+            Column("name", String)
+        )
+        ins = new_user.insert().values(email=email, name=name, username=username)
+        conn = get_con()
+        conn.execute(ins)
+        return redirect("/") ## input main page로
+    return render_template("signup.html", form=form, email=session['email'], name=session['name'] ) 
 
 @app.route("/logout")
 def logout():
@@ -110,11 +139,6 @@ def logout():
 def protected_area():
     return "Protected! <a href='/logout'><button>Logout</button></a>"
 
-
-# @app.route('/list')
-# def list():
-#     test_db = Input.query.all()
-#     return render_template('list.html', test_db = test_db)
 
 @app.route('/contact')
 def contact():
