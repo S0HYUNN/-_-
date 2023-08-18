@@ -10,7 +10,7 @@ body, html {
 
 body {
   font-size: 1.2em;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://wallpapercave.com/wp/Fdh76FQ.jpg) center no-repeat fixed;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://wallpapercave.com/wp/Fdh76FQ.jpg) center no-repeat fixed; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -ms-background-size: cover;
@@ -18,11 +18,11 @@ body {
 }
 
 .text-box {
-  background-color: rgba(230, 126, 34,0.8);
+  background: linear-gradient(to right, #3023ae, #c86dd7);
   border-radius: 20px;
   margin: 2em auto;
   padding: 20px;
-  width: 90%;
+  width: 55%;
 }
 
 h1 {
@@ -52,10 +52,11 @@ hr {
 }
 
 .container {
-  background-color: rgba(22, 160, 133,0.7);
+    background: linear-gradient(to right, #3023ae, #c86dd7);
+    opacity: 0.6;
   border-radius: 20px;
   margin: auto;
-  width: 90%;
+  width: 55%;
   padding: 1em;
   
 }
@@ -106,7 +107,7 @@ input {
   width: 100%;
   padding: 5px;
   margin: 20px 0 10px 10px;  
-  border: 1px solid #e67e22;
+  border: 2px solid #e67e22;
   border-radius: 3px;
   font-family: inherit;
   font-size: 15px;
@@ -129,7 +130,7 @@ button {
 }
 
 button:hover {
-  background-color: #bf6516;
+  background-color: #e67e22;
 }
 
 footer {
@@ -182,5 +183,9 @@ footer p {
   .btn {
     width: 100%;
     margin: auto;
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(to right, #3023ae, #c86dd7);
   }
 }
