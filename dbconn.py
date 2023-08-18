@@ -1,6 +1,5 @@
 import sqlalchemy
 
-
 # 192.168.1.104 5432 내부
 # 121.140.47.102 25432 외부
 def connect(user, password, db, host='121.140.47.102', port=35432):
@@ -21,5 +20,3 @@ def connect(user, password, db, host='121.140.47.102', port=35432):
 
 def get_con():
     return connect('style_focus', '1234', 'style_focus')
-# connection
-# conn = connect('postgres', 'levware1234', 'levtest')

@@ -21,7 +21,7 @@ app.config['JSON_AS_ASCII'] = False
 ###########################
 ###### DB setup ###########
 ###########################
-app.config['SECRET_KEY'] = 'mysecretkey'
+app.config['SECRET_KEY'] = '1234'
 
 app.config['JSON_AS_ASCII'] = False
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
@@ -124,18 +124,19 @@ def signup():
         if (username in username_list):
             ## 이 방법 말고 페이지에서 바로 보여주는 방법을 찾자!
             return '<h1>Username already taken! </h1>'
-
+        else:
         ## DB insert
-        meta = MetaData()
-        new_user = Table(
-            "login", meta, 
-            Column("email", String),
-            Column("name", String)
-        )
-        ins = new_user.insert().values(email=session['email'], name=session['name'], username=username)
-        conn = get_con()
-        conn.execute(ins)
-        return redirect("/") ## input main page로
+            meta = MetaData()
+            new_user = Table(
+                "login", meta, 
+                Column("email", String),
+                Column("name", String),
+                Column("username", String)
+                )
+            ins = new_user.insert().values(email=session['email'], name=session['name'], username=username)
+            conn = get_con()
+            conn.execute(ins)
+            return redirect("/") ## input main page로
     return render_template('signup.html', form=form, email=session['email'], name=session['name'] )
 
 @app.route("/logout")
@@ -161,12 +162,6 @@ def projects():
 def resume():
     return render_template('resume.html')
 
-
-
-@app.route('/index2')
-def index2():
-    return render_template('index2.html')
-
 @app.route('/major')
 def major():
     return render_template('major.html')
@@ -182,6 +177,8 @@ def minor2():
 @app.route('/output')
 def output():
     return render_template('output.html')
-
+@app.route('/base')
+def base():
+    return render_template('base.html')
 if __name__ == '__main__':
     app.run(port="5000", debug = True)
