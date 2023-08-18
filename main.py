@@ -44,7 +44,7 @@ flow = Flow.from_client_secrets_file(
 @app.route('/', methods=['GET', 'POST'])
 def index():    
     if 'name' in session:
-        return render_template('index.html', name=session['name'], form=form)
+        return render_template('index.html', name=session['name'])
     else:
         return render_template('index.html')
 
@@ -73,14 +73,16 @@ def login():
 def callback():
     flow.fetch_token(authorization_response=request.url)
 
-    if not session["state"] == request.args["state"]:
-        abort(500)  # State does not match!
+
 
     credentials = flow.credentials
     request_session = requests.session()
     cached_session = cachecontrol.CacheControl(request_session)
     token_request = google.auth.transport.requests.Request(session=cached_session)
 
+    if not (session["state"] == request.args["state"]):
+        abort(500)  # State does not match!
+        
     id_info = id_token.verify_oauth2_token(
         id_token=credentials._id_token,
         request=token_request,
@@ -104,10 +106,13 @@ def callback():
 
     return redirect("signup.html") 
 
-@app.route('/signup')
+@app.route('/signup', methods=['GET','POST'])
 def signup():
     ## 회원 가입 절차 시작 ##
     form = Login()
+        ## 임시
+    session['email'] = 'jiwoongmun@gmail.com'
+    session['name'] = 'jiwoong'
     if form.validate_on_submit():
         username= form.username.data
         ## username unique 한지 확인
