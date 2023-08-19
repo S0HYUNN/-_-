@@ -11,9 +11,11 @@
 
 
 .owl-carousel {
+    margin-top: 40px;
     display: none;
     width: 100%;
-    z-index: 1
+    height: 55%;
+    z-index: 1;
 }
 
 .owl-carousel .owl-stage {
