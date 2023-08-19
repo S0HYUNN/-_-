@@ -536,26 +536,19 @@
     left: 20%;
 }
 
-.form{
-    margin-left: 100px;
-    margin-right: 100px;
-    height: 700px;
-    border-style: double;
-    border-color: palevioletred;
-}
-
-.form-check{
-    margin-top: 100px;
-    height: 200px;
-    border-style: double;
-    border-color: palevioletred;
-}
-
 .rank{
     margin-top: 50px;
     height: 150px;
     border-style: double;
     border-color: palevioletred;
+}
+
+.margin-1{
+    margin-left: 85px;
+}
+
+.margin-2{
+    margin-left: 240px;
 }
 
 .card-style-major{

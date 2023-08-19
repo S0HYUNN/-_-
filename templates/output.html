@@ -32,6 +32,7 @@
   <!-- Template Stylesheet -->
   <link href="./static/css/style.css" rel="stylesheet">
   <link href="./static/css/style2.css" rel="stylesheet">
+  <link href="./static/css/design.css" rel="stylesheet">
 </head>
 
 <body>
@@ -86,14 +87,71 @@
 
       <!-- Header Start -->
       <div class="container-xxl py-5">
-        <div class="container col-md-12 col-xl-12">
-          <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+          <div class="mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
             <!-- <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Testimonial</div> -->
-            <h1 class="display-6 mb-5">Influencer Feed</h1>
           </div>
           <div class="row-width">
-          <div class="form col-md-4"></div>
-          <div class="col-md-5">
+            <h5 class="display-6 col-md-4 margin-1">SURVEY RESULTS</h5>
+            <h1 class="display-6 mb-5 col-md-4 margin-2">Influencer Feed</h1>
+            <div class="container1 col-md-5">
+              <form id="survey-form" method="GET">
+                
+                 <div class="labels">
+                <label for="dropdown">How do you watch South Park?</label></div>
+                <div class="input-tab">
+                <select id="dropdown" name="site">
+                  <option disabled value selected>Select an option</option>
+                  <option value="web">Website</option>
+                  <option value="hulu">Hulu</option>
+                  <option value="youtube">Youtube</option>
+                  <option value="tv">TV</option>
+                  <option value="other">Other</option>
+                </select>
+                </div>
+                
+                <div class="labels">
+                <label>계절</label></div>
+                <div class="input-tab">
+                  <input type="radio" name="radio-button" value="love">봄<br>
+                  <input type="radio" name="radio-button" value="like">여름<br>
+                  <input type="radio" name="radio-button" value="ok">가을<br>
+                  <input type="radio" name="radio-button" value="nah">겨울<br>
+                </div>
+                
+                <div class="labels">
+                <label for="dropdown">How many seasons of South Park have you watched?</label></div>
+                <div class="input-tab">
+                <select id="dropdown" name="seasons">
+                  <option disabled value selected>Select an option</option>
+                  <option value="<=5">0-5</option>
+                  <option value="<=10">6-10</option>
+                  <option value="<=15">10-15</option>
+                  <option value="<=21">15-21</option>
+                </select>
+                </div>
+                
+                <div class="labels">
+                <label>Who do you watch South Park with?<br>(Check all that apply):</label></div>
+                <div class="input-tab">
+                <input type="checkbox" name="alone" value="alone">Alone<br>
+                <input type="checkbox" name="friends" value="fr">Friends<br>
+                <input type="checkbox" name="family" value="fam">Family<br>
+                <input type="checkbox" name="partner" value="fam">Partner<br>
+                <input type="checkbox" name="other" value="other">Other<br>
+                </div>        
+                
+                <div class="labels">
+                <label for="comments">Tell us more about your favorite character(s) or episode(s)</label></div>
+                <div class="input-tab">
+                <textarea class="input-field" id="comments" name="comments" rows="10" cols="40" placeholder="Your comments..."></textarea></div>
+                
+                <div class="btn">
+                <button id="submit" type="submit">Submit</button>
+                </div>
+                
+              </form>
+              </div>
+          <div class="col-md-7">
           <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
             <div class="testimonial-item text-center">
               <!-- <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg"
@@ -128,14 +186,12 @@
           </div>
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">List with icon</h4>
-              <p class="card-description">Add class <code>.list-ticked</code> to <code>&lt;ul&gt;</code></p>
-              <ul class="list-ticked">
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Consectetur adipiscing elit</li>
-                <li>Integer molestie lorem at massa</li>
-                <li>Facilisis in pretium nisl aliquet</li>
-                <li>Nulla volutpat aliquam velit></li>
+              <h4 class="card-title">CheckList</h4>
+              <ul>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30">Lorem ipsum dolor sit amet</li>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30">Consectetur adipiscing elit</li>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30">Integer molestie lorem at massa</li>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30">Facilisis in pretium nisl aliquet</li>
               </ul>
             </div>
           </div>
@@ -167,19 +223,16 @@
                         <thead>
                           <tr>
                             <th>
-                              #
+                              rank
                             </th>
                             <th>
-                              First name
+                              #
                             </th>
                             <th>
                               Progress
                             </th>
                             <th>
-                              Amount
-                            </th>
-                            <th>
-                              Deadline
+                              %
                             </th>
                           </tr>
                         </thead>
@@ -197,10 +250,7 @@
                               </div>
                             </td>
                             <td>
-                              $ 77.99
-                            </td>
-                            <td>
-                              May 15, 2015
+                              30
                             </td>
                           </tr>
                           <tr>
@@ -216,10 +266,7 @@
                               </div>
                             </td>
                             <td>
-                              $245.30
-                            </td>
-                            <td>
-                              July 1, 2015
+                              25
                             </td>
                           </tr>
                           <tr>
@@ -235,10 +282,7 @@
                               </div>
                             </td>
                             <td>
-                              $138.00
-                            </td>
-                            <td>
-                              Apr 12, 2015
+                              20
                             </td>
                           </tr>
                           <tr>
@@ -254,10 +298,7 @@
                               </div>
                             </td>
                             <td>
-                              $ 77.99
-                            </td>
-                            <td>
-                              May 15, 2015
+                              15
                             </td>
                           </tr>
                           <tr>
@@ -273,10 +314,7 @@
                               </div>
                             </td>
                             <td>
-                              $ 160.25
-                            </td>
-                            <td>
-                              May 03, 2015
+                              10
                             </td>
                           </tr>
                         </tbody>
@@ -301,8 +339,8 @@
                         </figure>
                       </div>
                       <div class="col-md-8">
-                        <h3 class="text-white text-center text-md-left">--Major--</h3>
-                        <p class="text-white text-center text-md-left">kennedy@gmail.com</p>
+                        <h2 class="text-white text-center text-md-left">--Major--</h2>
+                        <p class="text-white text-center text-md-left">@major</p>
                         <div class="d-flex align-items-center justify-content-between info pt-2">
                           <div class=" blur">
                             <div>
@@ -331,8 +369,8 @@
                         </figure>
                       </div>
                       <div class="col-md-7">
-                        <h5 class="text-white text-center text-md-left">--Minor--</h5>
-                        <p class="text-white text-center text-md-left">kennedy@gmail.com</p>
+                        <h3 class="text-white text-center text-md-left">--Minor--</h3>
+                        <p class="text-white text-center text-md-left">@minor</p>
                         <div class="d-flex align-items-center justify-content-between info pt-2">
                           <div class=" blur">
                             <div>
@@ -361,8 +399,8 @@
                         </figure>
                       </div>
                       <div class="col-md-7">
-                        <h5 class="text-white text-center text-md-left">--Minor--</h5>
-                        <p class="text-white text-center text-md-left">kennedy@gmail.com</p>
+                        <h3 class="text-white text-center text-md-left">--Minor--</h3>
+                        <p class="text-white text-center text-md-left">@minor</p>
                         <div class="d-flex align-items-center justify-content-between info pt-2">
                           <div class=" blur">
                             <div>
@@ -389,7 +427,7 @@
       <!-- Page Middle End -->
 
       <!-- Footer Start -->
-      <div class="container-fluid">
+      <!-- <div class="container-fluid">
         <div class="row-width">
           <div class="col-lg-12 col-xl-12 grid-margin stretch-card wow fadeInUp" data-wow-delay="0.1s">
             <div class="card">
@@ -400,7 +438,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- Footer End -->
 
       <!-- Back to Top -->
