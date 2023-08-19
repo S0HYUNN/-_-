@@ -7,7 +7,7 @@ from oauth2client.contrib.flask_util import UserOAuth2
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
-from flask import Flask, render_template, request, send_file, session, redirect, abort
+from flask import Flask, render_template, request, send_file, session, redirect, abort, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData, Table, Column, String
 from forms import InForm, Login
@@ -72,9 +72,6 @@ def login():
 @app.route("/callback")
 def callback():
     flow.fetch_token(authorization_response=request.url)
-
-
-
     credentials = flow.credentials
     request_session = requests.session()
     cached_session = cachecontrol.CacheControl(request_session)
@@ -102,7 +99,7 @@ def callback():
     if email in email_list:
         session["google_id"] = id_info.get("sub")
         session["name"] = id_info.get("name")
-        return redirect("/") ## input main page로 redirect
+        return redirect(url_for('index')) ## input main page로 redirect
 
     return redirect("signup.html") 
 
@@ -133,22 +130,47 @@ def signup():
             ins = new_user.insert().values(email=session['email'], name=session['name'], username=username)
             conn = get_con()
             conn.execute(ins)
-            return redirect("/") ## input main page로
+            return redirect(url_for("index")) ## input main page로
     return render_template('signup_copy.html', form=form, email=session['email'], name=session['name'] )
 
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/")
+    return redirect(url_for("index"))
 
 @app.route("/protected_area")
 @login_is_required
 def protected_area():
     return "Protected! <a href='/logout'><button>Logout</button></a>"
 
-@app.route('/input')
+@app.route('/input', methods=['GET','POST'])
 def input():
-    return render_template("input.html")
+    if not ('name' in session):
+        flash("로그인을 해주세요")
+        return redirect(url_for("index"))
+
+    form = InForm()
+    if form.validate_on_submit():
+        username = session['name']
+        type = form.type.data
+        season = form.season.data
+        style = form.style.data
+        focus = form.focus.data
+
+        meta = MetaData()
+        new_user = Table(
+            "input_db", meta, 
+            Column("username", String),
+            Column("type", String),
+            Column("season", String),
+            Column("style", String),
+            Column("focus", String)
+            )
+        ins = new_user.insert().values(username=username, type=type, season=season, style = style, focus = focus)
+        conn = get_con()
+        conn.execute(ins)
+        return redirect(url_for("output"))
+    return render_template("input.html", form=form)
 
 @app.route('/contact')
 def contact():

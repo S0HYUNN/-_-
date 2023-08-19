@@ -51,20 +51,20 @@ hr {
   margin: 10px auto;
 }
 
-.container {
-    background: linear-gradient(to right, #3023ae, #c86dd7);
-    opacity: 0.6;
+.input_container {
+  background: linear-gradient(to right, #3023ae, #c86dd7);
+  opacity: 0.6;
   border-radius: 20px;
   margin: auto;
   width: 55%;
   padding: 1em;
-  
 }
 
 #survey-form {
   margin: 0 auto;
   width: 80%;
   padding: 10px;
+
 }
 
 .labels {
@@ -72,7 +72,7 @@ hr {
   text-align: right;
   width: 40%;
   vertical-align: top;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .input-tab {
@@ -80,6 +80,7 @@ hr {
   text-align: left;
   width: 50%;
   margin-left: 10px;
+  margin-top: 10px;
 }
 
 .input-field {
@@ -118,11 +119,12 @@ input {
   margin: 20px;
 }
 
-button {
+.button {
   background-color: #e67e22;
   border-radius: 4px;
   color: white;
   font-size: 1em;
+  width:30%;
   font-weight: bold;
   font-family: inherit;
   padding: 10px 15px;
@@ -173,6 +175,8 @@ footer p {
     width: 100%;
     float: left;
     margin-left: -10px;
+    margin-bottom: 10px;
+
   }
   .input-field {
     width: 100%;
@@ -188,4 +192,10 @@ footer p {
   .bg-gradient-primary {
     background: linear-gradient(to right, #3023ae, #c86dd7);
   }
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 }

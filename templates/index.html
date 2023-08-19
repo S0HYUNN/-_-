@@ -1,3 +1,15 @@
+{% with messages=get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      window.onload = function() {
+        var message = "{{ messages[-1] }}";
+        if (message) {
+          alert(message);
+        }};
+    </script>
+  {% endif %}
+{% endwith %}
+
 <!DOCTYPE html>
 <html lang="en">
 
