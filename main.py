@@ -207,7 +207,7 @@ def minor2():
 
 @app.route('/output')
 def output():
-    return render_template('output_copy.html')
+    return render_template('output.html')
 @app.route('/base')
 def base():
     return render_template('base.html')
