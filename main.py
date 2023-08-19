@@ -137,7 +137,7 @@ def signup():
             conn = get_con()
             conn.execute(ins)
             return redirect("/") ## input main page로
-    return render_template('signup.html', form=form, email=session['email'], name=session['name'] )
+    return render_template('signup_copy.html', form=form, email=session['email'], name=session['name'] )
 
 @app.route("/logout")
 def logout():
@@ -149,6 +149,9 @@ def logout():
 def protected_area():
     return "Protected! <a href='/logout'><button>Logout</button></a>"
 
+@app.route('/input')
+def input():
+    return render_template("input.html")
 
 @app.route('/contact')
 def contact():
@@ -180,5 +183,6 @@ def output():
 @app.route('/base')
 def base():
     return render_template('base.html')
+
 if __name__ == '__main__':
     app.run(port="5000", debug = True)
