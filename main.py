@@ -110,9 +110,6 @@ def callback():
 def signup():
     ## 회원 가입 절차 시작 ##
     form = Login()
-        ## 임시
-    session['email'] = 'jiwoongmun@gmail.com'
-    session['name'] = 'jiwoong'
     if form.validate_on_submit():
         username= form.username.data
         ## username unique 한지 확인
