@@ -323,7 +323,7 @@
     height: 100%;
     width: 0;
     background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    z-index: 0;
+    z-index: 1;
 }
 
 @media (min-width: 768px) {
@@ -366,8 +366,8 @@
 
 .testimonial-carousel .owl-nav {
     position: absolute;
-    width: 300px;
-    top: 40%;
+    width: 350px;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -378,7 +378,7 @@
 }
 
 .testimonial-carousel:hover .owl-nav {
-    width: 500px;
+    width: 300px;
     opacity: 1;
 }
 
@@ -534,28 +534,4 @@
 .minor{
     position: absolute;
     left: 20%;
-}
-
-.rank{
-    margin-top: 50px;
-    height: 150px;
-    border-style: double;
-    border-color: palevioletred;
-}
-
-.margin-1{
-    margin-left: 85px;
-}
-
-.margin-2{
-    margin-left: 240px;
-}
-
-.card-style-major{
-    margin-top: 50px;
-    height: 400px;
-}
-
-.card-style-minor{
-    height: 400px;
 }

@@ -13893,3 +13893,7 @@ li {
   opacity: 0.7;
   text-align: left;
 }
+.projects-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
