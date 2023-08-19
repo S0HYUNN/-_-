@@ -44,6 +44,12 @@ flow = Flow.from_client_secrets_file(
 @app.route('/', methods=['GET', 'POST'])
 def index():    
     if 'name' in session:
+        sql= f"select username from login where email='{session['email']}'"
+        conn = get_con()
+        sql_result = pd.read_sql(sql, conn)
+        result = sql_result.to_dict('records')
+        session['username']=result[-1]['username']
+        print(session['username'])
         return render_template('index.html', name=session['name'])
     else:
         return render_template('index.html')
@@ -154,7 +160,7 @@ def input():
 
     form = InForm()
     if form.validate_on_submit():
-        username = session['name']
+        username = session['username']
         type = form.type.data
         season = form.season.data
         style = form.style.data
@@ -173,7 +179,7 @@ def input():
         conn = get_con()
         conn.execute(ins)
         return redirect(url_for("output"))
-    return render_template("input.html", form=form)
+    return render_template("input.html", form=form, name=session['name'])
 
 @app.route('/contact')
 def contact():
