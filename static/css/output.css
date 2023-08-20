@@ -1492,3 +1492,6 @@ html {
   margin-top: -20px;
 }
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
+.owl-stage-outer {
+  max-height: 100%;
+}
