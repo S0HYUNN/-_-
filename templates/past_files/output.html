@@ -1,40 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <title>#Style_Focus</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-
-  <!-- Favicon -->
-  <link href="img/favicon.ico" rel="icon">
-
-  <!-- Google Web Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira:wght@500;600;700&display=swap"
-    rel="stylesheet">
-
-  <!-- Icon Font Stylesheet -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Libraries Stylesheet -->
-  <link href="./static/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="./static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-  <!-- Customized Bootstrap Stylesheet -->
-  <link href="./static/css/output_bootstrap.min.css" rel="stylesheet">
-
-  <!-- Template Stylesheet -->
-  <link href="./static/css/style.css" rel="stylesheet">
-  <link href="./static/css/output_form.css" rel="stylesheet">
-</head>
-
-<body>
+{%extends "base.html"%}
+{%block content%}
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  
+    <!-- Libraries Stylesheet -->
+    <link href="./static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="./static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="./static/css/output_bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Template Stylesheet -->
+    <link href="./static/css/output.css" rel="stylesheet">
+    <link href="./static/css/output_form.css" rel="stylesheet">
   <!-- Spinner Start -->
   <div id="spinner"
     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -47,45 +26,8 @@
 
   <body class="d-flex flex-column h-100">
     <main class="flex-shrink-0">
-      <!-- Navigation-->
-      <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-        <div class="container px-5">
-          <a class="navbar-brand" href="/"><span class="fw-bolder text-primary">#Style_Focus</span></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-              <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="/resume">Resume</a></li>
-              <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
-              <!-- <li class="nav-item"><a class="nav-link" href="/signup">SignUp</a></li> -->
-
-              {% if not name %}
-              <li class="nav-item">
-                <a class="nav-link text-primary" href="/login">
-                  <img src="./static/images/google_remove.png" width="20" height="20">
-                  LogIn
-                </a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link">{{ name }} 님</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-primary" href="/logout">
-                  LogOut
-                </a>
-              </li>
-              {% endif %}
-          </div>
-        </div>
-      </nav>
-      <!-- Navbar End -->
-
-
       <!-- Header Start -->
-      <div class="container-xxl py-5">
+      <div class="container-xxl py-2">
           <div class="mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
             <!-- <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Testimonial</div> -->
           </div>
@@ -426,21 +368,6 @@
       </div>
       <!-- Page Middle End -->
 
-      <!-- Footer Start -->
-      <!-- <div class="container-fluid">
-        <div class="row-width">
-          <div class="col-lg-12 col-xl-12 grid-margin stretch-card wow fadeInUp" data-wow-delay="0.1s">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Post Time</h4>
-                <canvas id="areaChart" style="height:30vh; width:90vw"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- Footer End -->
-
       <!-- Back to Top -->
       <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
         <i class="bi bi-arrow-up"></i>
@@ -460,6 +387,4 @@
       <script src=".\static\js\Chart.min.js"></script>
       <!-- Custom js for this page-->
       <script src=".\static\js\chart.js"></script>
-  </body>
-
-</html>
+{% endblock %}

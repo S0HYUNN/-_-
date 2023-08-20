@@ -165,6 +165,11 @@ def input():
         season = form.season.data
         style = form.style.data
         focus = form.focus.data
+        session['type'] = type
+        session['season'] = season
+        session['style'] = style
+        session['focus'] = focus
+
 
         meta = MetaData()
         new_user = Table(
@@ -207,7 +212,7 @@ def minor2():
 
 @app.route('/output')
 def output():
-    return render_template('output.html')
+    return render_template('output_copy.html', type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], name=session['name'])
 @app.route('/base')
 def base():
     return render_template('base.html')
