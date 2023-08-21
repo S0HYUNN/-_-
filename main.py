@@ -23,6 +23,9 @@ app.config['JSON_AS_ASCII'] = False
 ###########################
 app.config['SECRET_KEY'] = '1234'
 
+# 세션 설정
+# session["state"] = "some_value"
+
 app.config['JSON_AS_ASCII'] = False
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
@@ -43,14 +46,16 @@ flow = Flow.from_client_secrets_file(
 ##              메인 페이지              ##
 @app.route('/', methods=['GET', 'POST'])
 def index():    
-    if 'name' in session:
+    if 'email' in session:
         sql= f"select username from login where email='{session['email']}'"
         conn = get_con()
         sql_result = pd.read_sql(sql, conn)
         result = sql_result.to_dict('records')
-        session['username']=result[-1]['username']
-        print(session['username'])
-        return render_template('index.html', name=session['name'])
+        
+        if result:  # result 리스트에 요소가 있는 경우
+            session['username'] = result[-1]['username']
+            print(session['username'])
+        return render_template('index.html', name=session['name'], username=session.get('username'))
     else:
         return render_template('index.html')
 
@@ -77,11 +82,15 @@ def login():
 
 @app.route("/callback")
 def callback():
-    flow.fetch_token(authorization_response=request.url)
-    credentials = flow.credentials
-    request_session = requests.session()
-    cached_session = cachecontrol.CacheControl(request_session)
-    token_request = google.auth.transport.requests.Request(session=cached_session)
+    callback_flow = Flow.from_client_secrets_file(
+        client_secrets_file=client_secrets_file,
+        scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
+        redirect_uri="http://localhost:5000/callback"
+    )
+
+    callback_flow.fetch_token(authorization_response=request.url)
+    credentials = callback_flow.credentials
+    token_request = google.auth.transport.requests.Request()
 
     if not (session["state"] == request.args["state"]):
         abort(500)  # State does not match!
@@ -96,6 +105,8 @@ def callback():
     name = id_info.get("name")
     session["email"] = email
     session["name"] = name
+
+    
     ## 이미 회원인지 확인
     sql = "select email from login"
     conn = get_con()
@@ -105,15 +116,15 @@ def callback():
     if email in email_list:
         session["google_id"] = id_info.get("sub")
         session["name"] = id_info.get("name")
-        return redirect(url_for('index')) ## input main page로 redirect
+        return redirect(url_for('index'))  # main page로 redirect
 
-    return redirect("signup.html") 
+    return redirect(url_for('signup'))  # signup page로 redirect
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
-        # 임시
-    session["email"]="jiwoongmun@gmail.com"
-    session["name"] = "Jiwoong"
+    #     # 임시
+    # session["email"]="jiwoongmun@gmail.com"
+    # session["name"] = "Jiwoong"
     ## 회원 가입 절차 시작 ##
     form = Login()
     if form.validate_on_submit():
@@ -141,6 +152,7 @@ def signup():
             conn.execute(ins)
             return redirect(url_for("index")) ## input main page로
     return render_template('signup_copy.html', form=form, email=session['email'], name=session['name'] )
+   
 
 @app.route("/logout")
 def logout():
@@ -184,7 +196,7 @@ def input():
         conn = get_con()
         conn.execute(ins)
         return redirect(url_for("output"))
-    return render_template("input.html", form=form, name=session['name'])
+    return render_template("input.html", form=form, name=session['name'], username=session.get('username'))
 
 @app.route('/contact')
 def contact():
