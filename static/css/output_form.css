@@ -1,8 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Abel');
+@font-face {
+  font-family: 'GangwonState';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/GangwonState.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body, html {
   /* color: #fff; */
-  font-family: 'Abel', sans-serif;
+  font-family: 'GangwonState';
   margin: 0;
   padding: 0;
   background-color: transparent;
@@ -46,18 +51,13 @@ body {
   line-height: 1.2em;
 } */
 
-hr {
-  width: 70%;
-  margin: 10px auto;
-}
-
 .container1 {
   background: linear-gradient(to right, #3023ae, #c86dd7);
   color: #fff;
-  opacity: 0.6;
+  opacity: 0.8;
   border-radius: 20px;
-  margin: auto;
-  width: 55%;
+  margin-top: 3%;
+  width: 35%;
   padding: 1em;
   height: 100%;
 }
@@ -65,7 +65,7 @@ hr {
 #survey-form {
   margin: 0 auto;
   width: 80%;
-  padding: 10px;
+  padding: 20px 0px;
   height: 100%;
 }
 
@@ -159,7 +159,6 @@ footer p {
 
 @media only screen and (max-width: 768px) {
   body{
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://wallpapercave.com/wp/Fdh76FQ.jpg) center no-repeat fixed;
   background-size: cover;
 }
   

@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'GangwonState';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/GangwonState.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --blue: #5E50F9;
   --indigo: #6610f2;
@@ -41,8 +48,8 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
 }
 
 *,
@@ -52,7 +59,7 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'GangwonState';
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -64,7 +71,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'GangwonState';
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -79,8 +86,9 @@ body {
 
 hr {
   box-sizing: content-box;
-  height: 0;
-  overflow: visible;
+  width: 76%;
+  height: 7px;
+  color: #3023ae;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -135,7 +143,7 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: inherit;
+  font-family: 'GangwonState';
   font-size: inherit;
   line-height: inherit;
 }
@@ -622,7 +630,9 @@ h6, .h6 {
 }
 
 .card-title {
-  margin-bottom: 0.75rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  margin-left: 2.2rem;
 }
 
 .card-subtitle {
@@ -1030,7 +1040,7 @@ h6, .h6 {
 /* Typography */
 body {
   font-size: 1rem;
-  font-family: "Poppins", sans-serif;
+  font-family: 'GangwonState';
   font-weight: initial;
   line-height: normal;
   -webkit-font-smoothing: antialiased;
@@ -1038,7 +1048,6 @@ body {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 500;
   line-height: 1;
 }
 
@@ -1405,9 +1414,9 @@ html {
   color: var(--light) !important;
 }
 
-.testimonial-carousel .owl-item.center .testimonial-item img {
+/* .testimonial-carousel .owl-item.center .testimonial-item img {
   background: var(--primary) !important;
-} 
+}  */
 
 .testimonial-carousel .owl-nav {
   position: absolute;
@@ -1441,11 +1450,11 @@ html {
 }
 
 .margin-1{
-  margin-left: 85px;
+  margin-left: 90px;
 }
 
 .margin-2{
-  margin-left: 240px;
+  margin-left: 215px;
 }
 
 .card-head {
@@ -1489,8 +1498,9 @@ html {
 }
 
 .margin-up{
-  margin-top: -20px;
+  margin-top: 30px;
 }
+
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
 .owl-stage-outer {
   max-height: 100%;

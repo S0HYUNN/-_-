@@ -1,16 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Abel');
 
-body, html {
+@font-face {
+  font-family: 'GangwonState';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/GangwonState.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body, html{
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(https://png.pngtree.com/thumb_back/fh260/background/20220705/pngtree-instagram-gradient-color-background-image_1417075.png) center no-repeat fixed;
   color: #fff;
-  font-family: 'Abel', sans-serif;
+  font-family: 'GangwonState';
   margin: 0;
   padding: 0;
-  background-color: transparent;
 }
 
 body {
-  font-size: 1.2em;
-  /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://wallpapercave.com/wp/Fdh76FQ.jpg) center no-repeat fixed; */
+  font-size: 1.1em;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -ms-background-size: cover;
@@ -22,7 +28,7 @@ body {
   border-radius: 20px;
   margin: 2em auto;
   padding: 20px;
-  width: 55%;
+  width: 35%;
 }
 
 h1 {
@@ -53,10 +59,9 @@ hr {
 
 .input_container {
   background: linear-gradient(to right, #3023ae, #c86dd7);
-  opacity: 0.6;
   border-radius: 20px;
   margin: auto;
-  width: 55%;
+  width: 35%;
   padding: 1em;
 }
 
@@ -81,6 +86,8 @@ hr {
   width: 50%;
   margin-left: 10px;
   margin-top: 10px;
+  border-color: white;
+  border-width: 2px;
 }
 
 .input-field {
@@ -159,9 +166,8 @@ footer p {
 
 @media only screen and (max-width: 768px) {
   body{
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://wallpapercave.com/wp/Fdh76FQ.jpg) center no-repeat fixed;
-  background-size: cover;
-}
+    background-size: cover;
+  }
   
   h1 {
     font-size: 2em;
