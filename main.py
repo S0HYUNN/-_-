@@ -192,8 +192,29 @@ def contact():
 
 @app.route('/projects')
 def projects():
-    return render_template('projects_copy.html', name=session['name'])
+    if not ('name' in session):
+        flash("로그인을 해주세요")
+        return redirect(url_for("index"))
+    sql=f"select type, focus, style, season from input_db where username='{session['username']}'"
+    conn = get_con()
+    sql_result = pd.read_sql(sql, conn)
+    result = sql_result.to_dict('records')
+    return render_template('projects_copy.html', name=session['name'], projects=result)
 
+@app.route('/projects-output')
+def projects_output():
+    Ptype= request.args.get("Ptype")
+    Pseason= request.args.get("Pseason")
+    Pstyle = request.args.get("Pstyle")
+    Pfocus = request.args.get("Pfocus")
+    return render_template('output_copy.html', name=session['name'], type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus)
+
+@app.route('/output')
+def output():
+    return render_template('output_copy.html', type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], name=session['name'])
+@app.route('/base')
+def base():
+    return render_template('base.html')
 @app.route('/resume')
 def resume():
     return render_template('resume.html')
@@ -209,13 +230,6 @@ def minor():
 @app.route('/minor2')
 def minor2():
     return render_template('minor2.html')
-
-@app.route('/output')
-def output():
-    return render_template('output_copy.html', type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], name=session['name'])
-@app.route('/base')
-def base():
-    return render_template('base.html')
 
 if __name__ == '__main__':
     app.run(port="5000", debug = True)

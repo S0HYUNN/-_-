@@ -4773,11 +4773,12 @@ fieldset:disabled .btn {
   --bs-card-cap-padding-x: 1rem; */
   --bs-card-cap-bg: rgba(0, 0, 0, 0.03);
   --bs-card-cap-color: ;
-  --bs-card-height: 30%;
+  --bs-card-height: 100%;
   --bs-card-color: ;
   --bs-card-bg: #fff;
   --bs-card-img-overlay-padding: 1rem;
   /* --bs-card-group-margin: 0.75rem; */
+  min-height: 70px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -4788,7 +4789,12 @@ fieldset:disabled .btn {
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
+  
 }
+.card:hover {
+    transform: scale(1.1);
+    border-color: #ff5722;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);}
 
 .card>hr {
   margin-right: 0;
@@ -8865,6 +8871,9 @@ fieldset:disabled .btn {
 
 .p-4 {
   padding: 1.5rem !important;
+}
+.padding-2 {
+  padding: 2rem !important;
 }
 
 .p-5 {
@@ -13900,4 +13909,9 @@ li {
 }
 .project-title {
   font-size: 1.5rem;
+}
+.project-a{
+  padding: 0;
+  text-decoration: none;
+  color: black;
 }
