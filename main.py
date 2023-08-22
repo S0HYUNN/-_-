@@ -193,9 +193,18 @@ def input():
         return redirect(url_for("output"))
     return render_template("input.html", form=form, name=session['name'], username=session.get('username'))
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
+@app.route('/get_rel_word', methods=['GET', 'POST'])
+# 관련단어 가져오기
+def get_rel_word():
+    # 파라미터
+    data = json.loads(request.data)
+    keyword = data.get("keyword")
+    
+    # 모델
+    model = word2vec.Word2Vec.load("모델파일 경로")
+    result = model.wv.most_similar(positive=keyword, topn=5)
+
+    return json.dumps(result, ensure_ascii=False)
 
 @app.route('/projects')
 def projects():
@@ -218,10 +227,12 @@ def projects_output():
 
 @app.route('/output')
 def output():
-    return render_template('output_copy.html')
+    return render_template('output_copy.html', type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], name=session['name'])
+
 @app.route('/base')
 def base():
     return render_template('base.html')
+
 @app.route('/resume')
 def resume():
     return render_template('resume.html')

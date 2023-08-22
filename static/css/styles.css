@@ -1262,6 +1262,7 @@ progress {
   .col-md-6 {
     flex: 0 0 auto;
     width: 50%;
+    padding-left: 100px;
   }
 
   .col-md-7 {
@@ -4320,7 +4321,7 @@ fieldset:disabled .btn {
 .navbar-brand {
   padding-top: var(--bs-navbar-brand-padding-y);
   padding-bottom: var(--bs-navbar-brand-padding-y);
-  /* margin-right: var(--bs-navbar-brand-margin-end); */
+  margin-right: var(--bs-navbar-brand-margin-end);
   font-size: var(--bs-navbar-brand-font-size);
   color: var(--bs-navbar-brand-color);
   text-decoration: none;
@@ -14509,3 +14510,51 @@ li {
 .color_blue{
   color: blue;
 }
+
+.influimg {
+  border-radius: 70%;
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+
+.influimg:hover {
+  opacity: 0.2;
+}
+
+.image-container {
+  display: flex;
+}
+
+.influimg-container {
+  position: relative;
+  margin-right: 5px;
+}
+
+.influimg {
+  border-radius: 70%;
+  opacity: 1; /* 초기 값 설정 */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.influimg-container:hover .influimg {
+  opacity: 0.2; /* 이미지에 호버 시 opacity 변경 */
+}
+
+.image-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  color: #8f8f8f;
+  padding: 5px 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.influimg-container:hover .image-text {
+  opacity: 1;
+}
+
+
+
+
