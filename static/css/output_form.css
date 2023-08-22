@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'GangwonState';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/GangwonState.woff2') format('woff2');
+  font-family: 'twayfly';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 body, html {
   /* color: #fff; */
-  font-family: 'GangwonState';
+  font-family: 'twayfly';
   margin: 0;
   padding: 0;
   background-color: transparent;
@@ -57,31 +57,30 @@ body {
   opacity: 0.8;
   border-radius: 20px;
   width: 100%;
-  padding: 1em;
   height: 100%;
 }
 
 #survey-form {
   margin: 0 auto;
   width: 100%;
-  padding: 20px 0px;
-  /* height: 100%; */
 }
 
 .labels {
   display: inline-block;
-  text-align: right;
   width: 20%;
   vertical-align: top;
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 40px;
 }
 
 .input-tab {
   display: inline-block;
   text-align: left;
-  /* width: 50%; */
-  margin-left: 10px;
+  width: 20%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 40px;
 }
 
 .input-field {
@@ -165,11 +164,6 @@ footer p {
   .labels {
     width: 100%;
     text-align: left;
-  }
-  .input-tab {
-    width: 100%;
-    float: left;
-    margin-left: -10px;
   }
   .input-field {
     width: 100%;

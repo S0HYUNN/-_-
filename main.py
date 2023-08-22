@@ -15,6 +15,7 @@ from werkzeug.utils import secure_filename
 from sqlalchemy import MetaData, Table, Column, String
 from dbconn import get_con
 import json
+from gensim.models import Word2Vec
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -55,7 +56,7 @@ def index():
         if result:  # result 리스트에 요소가 있는 경우
             session['username'] = result[-1]['username']
             print(session['username'])
-        return render_template('index.html', name=session['name'], username=session.get('username'))
+        return render_template('index.html', username=session.get('username'))
     else:
         return render_template('index.html')
 
@@ -123,8 +124,9 @@ def callback():
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     #     # 임시
-    # session["email"]="jiwoongmun@gmail.com"
-    # session["name"] = "Jiwoong"
+    session["email"]="jiwoongmun@gmail.com"
+    session["name"] = "Jiwoong"
+    session["username"] = "jihyeoni"
     ## 회원 가입 절차 시작 ##
     form = Login()
     if form.validate_on_submit():
@@ -151,7 +153,7 @@ def signup():
             conn = get_con()
             conn.execute(ins)
             return redirect(url_for("index")) ## input main page로
-    return render_template('signup_copy.html', form=form, email=session['email'], name=session['name'] )
+    return render_template('signup_copy.html', form=form, email=session['email'], name=session['name'])
    
 
 @app.route("/logout")
@@ -190,21 +192,31 @@ def input():
         ins = new_user.insert().values(username=username, type=type, season=season, style = style, focus = focus)
         conn = get_con()
         conn.execute(ins)
-        return redirect(url_for("output"))
-    return render_template("input.html", form=form, name=session['name'], username=session.get('username'))
+        return redirect(url_for("get_rel_word"))
+    return render_template("input.html", form=form, username=session.get('username'))
 
 @app.route('/get_rel_word', methods=['GET', 'POST'])
 # 관련단어 가져오기
 def get_rel_word():
     # 파라미터
-    data = json.loads(request.data)
-    keyword = data.get("keyword")
-    
+    # keyword = [session['type'], session['season'], session['style'], session['focus'] ]
+    keyword = ["봄", "셔츠"]
+    negative = ['직장인']
     # 모델
-    model = word2vec.Word2Vec.load("모델파일 경로")
-    result = model.wv.most_similar(positive=keyword, topn=5)
+    model = Word2Vec.load("data_working/model/Word2Vec.model")
+    result = model.wv.most_similar(positive=keyword, negative=negative, topn=10)
+    ranking = json.dumps(result, ensure_ascii=False)
 
-    return json.dumps(result, ensure_ascii=False)
+    return redirect(url_for('output', ranking=ranking))
+
+
+@app.route('/output')
+def output():
+    ranking = request.args.get("ranking")
+    print(ranking)
+    return render_template('output_copy.html', 
+                           type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], username=session['username'],
+                           ranking=ranking)
 
 @app.route('/projects')
 def projects():
@@ -215,7 +227,7 @@ def projects():
     conn = get_con()
     sql_result = pd.read_sql(sql, conn)
     result = sql_result.to_dict('records')
-    return render_template('projects_copy.html', name=session['name'], projects=result, username=session.get('username'))
+    return render_template('projects_copy.html', projects=result, username=session.get('username'))
 
 @app.route('/projects-output')
 def projects_output():
@@ -227,7 +239,7 @@ def projects_output():
 
 @app.route('/output')
 def output():
-    return render_template('output_copy.html', type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], name=session['name'], username=session.get('username'))
+    return render_template('output_copy.html', type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], name=session['name'])
 
 @app.route('/base')
 def base():
