@@ -10,27 +10,32 @@
                     <div class="row gx-5 justify-content-center projects-container">
                         <!-- <div class="col-lg-11 col-xl-9 col-xxl-8"> -->    
                         <!-- Project Card -->
-                        {% for project in projects %}
-                        <a class="project-a" 
-                        href="{{url_for('projects_output', Ptype=project['type'], Pseason=project['season'], Pstyle=project['style'], Pfocus=project['focus'])}}">
-                        <div class="card overflow-hidden shadow rounded-4 border-0 project{{loop.index0}}">
-                            <div class="card-body p-0">
-                                <div class="d-flex align-items-center">
-                                    <div class="padding-2">
-                                        <h2 class="fw-bolder project-title">Project {{loop.index}}</h2>
-                                        <ul>
-                                        {% for key, value in project.items() %}
-                                            <li>{{key}}: {{value}}</li>
-                                        {% endfor %}
-                                        </ul>
+                        {% if not projects %}
+                        <div class="no-projects">
+                            <div>Click Create to Make New Projects!</div>
+                        </div>
+                        {% else %}
+                            {% for project in projects %}
+                            <a class="project-a" 
+                            href="{{url_for('projects_output', Ptype=project['type'], Pseason=project['season'], Pstyle=project['style'], Pfocus=project['focus'])}}">
+                            <div class="card overflow-hidden shadow rounded-4 border-0 project{{loop.index0}}">
+                                <div class="card-body p-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="padding-2">
+                                            <h2 class="fw-bolder project-title">Project {{loop.index}}</h2>
+                                            <ul>
+                                            {% for key, value in project.items() %}
+                                                <li>{{key}}: {{value}}</li>
+                                            {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <!-- <img class="img-fluid" src="https://dummyimage.com/300x400/343a40/6c757d" alt="..." /> -->
                                     </div>
-                                    <!-- <img class="img-fluid" src="https://dummyimage.com/300x400/343a40/6c757d" alt="..." /> -->
                                 </div>
                             </div>
-                        </div>
-                        </a>
-                        {% endfor %}
-                        <!-- Project Card 2-->
+                            </a>
+                            {% endfor %}
+                        {% endif %}
 
                     </div>
                 </div>
