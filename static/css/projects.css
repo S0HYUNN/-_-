@@ -13906,6 +13906,9 @@ li {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-auto-rows: auto;
+  
 }
 .project-title {
   font-size: 1.5rem;
@@ -13914,4 +13917,15 @@ li {
   padding: 0;
   text-decoration: none;
   color: black;
+}
+.no-projects {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: var(--bs-nav-link-font-weight);
+  color: grey;
+  grid-area: 1/ 1/ 3/ 4;
 }
