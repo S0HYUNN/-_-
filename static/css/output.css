@@ -1365,7 +1365,7 @@ html {
   left: 0;
   height: 100%;
   width: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0) 100%);
   z-index: 1;
 }
 
@@ -1376,7 +1376,7 @@ html {
   right: 0;
   height: 100%;
   width: 0;
-  background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to left, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0) 100%);
   z-index: 0;
 }
 
@@ -1402,7 +1402,7 @@ html {
 
 .testimonial-carousel .owl-item.center .testimonial-text {
   background: var(--primary);
-  /* transform: scale(1); */
+  transform: scale(1);
 }
 
 .testimonial-carousel .owl-item .testimonial-text *,
@@ -1420,7 +1420,7 @@ html {
 
 .testimonial-carousel .owl-nav {
   position: absolute;
-  width: 300px;
+  width: 1000px;
   top: 40%;
   left: 50%;
   transform: translateX(-50%);
@@ -1432,7 +1432,7 @@ html {
 }
 
 .testimonial-carousel:hover .owl-nav {
-  width: 500px;
+  width: 750px;
   opacity: 1;
 }
 
@@ -1500,4 +1500,9 @@ html {
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
 .owl-stage-outer {
   max-height: 100%;
+}
+
+.margin-title{
+  margin-top: 3%;
+  margin-left: 30%;
 }
