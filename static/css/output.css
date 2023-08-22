@@ -1402,7 +1402,7 @@ html {
 
 .testimonial-carousel .owl-item.center .testimonial-text {
   background: var(--primary);
-  transform: scale(1);
+  /* transform: scale(1); */
 }
 
 .testimonial-carousel .owl-item .testimonial-text *,
@@ -1450,11 +1450,7 @@ html {
 }
 
 .margin-1{
-  margin-left: 90px;
-}
-
-.margin-2{
-  margin-left: 215px;
+  margin-top: 70px;
 }
 
 .card-head {

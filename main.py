@@ -218,7 +218,7 @@ def projects_output():
 
 @app.route('/output')
 def output():
-    return render_template('output_copy.html', type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], name=session['name'])
+    return render_template('output_copy.html')
 @app.route('/base')
 def base():
     return render_template('base.html')
