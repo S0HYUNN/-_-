@@ -209,15 +209,6 @@ def get_rel_word():
 
     return redirect(url_for('output', ranking=ranking))
 
-
-@app.route('/output')
-def output():
-    ranking = request.args.get("ranking")
-    print(ranking)
-    return render_template('output_copy.html', 
-                           type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], username=session['username'],
-                           ranking=ranking)
-
 @app.route('/projects')
 def projects():
     if not ('name' in session):
