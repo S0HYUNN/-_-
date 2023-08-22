@@ -124,9 +124,8 @@ def callback():
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     #     # 임시
-    session["email"]="jiwoongmun@gmail.com"
-    session["name"] = "Jiwoong"
-    session["username"] = "jihyeoni"
+    # session["email"]="jiwoongmun@gmail.com"
+    # session["name"] = "Jiwoong"
     ## 회원 가입 절차 시작 ##
     form = Login()
     if form.validate_on_submit():
@@ -192,7 +191,7 @@ def input():
         ins = new_user.insert().values(username=username, type=type, season=season, style = style, focus = focus)
         conn = get_con()
         conn.execute(ins)
-        return redirect(url_for("get_rel_word"))
+        return redirect(url_for("output"))
     return render_template("input.html", form=form, username=session.get('username'))
 
 @app.route('/get_rel_word', methods=['GET', 'POST'])
@@ -200,14 +199,24 @@ def input():
 def get_rel_word():
     # 파라미터
     # keyword = [session['type'], session['season'], session['style'], session['focus'] ]
+    keyword_param = json.loads(request.data)
+    print(keyword_param)
     keyword = ["봄", "셔츠"]
     negative = ['직장인']
     # 모델
     model = Word2Vec.load("data_working/model/Word2Vec.model")
     result = model.wv.most_similar(positive=keyword, negative=negative, topn=10)
-    ranking = json.dumps(result, ensure_ascii=False)
 
-    return redirect(url_for('output', ranking=ranking))
+    return json.dumps(result,ensure_ascii=False)
+
+
+@app.route('/output')
+def output():
+    ranking = request.args.get("ranking")
+    print(ranking)
+    return render_template('output_copy.html', 
+                           type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], username=session['username'],
+                           ranking=ranking)
 
 @app.route('/projects')
 def projects():
