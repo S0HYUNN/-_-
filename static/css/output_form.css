@@ -57,15 +57,12 @@ body {
   opacity: 0.8;
   border-radius: 20px;
   width: 100%;
-  padding: 1em;
   height: 100%;
 }
 
 #survey-form {
   margin: 0 auto;
   width: 100%;
-  padding: 20px 0px;
-  /* height: 100%; */
 }
 
 .labels {
@@ -81,7 +78,9 @@ body {
   display: inline-block;
   text-align: left;
   width: 20%;
-  margin-left: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 40px;
 }
 
 .input-field {
@@ -165,11 +164,6 @@ footer p {
   .labels {
     width: 100%;
     text-align: left;
-  }
-  .input-tab {
-    width: 100%;
-    float: left;
-    margin-left: -10px;
   }
   .input-field {
     width: 100%;

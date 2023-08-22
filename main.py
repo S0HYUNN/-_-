@@ -124,8 +124,9 @@ def callback():
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     #     # 임시
-    # session["email"]="jiwoongmun@gmail.com"
-    # session["name"] = "Jiwoong"
+    session["email"]="jiwoongmun@gmail.com"
+    session["name"] = "Jiwoong"
+    session["username"] = "jihyeoni"
     ## 회원 가입 절차 시작 ##
     form = Login()
     if form.validate_on_submit():
