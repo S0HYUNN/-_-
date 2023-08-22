@@ -145,23 +145,8 @@ button:hover {
 footer {
   text-align: center;
   font-size: 17px;
-  margin: 20px;
-}
-
-footer a {
-  color: #f39c12;
-  position: relative;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-footer a:hover {
-  color: #f1c40f;
-}
-
-footer p {
-  margin: 0;
-  font-size: 17px;
+  color: black;
+  font-family: Verdana, sans-serif;
 }
 
 @media only screen and (max-width: 768px) {
