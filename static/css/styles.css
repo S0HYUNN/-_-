@@ -14462,6 +14462,7 @@ li {
   min-height: auto;
   padding-bottom: 10px;
   border-radius: 2%;
+  box-shadow: 5px 5px 5px 5px gray;
 }
 
 .feed_img{
@@ -14550,7 +14551,7 @@ li {
 }
 
 .color_purple {
-  color: purple;
+  color: #481677;
 }
 
 .influimg {
