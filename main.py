@@ -209,12 +209,6 @@ def get_rel_word():
 
     return json.dumps(result,ensure_ascii=False)
 
-
-@app.route('/output')
-def output():
-    return render_template('output_copy.html', 
-                           type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], username=session['username'])
-
 @app.route('/projects')
 def projects():
     if not ('name' in session):

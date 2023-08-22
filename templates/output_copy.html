@@ -11,123 +11,6 @@
     <!-- Template Stylesheet -->
     <link href="./static/css/output.css" rel="stylesheet">
     <link href="./static/css/output_form.css" rel="stylesheet">
-
-    <!-- network graph -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script> -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"></script>
-
-
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
-    <script>
-
-      var networkGraph = {
-        createGraph : function() {
-          var width= 300;
-          var height = 300;
-          var svg = d3.select("#graph")
-                      .attr("viewBox", [0,0,width,height])
-          var gHolder = svg.append("g").attr("class", "g-holder");
-          var links;
-          var nodes;
-        }
-      }
-      var fillCircle = function(g){
-        if(g == "input"){
-            return "#FF0000";
-        }else{
-            return "#F5F5F5";
-        }
-    };
-      // 모델
-      $(document).ready(function(){
-        var keyList = [];
-        $('.input-tab span').each(function(){
-          keyList.push($(this).text());
-        })
-        console.log(keyList);
-        $.ajax({
-          url:'get_rel_word',
-          type:'post',
-          dataType:'json',
-          contentType:'application/json',
-          data:JSON.stringify({
-            keyword:keyList
-          }),
-          success:function(result){
-            console.log(result);
-            console.log(result[0][0],result[0][1]);
-            // 데이터 넣기
-            result.forEach((item,idx)=>{
-              $('#hashtag_rank_table tbody tr').eq(idx).find('td').eq(1).text(item[0]);
-              $('#hashtag_rank_table tbody tr').eq(idx).find('td').eq(2).find('div.progress-bar').attr('style','width:'+item[1]*100+'%;');
-              $('#hashtag_rank_table tbody tr').eq(idx).find('td').eq(2).find('div.progress-bar').attr('aria-valuenow',item[1]*100);
-              $('#hashtag_rank_table tbody tr').eq(idx).find('td').eq(3).text(Math.round(item[1]*100));});
-            // word network
-            networkGraph.createGraph();
-            const NETWORK_DATA = {
-            nodes: [
-              {id: keyList, "value": 3, "group": "input"},
-              {id: result[0][0], "value": 3, "group": "output"},
-              {id: result[1][0], "value": 3, "group": "output"},
-              {id: result[2][0], "value": 3, "group": "output"},
-              {id: result[3][0], "value": 3, "group": "output"},
-              {id: result[4][0], "value": 3, "group": "output"}
-              ],
-              links :[
-              {source: keyList, target: result[0][0], "value": 2},
-              {source: keyList, target: result[1][0], "value": 2},
-              {source: keyList, target: result[2][0], "value": 2},
-              {source: keyList, target: result[3][0], "value": 2},
-              {source: keyList, target: result[4][0], "value": 2}]
-             };                
-              // Create the links
-
-              var links = NETWORK_DATA.links.map(function(d){
-                return Object.create(d)
-              });
-              // Create the nodes
-              var nodes = NETWORK_DATA.nodes.map(function(d){
-                return Object.create(d)
-              })
-            // Create the simulation
-            var simulation = d3.forceSimulation(nodes)
-              .force("link", d3.forceLink(links).id(d => d.id))
-              .force("charge", d3.forceManyBody().strength(-100))
-              .force("center", d3.forceCenter(300 / 2, 300 / 2))
-              .force("collide", d3.forceCollide().radius(d=> d.value*5));
-            
-            var link = gHolder.append("g")
-                              .attr("stroke", "#999").attr("stroke-opacity", 0.6).selectAll("line").data(links).join("line")
-                              .attr("stroke-width", d => Math.sqrt(d.value*5))
-
-            var node = gHolder.append("g").attr("class", "circle-node-holder").selectAll("g").data(nodes).enter().append("g")
-                              .each(function(d){
-                                d3.select(this)
-                                    .append("circle")
-                                    .attr("r", d.value*5)
-                                    .attr("fill", fillCircle(d.group));
-                                d3.select(this)
-                                    .append("text").text(d.id)
-                                    .attr("dy",6)
-                                    .style("text-anchor","middle")
-                                    .attr("class", "node-label")
-                                }).call(networkGraph.drag(simulation));   
-
-            simulation.on("tick", function(){
-              link.attr("x1", function(d){ return d.source.x; })
-                  .attr("y1", function(d){ return d.source.y; })
-                  .attr("x2", function(d){ return d.target.x; })
-                  .attr("y2", function(d){ return d.target.y; });
-              node.attr("transform", function(d) { return "translate("+d.x+","+ d.y+")"; });
-          });
-            
-          }
-        })
-      });
-
-    </script>
   <!-- Spinner Start -->
   <div id="spinner"
     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -136,157 +19,188 @@
   <!-- Spinner End -->
 
 
-  <!-- Navbar Start -->
+<!-- Navbar Start -->
 
-  <body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0">
-      <!-- Header Start -->
-      <div class="container-xxl py-2">
-        <h3 class="margin-title wow fadeInUp">맞춤 인플루언서 3명을 추천해드리겠습니다!</h3>
-        <hr>
-            <div class="mb-5 wow fadeInUp">
-              <h3 class="margin-left">SURVEY RESULTS</h3>
-            </div>
-            <div class="container1 wow fadeInUp">
-              <div id="survey-form">
-                
+<body class="d-flex flex-column h-100">
+  <main class="flex-shrink-0">
+    <!-- Header Start -->
+    <div class="container-xxl py-2">
+      <h3 class="margin-title wow fadeInUp"><img src="./static/assets/output_title.png" style="width: 60px;"> 맞춤 인플루언서 추천 결과</h3>
+      <hr>
+      <h3 class="margin-title2">SURVEY RESULTS</h3>
+      <h6>선택한 결과를 보여드립니다.</h6>
+      <div class="bg-box">
+        <!--<div class="container1 wow fadeInUp">-->
+        <div id="survey-form">
+          <div class="row-width col-md-12">
+            <div class="card col-md-2 card-mg left-mg wow fadeInUp">
+              <div class="card-body">
                 <div class="labels">
-                Type of Clothing :
+                  Type of Clothing
                 </div>
                 <div class="input-tab">
                   <span>{{type}}</span>
                 </div>
-                
+              </div>
+            </div>
+
+            <div class="card col-md-2 card-mg wow fadeInUp">
+              <div class="card-body">
                 <div class="labels">
-                Target Season :
+                  Target Season
                 </div>
                 <div class="input-tab">
                   <span>{{season}}</span>
                 </div>
-                
+              </div>
+            </div>
+
+            <div class="card col-md-2 card-mg wow fadeInUp">
+              <div class="card-body">
                 <div class="labels">
-                Style :
+                  Style
                 </div>
                 <div class="input-tab">
                   <span>{{style}}</span>
                 </div>
-                
+              </div>
+            </div>
+
+            <div class="card col-md-2 card-mg wow fadeInUp">
+              <div class="card-body">
                 <div class="labels">
-                Focus :
+                  Focus
                 </div>
                 <div class="input-tab">
-                  <span>{{focus}}</span>
+                {{focus}}
                 </div>        
               
                 
               </div>
-              </div>
-              <h3 class="margin-left wow fadeInUp margin-1">Influencer Feed</h3>
-          <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-            <div class="testimonial-item text-center row-width">
-              <!-- <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg"
-            style="width: 100px; height: 100px;"> -->
-              <div class="testimonial-text rounded text-center p-3 col-md-8">
-                <img src="./static/images/feed.png" width="390px" height="500px">
-                <br>
-                <h5 class="mb-1">1</h5>
-              </div>
-                <!-- <span class="fst-italic">Profession</span> -->
-              <div class="card col-md-4">
-                <div class="card-body">
-                  <h4 class="card-title">Influencer Information</h4>
-                  <br>
-                  <ul>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Lorem ipsum dolor sit amet</li>
-                    <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Consectetur adipiscing elit</li>
-                    <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Integer molestie lorem at massa</li>
-                    <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Facilisis in pretium nisl aliquet</li>
-                  </ul>
-                </div>
             </div>
           </div>
-            <div class="testimonial-item text-center row-width">
-              <!-- <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg"
-            style="width: 100px; height: 100px;"> -->
-              <div class="testimonial-text rounded text-center p-3 col-md-8">
-                <img src="./static/images/feed.png" width="390px" height="500px">
-                <br>
-                <h5 class="mb-1">2</h5>
-                <!-- <span class="fst-italic">Profession</span> -->
-              </div>
-              <div class="card col-md-4">
-                <div class="card-body">
-                  <h4 class="card-title">Influencer Information</h4>
-                  <br>
-                  <ul>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Lorem ipsum dolor sit amet</li>
-                    <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Consectetur adipiscing elit</li>
-                    <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Integer molestie lorem at massa</li>
-                    <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Facilisis in pretium nisl aliquet</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="testimonial-item text-center row-width">
-              <!-- <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg"
-            style="width: 100px; height: 100px;"> -->
-              <div class="testimonial-text rounded text-center p-3 col-md-8">
-                <img src="./static/images/feed.png" width="390px" height="500px">
-                <br>
-                <h5 class="mb-1">3</h5>
-                <!-- <span class="fst-italic">Profession</span> -->
-              </div>
-              <div class="card col-md-4">
-                <div class="card-body">
-                  <h4 class="card-title">Influencer Information</h4>
-                  <br>
-                  <ul>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Lorem ipsum dolor sit amet</li>
-                    <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Consectetur adipiscing elit</li>
-                    <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Integer molestie lorem at massa</li>
-                    <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Facilisis in pretium nisl aliquet</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-        </div>
-        </div>
-        </div>
-      </div>
-      </div>
-      <!-- Header End -->
-      <hr style="width: 100%">
-      <!-- Page Middle Start -->
-      <div class="container-fluid page-body-wrapper">
-        <div class="row-width">
 
-          <div class="col-md-6 col-xl-6">
+        </div>
+      </div>
+
+      <h3 class="margin-title3">Influencer Feed</h3>
+      <h6>추천된 인플루언서의 피드와 정보입니다.</h6>
+      <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+        <div class="testimonial-item text-center row-width">
+          <!-- <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg"
+            style="width: 100px; height: 100px;"> -->
+          <div class="testimonial-text rounded text-center p-4 col-md-8">
+            <img src="./static/images/feed.png" width="380px" height="450px">
+            <br>
+            <h5 class="mb-1">1</h5>
+          </div>
+          <!-- <span class="fst-italic">Profession</span> -->
+          <div class="card col-md-4">
+            <div class="card-body">
+              <h4 class="card-title">Influencer Information</h4>
+              <br>
+              <ul>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Lorem ipsum dolor sit amet</li>
+                <br>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Consectetur adipiscing elit</li>
+                <br>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Integer molestie lorem at massa</li>
+                <br>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Facilisis in pretium nisl aliquet</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-item text-center row-width">
+          <!-- <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg"
+            style="width: 100px; height: 100px;"> -->
+          <div class="testimonial-text rounded text-center p-4 col-md-8">
+            <img src="./static/images/feed.png" width="380px" height="450px">
+            <br>
+            <h5 class="mb-1">2</h5>
+            <!-- <span class="fst-italic">Profession</span> -->
+          </div>
+          <div class="card col-md-4">
+            <div class="card-body">
+              <h4 class="card-title">Influencer Information</h4>
+              <br>
+              <ul>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Lorem ipsum dolor sit amet</li>
+                <br>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Consectetur adipiscing elit</li>
+                <br>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Integer molestie lorem at massa</li>
+                <br>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Facilisis in pretium nisl aliquet</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-item text-center row-width">
+          <!-- <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg"
+            style="width: 100px; height: 100px;"> -->
+          <div class="testimonial-text rounded text-center p-4 col-md-8">
+            <img src="./static/images/feed.png" width="380px" height="450px">
+            <br>
+            <h5 class="mb-1">3</h5>
+            <!-- <span class="fst-italic">Profession</span> -->
+          </div>
+          <div class="card col-md-4">
+            <div class="card-body">
+              <h4 class="card-title">Influencer Information</h4>
+              <br>
+              <ul>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Lorem ipsum dolor sit amet</li>
+                <br>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Consectetur adipiscing elit</li>
+                <br>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Integer molestie lorem at massa</li>
+                <br>
+                <li style="list-style: none"><img src="./static/images/check.png" width="30"
+                    style="display: inline">Facilisis in pretium nisl aliquet</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Page Middle Start -->
+    <div class="container-xxl py-2 margin-title3">
+    <div class="container-fluid page-body-wrapper">
+      <div class="row-width">
+        <div class="col-md-6 col-xl-6">
           <div class="grid-margin stretch-card" data-wow-delay="0.1s">
-            <div class="card margin-up">
-              <div class="card-body">
+            <div class="card1 margin-up">
+              <div class="card-body left-mg2">
                 <h4 class="card-title">Hashtag Cluster</h4>
-                <div id="network">
-                  <svg id="graph"></svg>
-
-                </div>
+                <canvas id="pieChart" width="300vw" height="300vh"></canvas>
                 <br>
-                <div class="card">
+                </div>
+                <div class="card rank">
                   <div class="card-body">
-                    <h4 class="card-title">Hashtag Ranking</h4>
-                    <!-- <p class="card-description">
-                      Add class <code>.table-bordered</code>
-                    </p> -->
+                    <h4 class="card-title2">Hashtag Ranking</h4>
+                    <p class="card-description">
+                      해시태그 추천 순위를 보여드립니다.
+                    </p>
                     <div class="table-responsive pt-3">
                       <table id="hashtag_rank_table" class="table table-bordered">
                         <thead>
@@ -311,15 +225,15 @@
                               1
                             </td>
                             <td>
-                              
+                              냥냥
                             </td>
                             <td>
                               <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                             </td>
                             <td>
-                              
+                              30
                             </td>
                           </tr>
                           <tr>
@@ -327,15 +241,15 @@
                               2
                             </td>
                             <td>
-                              
+                              멍멍
                             </td>
                             <td>
                               <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                             </td>
                             <td>
-                             
+                             25
                             </td>
                           </tr>
                           <tr>
@@ -343,15 +257,15 @@
                               3
                             </td>
                             <td>
-                              
+                              음메
                             </td>
                             <td>
                               <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                             </td>
                             <td>
-                              
+                              20
                             </td>
                           </tr>
                           <tr>
@@ -359,15 +273,15 @@
                               4
                             </td>
                             <td>
-                              
+                              삐약
                             </td>
                             <td>
                               <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                             </td>
                             <td>
-                              
+                              15
                             </td>
                           </tr>
                           <tr>
@@ -375,19 +289,117 @@
                               5
                             </td>
                             <td>
-                              
+                              갹
                             </td>
                             <td>
                               <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                             </td>
                             <td>
-                              
+                              10
                             </td>
                           </tr>
                         </tbody>
                       </table>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-xl-6 grid-margin bg-middle">
+            <h4 class="recommend">Influencer Dashboard</h4>
+            <h6 class="recommend2">해시태그 분석에 따라 추천된 인플루언서입니다.</h6>
+            <img src="./static/assets/recommend.png" class="recommend-img">
+          <div class="row-width">
+            <div class="col-md-12 col-xl-12 grid-margin stretch-card margin-up">
+              <div class="card2 profile-card bg-gradient-primary card-style-major" data-wow-delay="0.1s">
+                <div class="card-body">
+                  <div class="row align-items-center h-100">
+                    <div class="col-md-4">
+                      <figure class="avatar mx-auto mb-4 mb-md-0">
+                        <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
+                      </figure>
+                    </div>
+                    <div class="col-md-8">
+                      <h2 class="text-white text-center text-md-left">--Major--</h2>
+                      <p class="text-white text-center text-md-left">@major</p>
+                      <div class="d-flex align-items-center justify-content-between info pt-2">
+                        <div class=" blur">
+                          <div>
+                            <p class="text-white font-weight-bold">Birth date</p>
+                            <p class="text-white font-weight-bold">Birth city</p>
+                          </div>
+                          <div>
+                            <p class="text-white">16 Sep 2019</p>
+                            <p class="text-white">Netherlands</p>
+                          </div>
+                        </div>
+                        <h4><a class="major" href="{{('major')}}" style="color: yellow;">more data</a></h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 grid-margin stretch-card align-items-center">
+              <div class="card2 profile-card bg-gradient-primary2 card-style-minor" data-wow-delay="0.1s">
+                <div class="card-body">
+                  <div class="row align-items-center h-100">
+                    <div class="col-md-5">
+                      <figure class="avatar mx-auto mb-4 mb-md-0">
+                        <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
+                      </figure>
+                    </div>
+                    <div class="col-md-7">
+                      <h4 class="text-white text-center text-md-left">--Minor--</h4>
+                      <p class="text-white text-center text-md-left">@minor</p>
+                      <div class="d-flex align-items-center justify-content-between info pt-2">
+                        <div class=" blur">
+                          <div>
+                            <p class="text-white font-weight-bold">Birth date</p>
+                            <p class="text-white font-weight-bold">Birth city</p>
+                          </div>
+                          <div>
+                            <p class="text-white">16 Sep 2019</p>
+                            <p class="text-white">Netherlands</p>
+                          </div>
+                        </div>
+                        <h5><a class="minor" href="{{('minor')}}" style="color: yellow;">more data</a></h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 grid-margin stretch-card align-items-center">
+              <div class="card2 profile-card bg-gradient-primary2 card-style-minor" data-wow-delay="0.1s">
+                <div class="card-body">
+                  <div class="row align-items-center h-100">
+                    <div class="col-md-5">
+                      <figure class="avatar mx-auto mb-4 mb-md-0">
+                        <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
+                      </figure>
+                    </div>
+                    <div class="col-md-7">
+                      <h4 class="text-white text-center text-md-left">--Minor--</h4>
+                      <p class="text-white text-center text-md-left">@minor</p>
+                      <div class="d-flex align-items-center justify-content-between info pt-2">
+                        <div class=" blur">
+                          <div>
+                            <p class="text-white font-weight-bold">Birth date</p>
+                            <p class="text-white font-weight-bold">Birth city</p>
+                          </div>
+                          <div>
+                            <p class="text-white">16 Sep 2019</p>
+                            <p class="text-white">Netherlands</p>
+                          </div>
+                        </div>
+                        <h5><a class="minor" href="{{('minor2')}}" style="color: yellow;">more data</a></h5>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -396,124 +408,30 @@
           </div>
         </div>
 
-          <div class="col-md-12 col-xl-6 grid-margin">
-            <div class="row-width">
-              <div class="col-md-12 col-xl-12 grid-margin stretch-card margin-up">
-                <div class="card profile-card bg-gradient-primary card-style-major" data-wow-delay="0.1s">
-                  <div class="card-body">
-                    <div class="row align-items-center h-100">
-                      <div class="col-md-4">
-                        <figure class="avatar mx-auto mb-4 mb-md-0">
-                          <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
-                        </figure>
-                      </div>
-                      <div class="col-md-8">
-                        <h2 class="text-white text-center text-md-left">--Major--</h2>
-                        <p class="text-white text-center text-md-left">@major</p>
-                        <div class="d-flex align-items-center justify-content-between info pt-2">
-                          <div class=" blur">
-                            <div>
-                              <p class="text-white font-weight-bold">Birth date</p>
-                              <p class="text-white font-weight-bold">Birth city</p>
-                            </div>
-                            <div>
-                              <p class="text-white">16 Sep 2019</p>
-                              <p class="text-white">Netherlands</p>
-                            </div>
-                          </div>
-                          <h4><a class="major" href="{{('major')}}" style="color: yellow;">more data</a></h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-xl-6 grid-margin stretch-card align-items-center">
-                <div class="card profile-card bg-gradient-primary2 card-style-minor" data-wow-delay="0.1s">
-                  <div class="card-body">
-                    <div class="row align-items-center h-100">
-                      <div class="col-md-5">
-                        <figure class="avatar mx-auto mb-4 mb-md-0">
-                          <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
-                        </figure>
-                      </div>
-                      <div class="col-md-7">
-                        <h4 class="text-white text-center text-md-left">--Minor--</h4>
-                        <p class="text-white text-center text-md-left">@minor</p>
-                        <div class="d-flex align-items-center justify-content-between info pt-2">
-                          <div class=" blur">
-                            <div>
-                              <p class="text-white font-weight-bold">Birth date</p>
-                              <p class="text-white font-weight-bold">Birth city</p>
-                            </div>
-                            <div>
-                              <p class="text-white">16 Sep 2019</p>
-                              <p class="text-white">Netherlands</p>
-                            </div>
-                          </div>
-                          <h5><a class="minor" href="{{('minor')}}" style="color: yellow;">more data</a></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-xl-6 grid-margin stretch-card align-items-center">
-                <div class="card profile-card bg-gradient-primary2 card-style-minor" data-wow-delay="0.1s">
-                  <div class="card-body">
-                    <div class="row align-items-center h-100">
-                      <div class="col-md-5">
-                        <figure class="avatar mx-auto mb-4 mb-md-0">
-                          <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
-                        </figure>
-                      </div>
-                      <div class="col-md-7">
-                        <h4 class="text-white text-center text-md-left">--Minor--</h4>
-                        <p class="text-white text-center text-md-left">@minor</p>
-                        <div class="d-flex align-items-center justify-content-between info pt-2">
-                          <div class=" blur">
-                            <div>
-                              <p class="text-white font-weight-bold">Birth date</p>
-                              <p class="text-white font-weight-bold">Birth city</p>
-                            </div>
-                            <div>
-                              <p class="text-white">16 Sep 2019</p>
-                              <p class="text-white">Netherlands</p>
-                            </div>
-                          </div>
-                          <h5><a class="minor" href="{{('minor2')}}" style="color: yellow;">more data</a></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
       </div>
-      <!-- Page Middle End -->
+    </div>
+  </div>
+    <!-- Page Middle End -->
 
-      <!-- Back to Top -->
-      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
-        <i class="bi bi-arrow-up"></i>
-      </a>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
+      <i class="bi bi-arrow-up"></i>
+    </a>
 
-      <div class="margin-up"></div>
+    <div class="margin-up"></div>
 
 
-      <!-- JavaScript Libraries -->
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="./static/lib/wow/wow.min.js"></script>
-      <script src="./static/lib/waypoints/waypoints.min.js"></script>
-      <script src="./static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./static/lib/wow/wow.min.js"></script>
+    <script src="./static/lib/waypoints/waypoints.min.js"></script>
+    <script src="./static/lib/owlcarousel/owl.carousel.min.js"></script>
 
-      <!-- Template Javascript -->
-      <script src="./static/js/main.js"></script>
-      <!-- plugin js for this page -->
-      <script src=".\static\js\Chart.min.js"></script>
-      <!-- Custom js for this page-->
-      <script src=".\static\js\chart.js"></script>
-{% endblock %}
+    <!-- Template Javascript -->
+    <script src="./static/js/main.js"></script>
+    <!-- plugin js for this page -->
+    <script src=".\static\js\Chart.min.js"></script>
+    <!-- Custom js for this page-->
+    <script src=".\static\js\chart.js"></script>
+    {% endblock %}
