@@ -71,9 +71,10 @@ body {
 .labels {
   display: inline-block;
   text-align: right;
-  /* width: 40%; */
+  width: 20%;
   vertical-align: top;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .input-tab {
