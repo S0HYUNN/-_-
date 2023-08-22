@@ -231,12 +231,5 @@ def minor():
 def minor2():
     return render_template('minor2.html')
 
-@app.route('/output')
-def output():
-    return render_template('output_copy.html', type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], name=session['name'])
-@app.route('/base')
-def base():
-    return render_template('base.html')
-
 if __name__ == '__main__':
     app.run(port="5000", debug = True)
