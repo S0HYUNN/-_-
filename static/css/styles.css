@@ -105,6 +105,13 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -4313,7 +4320,7 @@ fieldset:disabled .btn {
 .navbar-brand {
   padding-top: var(--bs-navbar-brand-padding-y);
   padding-bottom: var(--bs-navbar-brand-padding-y);
-  margin-right: var(--bs-navbar-brand-margin-end);
+  /* margin-right: var(--bs-navbar-brand-margin-end); */
   font-size: var(--bs-navbar-brand-font-size);
   color: var(--bs-navbar-brand-color);
   text-decoration: none;
@@ -14401,7 +14408,7 @@ li {
 
 .text-center2 {
   text-align: center !important;
-  width: 100;
+  width: 100%;
 }
 
 .quote {
