@@ -124,8 +124,8 @@ def callback():
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     #     # 임시
-    session["email"]="jiwoongmun@gmail.com"
-    session["name"] = "Jiwoong"
+    # session["email"]="jiwoongmun@gmail.com"
+    # session["name"] = "Jiwoong"
     ## 회원 가입 절차 시작 ##
     form = Login()
     if form.validate_on_submit():
@@ -232,7 +232,11 @@ def projects_output():
     Pseason= request.args.get("Pseason")
     Pstyle = request.args.get("Pstyle")
     Pfocus = request.args.get("Pfocus")
-    return render_template('output_copy.html', username=session.get('username'), type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus)
+    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus)
+
+@app.route('/output')
+def output():
+    return render_template('output_copy.html', type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], name=session['name'])
 
 @app.route('/base')
 def base():
@@ -240,7 +244,7 @@ def base():
 
 @app.route('/resume')
 def resume():
-    return render_template('resume.html')
+    return render_template('resume.html', season=session['season'], name=session['name'], username=session.get('username'))
 
 @app.route('/major')
 def major():

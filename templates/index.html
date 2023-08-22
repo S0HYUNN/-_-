@@ -1,18 +1,19 @@
 {% with messages=get_flashed_messages() %}
-  {% if messages %}
-    <script>
-      window.onload = function() {
+{% if messages %}
+<script>
+    window.onload = function () {
         var message = "{{ messages[-1] }}";
         if (message) {
-          alert(message);
-        }};
-    </script>
-  {% endif %}
+            alert(message);
+        }
+    };
+</script>
+{% endif %}
 {% endwith %}
 
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- hashtag ranking 사진 바꾸기 && 인스타그램 피드 사진 변경 && company-services 문구 변경 && 배너 수정? -->
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -43,10 +44,11 @@
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation"><span
                         class="navbar-toggler-icon"></span></button> -->
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                        <li class="nav-item"><a class="nav-link" href="/input">Create</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/resume">About</a></li></ul>    
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                    <li class="nav-item"><a class="nav-link text-gradient" href="/input">Create</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/resume">About</a></li>
+                </ul>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
 
@@ -73,7 +75,7 @@
         </nav>
 
         <div class="slide slide_wrap">
-            
+
             <div class="slide_item item1">
                 <div class="text-center text-xxl-start">
                     <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
@@ -84,7 +86,7 @@
                                 class="text-gradient d-inline">Connect with <br>Top <br>Influencers <br>in Your
                                 Niche</span>
                         </h1>
-                        </div>
+                    </div>
                     <div style="float:right">
                         <h1 class="display-3 fw-bolder mb-5">
                             <img class="opacity" src="./static/assets/feed.jpg" width="550" height="400"
@@ -95,17 +97,18 @@
                     <a class="btn2 btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="/input">Create</a>
                 </div>
             </div>
-            
+
             <div class="slide_item item2">
                 <div class="text-center text-xxl-start">
                     <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
                         <div class="text-uppercase">Fashion &middot; Marketing &middot; Influence</div>
                     </div>
                     <h1 class="display-3 fw-bolder">
-                        <img class="opacity" src="./static/assets/feed.jpg" width="550" height="400" style="float:left">
+                        <img class="opacity" src="./static/assets/slide2.png" width="520" height="400"
+                            style="float:left">
                     </h1>
-                    <h1 class="display-4 fw-bolder mb-5"><span class="text-gradient d-inline">Connect with Top
-                            Influencers <br>in Your Niche</span></h1>
+                    <h1 class="display-4 fw-bolder mb-5"><span class="text-gradient d-inline">영향력을 만나다: 최고의 <br>인플루언서를
+                            <br>발견하세요!</span></h1>
                     <a class="btn2 btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="/input">Create</a>
                 </div>
             </div>
@@ -120,50 +123,56 @@
         </div>
 
     </main>
-<br>
+    <br>
     <section id="company-services" class="bg-white2">
         <div class="container my-5">
             <div class="row">
                 <div class="icon-box-wrapper d-flex flex-wrap justify-content-between">
                     <div class="icon-box text-center col-md-3 col-sm-12">
                         <div class="content-box border-top border-bottom">
-                            <div class="icon-content">
-                                <br>
-                                <img src="./static/assets/warnings.png" width="100" heighe="100">
-                                <h3 class="no-margin color_purple">Influencer Recommendation</h3>
-                                <p>Recommended 1 major and 2 minors suitable for advertisement</p>
-                                <br><br><br><br><br><br><br><br><br>
-                            </div>
+                            <a href="#testimonials" style="text-decoration: none; color: inherit;">
+                                <div class="icon-content">
+                                    <br>
+                                    <img src="./static/assets/warnings.png" width="100" heighe="100">
+                                    <h3 class="no-margin color_purple">Influencer Recommendation</h3>
+                                    <p>Recommended 1 major and 2 minors suitable for advertisement</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <br><br><br><br><br><br><br><br><br> -->
+                    </div>
+                    <div class="icon-box text-center col-md-3 col-sm-12">
+                        <div class="content-box border-top border-bottom">
+                            <a href="#testimonials1" style="text-decoration: none; color: inherit;">
+                                <div class="icon-content">
+                                    <br>
+                                    <img src="./static/assets/hashtag.png" width="100" heighe="100">
+                                    <h3 class="no-margin color_purple">Hashtag Ranking</h3>
+                                    <p>List of matching hashtags after a survey</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="icon-box text-center col-md-3 col-sm-12">
                         <div class="content-box border-top border-bottom">
-                            <div class="icon-content">
-                                <br>
-                                <img src="./static/assets/hashtag.png" width="100" heighe="100">
-                                <h3 class="no-margin color_purple">Hashtag Ranking</h3>
-                                <p>List of matching hashtags after a survey</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="icon-box text-center col-md-3 col-sm-12">
-                        <div class="content-box border-top border-bottom">
-                            <div class="icon-content">
-                                <br>
-                                <img src="./static/assets/cluster.png" width="100" heighe="100">
-                                <h3 class="no-margin color_purple">Hashtag Clustering</h3>
-                                <p>Hashtag clustering</p>
-                            </div>
+                            <a href="#testimonials2" style="text-decoration: none; color: inherit;">
+                                <div class="icon-content">
+                                    <br>
+                                    <img src="./static/assets/cluster.png" width="100" heighe="100">
+                                    <h3 class="no-margin color_purple">Hashtag Clustering</h3>
+                                    <p>Hashtag clustering</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section id="testimonials" class="position-relative padding-large">
         <div class="container mt-5">
-            
+
             <div class="text-center2 d-flex justify-content-center">
                 <div class="review-item col-md-8">
                     <img class="quote" src="./static/assets/quote.png" width="60" height="60">
@@ -172,7 +181,7 @@
                         <blockquote>“제품 광고에 효과적인
                             인스타그램 인플루언서를 소개해드려요.”</blockquote>
                     </h2>
-    
+
                     <div class="author-detail">
                         <img class="name text-primary" src="./static/assets/instagram.png" width="80" height="80">
                     </div>
@@ -180,60 +189,60 @@
 
                     <div class="image-container">
                         <div class="influimg-container">
-                          <img class="influimg" src="./static/assets/influ1.jpg" width="130" height="130">
-                          <p class="image-text">@zzjun.k</p>
+                            <img class="influimg" src="./static/assets/influ1.jpg" width="130" height="130">
+                            <p class="image-text">@zzjun.k</p>
                         </div>
                         <div class="influimg-container">
-                          <img class="influimg" src="./static/assets/influ2.jpg" width="130" height="130">
-                          <p class="image-text">@babyjongok</p>
+                            <img class="influimg" src="./static/assets/influ2.jpg" width="130" height="130">
+                            <p class="image-text">@babyjongok</p>
                         </div>
                         <div class="influimg-container">
-                          <img class="influimg" src="./static/assets/influ3.jpg" width="130" height="130">
-                          <p class="image-text">@h.yun_b</p>
+                            <img class="influimg" src="./static/assets/influ3.jpg" width="130" height="130">
+                            <p class="image-text">@h.yun_b</p>
                         </div>
                         <div class="influimg-container">
-                          <img class="influimg" src="./static/assets/influ4.jpg" width="130" height="130">
-                          <p class="image-text">@hoonxxy</p>
+                            <img class="influimg" src="./static/assets/influ4.jpg" width="130" height="130">
+                            <p class="image-text">@hoonxxy</p>
                         </div>
                         <div class="influimg-container">
-                          <img class="influimg" src="./static/assets/influ5.jpg" width="130" height="130">
-                          <p class="image-text">@jiseong</p>
+                            <img class="influimg" src="./static/assets/influ5.jpg" width="130" height="130">
+                            <p class="image-text">@jiseong</p>
                         </div>
-                      </div>
-                      <div class="image-container">
+                    </div>
+                    <div class="image-container">
                         <div class="influimg-container">
-                          <img class="influimg" src="./static/assets/influ6.jpg" width="130" height="130">
-                          <p class="image-text">@jun_seonng</p>
-                        </div>
-                        <div class="influimg-container">
-                          <img class="influimg" src="./static/assets/influ7.jpg" width="130" height="130">
-                          <p class="image-text">@kkang.stylist</p>
+                            <img class="influimg" src="./static/assets/influ6.jpg" width="130" height="130">
+                            <p class="image-text">@jun_seonng</p>
                         </div>
                         <div class="influimg-container">
-                          <img class="influimg" src="./static/assets/influ8.jpg" width="130" height="130">
-                          <p class="image-text">@seer__eul</p>
+                            <img class="influimg" src="./static/assets/influ7.jpg" width="130" height="130">
+                            <p class="image-text">@kkang.stylist</p>
                         </div>
                         <div class="influimg-container">
-                          <img class="influimg" src="./static/assets/influ9.jpg" width="130" height="130">
-                          <p class="image-text">@soominnnnn</p>
+                            <img class="influimg" src="./static/assets/influ8.jpg" width="130" height="130">
+                            <p class="image-text">@seer__eul</p>
                         </div>
                         <div class="influimg-container">
-                          <img class="influimg" src="./static/assets/influ10.jpg" width="130" height="130">
-                          <p class="image-text">@w_woo.n</p>
+                            <img class="influimg" src="./static/assets/influ9.jpg" width="130" height="130">
+                            <p class="image-text">@soominnnnn</p>
                         </div>
-                      </div>
+                        <div class="influimg-container">
+                            <img class="influimg" src="./static/assets/influ10.jpg" width="130" height="130">
+                            <p class="image-text">@w_woo.n</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-           
+
         </div>
     </section>
-<br><br>
-    <section id="testimonials" class="position-relative padding-large bg-white2">
+    <br><br>
+    <section id="testimonials1" class="position-relative padding-large bg-white2">
         <div class="container mt-5">
             <div class="row">
                 <div class="text-center2 d-flex justify-content-center">
-                      
+
                     <div class="review-item col-md-7">
                         <img class="quote" src="./static/assets/hashtag1.png" width="60" height="60">
                         <br>
@@ -242,7 +251,8 @@
                                 인스타그램 해시태그를 추천해드려요.”</blockquote>
                         </h2>
                         <div class="author-detail">
-                            <div class="name text-primary">#instgram #influener</div>
+                            <div class="name text-primary">#instgram #influener
+                                #advertisement</div>
                         </div>
                         <br>
                     </div>
@@ -250,13 +260,13 @@
             </div>
             <div class="row">
                 <div class="text-center2 d-flex justify-content-center">
-                <div class="col-md-5">
-                    <img src="./static/assets/hashtag (1).png" width="360" height="360">
-                </div>  
-                <div class="col-md-7">
-                    <br>
-                    <img src="./static/assets/ranking.png" width="500" height="330">
-                </div>
+                    <div class="col-md-5">
+                        <img src="./static/assets/hashtag (1).png" width="360" height="340">
+                    </div>
+                    <div class="col-md-7">
+                        <br>
+                        <img src="./static/assets/ranking.png" width="500" height="300">
+                    </div>
                 </div>
             </div>
             <br>
@@ -264,7 +274,7 @@
     </section>
 
     <br>
-    <section id="testimonials" class="position-relative padding-large bg-white">
+    <section id="testimonials2" class="position-relative padding-large bg-white">
         <div class="container mt-5">
             <div class="text-center2 d-flex justify-content-center">
                 <div class="review-item col-md-7">
@@ -272,10 +282,10 @@
                     <img class="quote" src="./static/assets/quote.png" width="60" height="60">
                     <br>
                     <h2>
-                        <blockquote>“진정한 영향력을 가진 인플루언서들이 <p>여러분의 제품을 소개합니다. </p><b class="color_blue">#style_focus</b> 에서 만나보세요.”</blockquote>
+                        <blockquote>“진정한 영향력을 가진 인플루언서들이 <p>여러분의 제품을 소개합니다. </p><b class="color_blue">#style_focus</b>
+                            에서 만나보세요.”</blockquote>
                     </h2>
                     <br>
-                    <!-- 레뷰에서 카피해와서 문구 수정 필수 -->
                     <h4>
                         맞춤형 인플루언서 매칭 서비스!
                     </h4>
@@ -291,11 +301,11 @@
                             <div class="profile_box">
                                 <img class="profile_img" src="./static/assets/user.png" width="30" height="30">">
                             </div>
-                            <span class="feed_name_txt"> user </span>
+                            <span class="feed_name_txt"> style_focus </span>
                         </div>
                         <img class="feed_img"
                             src="https://mblogthumb-phinf.pstatic.net/MjAxNzA2MTFfMjc1/MDAxNDk3MTcyMDgyNzEw.ID5RyHWKvsVEW2NS9EQGyRYX7vUaXr7znQeuTrRRmdIg.gK7MD7VhNJPkV4_dueiWer2y-oH7NAAmEklF-6bbYyQg.JPEG.jejubyeol/%EC%97%AC%EB%A6%84%EC%97%90_%EC%A0%9C%EC%A3%BC%EB%8F%84_%EC%82%AC%EC%A7%84%EC%B0%8D%EA%B8%B0_%EC%A2%8B%EC%9D%80%EA%B3%B3.jpg?type=w800">
-                
+
                         <div class="feed_icon">
                             <div>
                                 <span class="material-icons-outlined">
@@ -314,26 +324,26 @@
                                 </span>
                             </div>
                         </div>
-                
+
                         <div class="feed_like">
-                            <span class="feed_txt"> <b>좋아요 1210개</b></span>
+                            <span class="feed_txt"> <b>좋아요 2308개</b></span>
                         </div>
                         <div class="feed_content">
-                            <span class="feed_txt"> <b> user </b> #광고 #협찬 ...</span>
+                            <span class="feed_txt"> <b> style_focus </b> #광고 #협찬 ...</span>
                         </div>
                         <div class="feed_gray">
-                            <span class="feed_txt3">댓글 20개 모두 보기</span>
+                            <span class="feed_txt3">댓글 25개 모두 보기</span>
                         </div>
                         <div class="feed_reply">
-                            <span class="feed_txt"> <b> user2 </b> 너무 멋있어요</span>
-                            <span class="feed_txt"> <b> chat </b> 잘생겼당 </span>
+                            <span class="feed_txt"> <b> levware </b> 너무 멋져요~~ </span>
+                            <span class="feed_txt"> <b> cutie_ </b> Oh! Handsome guy </span>
                         </div>
                         <div class="feed_gray">
                             <span class="feed_txt2">2시간 전</span>
                         </div>
                     </div>
-              
-        </div>
+
+                </div>
     </section>
 
     <br>
