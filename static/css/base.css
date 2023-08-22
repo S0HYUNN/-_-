@@ -13741,7 +13741,7 @@ html {
 }
 
 body {
-  font-family: Verdana, sans-serif;
+  font-family: Verdana, sans-serif; 
 }
 
 .mySlides {
@@ -13891,6 +13891,7 @@ li {
 }
 
 footer {
+    font-family: Verdana, sans-serif !important;
     position: relative;
     bottom: 0vh;
     width: 100%;
