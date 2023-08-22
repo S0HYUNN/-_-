@@ -159,11 +159,6 @@ def logout():
     session.clear()
     return redirect(url_for("index"))
 
-@app.route("/protected_area")
-@login_is_required
-def protected_area():
-    return "Protected! <a href='/logout'><button>Logout</button></a>"
-
 @app.route('/input', methods=['GET','POST'])
 def input():
     if not ('name' in session):
@@ -211,7 +206,7 @@ def projects():
     conn = get_con()
     sql_result = pd.read_sql(sql, conn)
     result = sql_result.to_dict('records')
-    return render_template('projects_copy.html', name=session['name'], projects=result)
+    return render_template('projects_copy.html', name=session['name'], projects=result, username=session.get('username'))
 
 @app.route('/projects-output')
 def projects_output():
@@ -219,7 +214,7 @@ def projects_output():
     Pseason= request.args.get("Pseason")
     Pstyle = request.args.get("Pstyle")
     Pfocus = request.args.get("Pfocus")
-    return render_template('output_copy.html', name=session['name'], type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus)
+    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus)
 
 @app.route('/output')
 def output():
