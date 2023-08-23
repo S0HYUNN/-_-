@@ -124,8 +124,8 @@ def callback():
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     #     # 임시
-    # session["email"]="jiwoongmun@gmail.com"
-    # session["name"] = "Jiwoong"
+    session["email"]="jiwoongmun@gmail.com"
+    session["name"] = "Jiwoong"
     ## 회원 가입 절차 시작 ##
     form = Login()
     if form.validate_on_submit():
@@ -195,19 +195,75 @@ def input():
     return render_template("input.html", form=form, username=session.get('username'))
 
 @app.route('/get_rel_word', methods=['GET', 'POST'])
-# 관련단어 가져오기
 def get_rel_word():
     # 파라미터
     # keyword = [session['type'], session['season'], session['style'], session['focus'] ]
     keyword_param = json.loads(request.data)
     print(keyword_param)
-    keyword = ["봄", "셔츠"]
-    negative = ['직장인']
     # 모델
     model = Word2Vec.load("data_working/model/Word2Vec.model")
-    result = model.wv.most_similar(positive=keyword, negative=negative, topn=10)
+    result = model.wv.most_similar(positive=keyword_param.get("keyword"), topn=10)
 
     return json.dumps(result,ensure_ascii=False)
+
+@app.route("/influencer", methods=['GET', 'POST'])
+def influencer():
+    param = json.loads(request.data)
+    print(param)
+    # key1 = data.get("key1")
+    sql = "select username,\
+                    (key1_rn+key2_rn+key3_rn)/3*2 as key_score,\
+                    (cnt1_rn+cnt2_rn+cnt3_rn+cnt4_rn+cnt5_rn+cnt6_rn+cnt7_rn+cnt8_rn+cnt9_rn+cnt10_rn)/10 as rel_score\
+                from (\
+                select username,\
+                        rank() over(order by key1) as key1_rn,\
+                        rank() over(order by key2) as key2_rn,\
+                        rank() over(order by key3) as key3_rn,\
+                        rank() over(order by cnt1) as cnt1_rn,\
+                        rank() over(order by cnt2) as cnt2_rn,\
+                        rank() over(order by cnt3) as cnt3_rn,\
+                        rank() over(order by cnt4) as cnt4_rn,\
+                        rank() over(order by cnt5) as cnt5_rn,\
+                        rank() over(order by cnt6) as cnt6_rn,\
+                        rank() over(order by cnt7) as cnt7_rn,\
+                        rank() over(order by cnt8) as cnt8_rn,\
+                        rank() over(order by cnt9) as cnt9_rn,\
+                        rank() over(order by cnt10) as cnt10_rn\
+                from\
+                (\
+                    select username,\
+                            (length(cap) - length(replace(cap, '"+param.get('keyword')[0]+"' , ''))) as key1,\
+                            (length(cap) - length(replace(cap, '"+param.get('keyword')[1]+"' , ''))) as key2,\
+                            (length(cap) - length(replace(cap, '"+param.get('keyword')[2]+"' , ''))) as key3,\
+                            (length(cap) - length(replace(cap, '"+param.get('rel_keyword')[0]+"' , ''))) as cnt1,\
+                            (length(cap) - length(replace(cap, '"+param.get('rel_keyword')[1]+"' , ''))) as cnt2,\
+                            (length(cap) - length(replace(cap, '"+param.get('rel_keyword')[2]+"' , ''))) as cnt3,\
+                            (length(cap) - length(replace(cap, '"+param.get('rel_keyword')[3]+"' , ''))) as cnt4,\
+                            (length(cap) - length(replace(cap, '"+param.get('rel_keyword')[4]+"' , ''))) as cnt5,\
+                            (length(cap) - length(replace(cap, '"+param.get('rel_keyword')[5]+"' , ''))) as cnt6,\
+                            (length(cap) - length(replace(cap, '"+param.get('rel_keyword')[6]+"' , ''))) as cnt7,\
+                            (length(cap) - length(replace(cap, '"+param.get('rel_keyword')[7]+"' , ''))) as cnt8,\
+                            (length(cap) - length(replace(cap, '"+param.get('rel_keyword')[8]+"' , ''))) as cnt9,\
+                            (length(cap) - length(replace(cap, '"+param.get('rel_keyword')[9]+"' , ''))) as cnt10\
+                    from\
+                    (\
+                        select username,array_to_string(array_agg(caption),',') as cap\
+                        from major_media\
+                        group by username\
+                        union all\
+                        select username,array_to_string(array_agg(caption),',') as cap\
+                        from minor_media\
+                        group by username\
+                    ) tab\
+                ) tab\
+            ) tab"
+    
+    conn = get_con()
+    sql_result = pd.read_sql(sql, conn)
+    hashtags = sql_result.to_dict('records')
+
+    return json.dumps(hashtags, ensure_ascii=False)
+
 
 @app.route('/projects')
 def projects():
