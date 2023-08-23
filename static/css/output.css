@@ -1592,6 +1592,9 @@ html {
   height: 50px;
 } */
 #graph .node-label { font-size: 14px; font-weight:bold; color:#111; stroke: white;stroke-width: 1.5px;paint-order: stroke fill; text-anchor: middle;}
+text {
+  font-size: 1rem !important;
+}
 
 
 /** highchart **/
