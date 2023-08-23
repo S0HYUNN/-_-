@@ -212,8 +212,7 @@ def influencer():
     print(param)
     # key1 = data.get("key1")
     sql = "select username,\
-                    (key1_rn+key2_rn+key3_rn)/3*2 as key_score,\
-                    (cnt1_rn+cnt2_rn+cnt3_rn+cnt4_rn+cnt5_rn+cnt6_rn+cnt7_rn+cnt8_rn+cnt9_rn+cnt10_rn)/10 as rel_score\
+                    ((key1_rn+key2_rn+key3_rn)/3*2)+((cnt1_rn+cnt2_rn+cnt3_rn+cnt4_rn+cnt5_rn+cnt6_rn+cnt7_rn+cnt8_rn+cnt9_rn+cnt10_rn)/10) as score\
                 from (\
                 select username,\
                         rank() over(order by key1) as key1_rn,\

@@ -154,7 +154,9 @@
           rel_keyword : keywords
         }),
         success: function (hashtags) {
-          console.log(hashtags)
+          const sortedInf = [...hashtags].sort((a, b) => b.score - a.score);
+          console.log(sortedInf);
+        
         }
 
     })
