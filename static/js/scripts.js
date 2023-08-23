@@ -196,6 +196,15 @@ slide.addEventListener("mouseout", () => {
   }, 3000);
 });
 
+window.addEventListener("scroll", function() {
+  var scrollButton = document.getElementById("scroll-to-top");
+  if (window.scrollY > 300) {
+    scrollButton.style.opacity = 1;
+  } else {
+    scrollButton.style.opacity = 0;
+  }
+});
+
 
 
 
