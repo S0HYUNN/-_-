@@ -230,7 +230,8 @@ def projects_output():
 
 @app.route('/output')
 def output():
-    return render_template('output_copy.html', type=session['type'], season=session['season'], style=session['style'], focus=session['focus'], name=session['name'])
+    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=session['type'] ,season=session['season'], style=session['style'], focus=session['focus'])
+
 
 @app.route('/base')
 def base():
@@ -238,7 +239,7 @@ def base():
 
 @app.route('/resume')
 def resume():
-    return render_template('resume.html', season=session['season'], name=session['name'], username=session.get('username'))
+    return render_template('resume.html', name=session['name'], username=session.get('username'))
 
 @app.route('/major')
 def major():
