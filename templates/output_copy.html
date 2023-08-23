@@ -22,7 +22,7 @@
 <!-- Navbar Start -->
 
 <body class="d-flex flex-column h-100">
-  <main class="flex-shrink-0">
+  <main class="flex-shrink-0" style="overflow-y:scroll;">
     <!-- Header Start -->
     <div class="container-xxl py-2">
       <h3 class="margin-title wow fadeInUp"><img src="./static/assets/output_title.png" style="width: 60px;"> 맞춤 인플루언서 추천 결과</h3>
@@ -434,4 +434,18 @@
     <script src=".\static\js\Chart.min.js"></script>
     <!-- Custom js for this page-->
     <script src=".\static\js\chart.js"></script>
+
+    <script>
+      $(document).ready(function(){
+          var innerHeight = window.innerHeight;
+          $('main').css('height',innerHeight-50+'px');
+      });
+    </script>
+
+    <style>
+      ::-webkit-scrollbar{
+          display:none;
+      }
+    </style>
+
     {% endblock %}

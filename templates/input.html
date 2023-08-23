@@ -3,18 +3,17 @@
 {% block content %}
   </header>
   <link rel="stylesheet" href="./static/css/input.css">
-  <div class="text-box">
-	<h1 id="title">SURVEY FORM</h1><hr>
-	  <p id="description"></p>
+  <div class="text-box" style="margin-top: 20px;margin-bottom: 20px;padding: 5px;">
+	<h1 id="title" style="margin-top:10px;">SURVEY FORM</h1><hr>
   </div>
-	  <div class="input_container">
+	  <div class="input_container" style="padding-top: 20px;padding-bottom: 10px;">
 		<form class="flex" id="survey-form" method="POST">
 			{{form.hidden_tag()}}
 			<div>{{form.type.label(class="labels")}} {{form.type(class="input-tab")}}</div>
 			<div>{{form.season.label(class="labels")}} {{form.season(class="input-tab")}}</div>
 			<div>{{form.style.label(class="labels")}} {{form.style(class="input-tab")}}</div>
 			<div>{{form.focus.label(class="labels")}} {{ form.focus(class="input-tab") }}</div>
-		  <div class="btn">
+		  <div class="btn" style="margin-top: 0px;margin-bottom: 0px;">
 			{{form.submit(class="button")}}
 		  </div>
 		</form>

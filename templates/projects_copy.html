@@ -1,5 +1,6 @@
 {% extends "base.html"%}
 {% block content %}
+
 <link rel="stylesheet" href="./static/css/projects.css">
             <!-- Projects Section-->
             <section class="py-5">
@@ -12,7 +13,7 @@
                         <!-- Project Card -->
                         {% if not projects %}
                         <div class="no-projects">
-                            <div>Click Create to Make New Projects!</div>
+                            <div><br><br><br>Click Create to Make New Projects!</div>
                         </div>
                         {% else %}
                             {% for project in projects %}
