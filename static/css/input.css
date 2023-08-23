@@ -27,7 +27,8 @@ body {
   border-radius: 20px;
   margin: 2em auto;
   padding: 20px;
-  width: 35%;
+  width: 30%;
+  font-size: small;
 }
 
 h1 {
@@ -60,8 +61,10 @@ hr {
   background: linear-gradient(to right, #3023ae, #c86dd7);
   border-radius: 20px;
   margin: auto;
-  width: 35%;
-  padding: 1em;
+  width: 30%;
+  height: 50%;
+  padding-top: 4em;
+  font-size: small;
 }
 
 #survey-form {
@@ -125,6 +128,7 @@ input {
   width: 100%;
   text-align: center;
   margin: 20px;
+  font-size: small;
 }
 
 .button {
@@ -192,5 +196,5 @@ footer {
   gap: 20px;
 }
 .margin-top{
-  margin-top: 40px;
+  margin-top: 55px;
 }
