@@ -353,7 +353,7 @@ input, select, textarea {
 			content: '';
 			position: absolute;
 			left: 0;
-			width: 3.5rem;
+			width: 6rem;
 			height: 0.1rem;
 			background-color: rgba(255, 255, 255, 0.25);
 		}

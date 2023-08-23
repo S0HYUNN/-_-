@@ -251,7 +251,15 @@ def minor():
 
 @app.route('/minor2')
 def minor2():
-    return render_template('minor2.html')
+    # influencer= request.args.get("minor")
+    influencer = "jiseong"
+
+    sql = f"select * from inf_info where username='{influencer}'"
+    conn=get_con()
+    sql_result = pd.read_sql(sql, conn)
+    result = sql_result.to_dict('records')
+    print(result)
+    return render_template('minor2.html', inf_info=result)
 
 if __name__ == '__main__':
     app.run(port="5000", debug = True)
