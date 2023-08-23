@@ -410,7 +410,15 @@
 
       </div>
     </div>
+    <br><br>
+    <div id="container_line"></div>
+    <br>
+    <div id="container_bar"></div>
+  
+  </figure>
+
   </div>
+  
     <!-- Page Middle End -->
 
     <!-- Back to Top -->
@@ -427,6 +435,11 @@
     <script src="./static/lib/wow/wow.min.js"></script>
     <script src="./static/lib/waypoints/waypoints.min.js"></script>
     <script src="./static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
     <!-- Template Javascript -->
     <script src="./static/js/main.js"></script>
@@ -436,10 +449,74 @@
     <script src=".\static\js\chart.js"></script>
 
     <script>
-      $(document).ready(function(){
+      $(document).ready(function () {
           var innerHeight = window.innerHeight;
-          $('main').css('height',innerHeight-50+'px');
-      });
+          $('main').css('height', innerHeight - 50 + 'px');
+
+          Highcharts.chart('container_line', {
+            title: {
+              text: 'Full_Data'
+            },
+            yAxis: {
+              title: {
+                text: '수'
+              }
+            },
+
+            xAxis: {
+              categories: ['2023-01', '2023-02', '2023-03', '2023-04']
+            },
+
+            legend: {
+              layout: 'horizontal',
+              align: 'center'
+            },
+
+            plotOptions: {
+              series: {
+                label: {
+                  connectorAllowed: false
+                }
+              }
+            },
+            series: [{
+              name: 'Comments Count',
+              data: [200, 220, 210, 250]
+            }, {
+              name: 'Like Count(/10)',
+              data: [90, 100, 130, 110]
+            }]
+          });
+
+          Highcharts.chart('container_bar', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Total_Type'
+            },
+            xAxis: {
+                categories: ['FEED / CAROUSEL_ALBUM	', 'FEED / IMAGE', 'FEED / VIDEO', 'REELS / VIDEO']
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                column: {
+                    borderRadius: '25%'
+                }
+            },
+            series: [{
+                name: 'Comments',
+                data: [160, 84, 44, 286]
+            }, {
+                name: 'Like(/10)',
+                data: [236, 184, 163, 330]
+            }]
+        });
+        
+
+        });
     </script>
 
     <style>
