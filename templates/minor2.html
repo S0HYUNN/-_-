@@ -30,7 +30,9 @@
 									<span class="button primary color2 disabled">게시물 수 : </span>
 									<br>
 									<ul class="actions">
-										<li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
+										<li><a href="#first" class="button color1 circle icon solid fa-angle-right">1</a></li>
+										<li><a href="#second" class="button color1 circle icon solid fa-angle-right">2</a></li>
+										<li><a href="#third" class="button color1 circle icon solid fa-angle-right">3</a></li>
 									</ul>
 								</div>
 								<div class="image filtered span-1-75" data-position="25% 25%">
@@ -39,11 +41,19 @@
 							</section>
 	
 						<!-- Panel (Spotlight) -->
-							<section class="panel spotlight large left">
+							<section class="panel spotlight large left" id="first">
 								<div class="inner columns aligned">
 									<div class="span-4">
 										<h3 class="major">About {{inf_info[0]["username"]}}</h3>
 										<h2>Influencer Status</h2>
+										<br>
+										<ul>
+											<li style="list-style: none;" class="li-size">#</li>
+											<li style="list-style: none;" class="li-size">#</li>
+											<li style="list-style: none;" class="li-size">#</li>
+											<li style="list-style: none;" class="li-size">#</li>
+											<li style="list-style: none;" class="li-size">#</li>
+										</ul>
 									</div>
 									<div class="span-5">
 										<h3 class="major">Marketing Figures</Figure></h3>
@@ -78,12 +88,6 @@
 														<td>19.99</td>
 													</tr>
 												</tbody>
-												<tfoot>
-													<tr>
-														<td colspan="2"></td>
-														<td>100.00</td>
-													</tr>
-												</tfoot>
 											</table>
 										</div>
 									</div>
@@ -92,46 +96,8 @@
 									<img src="./static/images/pic03.jpg" alt="" />
 								</div>
 							</section>
-								<!-- <div class="content span-7">
-									<h2 class="major">Sed etiam aenean</h2>
-									<p>Mauris et ligula arcu. Proin dapibus convallis accumsan. Lorem maximus hendrerit orci, sit amet elementum massa hendrerit sed. Donec et ullamcorper ligula. Suspendisse amet potenti. Ut pretium libero eleifend euismod sed tristique. Quisque dictum magna risus, id ultricies justo sagittis vitae. Sed id odio tempor, porttitor elit amet, gravida hendrerit fringilla lorem ipsum dolor.</p>
-								</div>
-								<div class="image filtered tinted" data-position="top left">
-									<img src="./static/images/pic02.jpg" alt="" />
-								</div> -->
-							</section>
 
-						<!-- Panel -->
-							<!-- <section class="panel color1">
-								<div class="intro joined">
-									<h2 class="major">Amet lorem</h2>
-									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam.</p>
-								</div>
-								<div class="inner">
-									<ul class="grid-icons three connected">
-										<li><span class="icon fa-gem"><span class="label">Lorem</span></span></li>
-										<li><span class="icon solid fa-camera-retro"><span class="label">Ipsum</span></span></li>
-										<li><span class="icon solid fa-cog"><span class="label">Dolor</span></span></li>
-										<li><span class="icon solid fa-paper-plane"><span class="label">Sit</span></span></li>
-										<li><span class="icon solid fa-chart-bar"><span class="label">Amet</span></span></li>
-										<li><span class="icon solid fa-code"><span class="label">Nullam</span></span></li>
-									</ul>
-								</div>
-							</section> -->
-
-						<!-- Panel (Spotlight) -->
-							<!-- <section class="panel spotlight large left">
-								<div class="content span-5">
-									<h2 class="major">Magna amet tempus</h2>
-									<p>Mauris a cursus velit. Nunc lacinia sollicitudin egestas bibendum, magna dui bibendum ex, sagittis commodo enim risus sed magna nulla. Vestibulum ut consequat velit. Curabitur vitae libero lorem. Quisque iaculis porttitor blandit. Nullam quis sagittis maximus. Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar.</p>
-								</div>
-								<div class="image filtered tinted" data-position="top right">
-									<img src="./static/images/pic03.jpg" alt="" />
-								</div>
-							</section> -->
-
-						<!-- Panel -->
-							<section class="panel">
+							<section class="panel" id="second">
 								<div class="intro color2 inner.columns.aligned">
 									<div class="span-1-75">
 										<h2 class="major">Media Analysis</h2>
@@ -149,7 +115,7 @@
 											<li>패션 광고 피드 수 : </li>
 											<li>광고 피드 수 소모도 :</li>
 											<li>패션 광고 피드 수 소모도 :</li>
-											<li>댓글/좋아요 평균 : </li> 
+											<li>댓글 / 좋아요 평균 : </li> 
 										</ul>
 										</div>
 									</div>
@@ -166,10 +132,24 @@
 							</section>
 
 						<!-- Panel -->
-							<section class="panel color4-alt">
+							<section class="panel color4-alt" id="third">
 								<div class="intro color4">
+									<div class="span-2-25">
 									<h2 class="major">Follower Analysis</h2>
-									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam.</p>
+									
+									<p>인플루언서가 광고하는 제품에 대한 관심도 평균<br>
+										loyalt가 증가할수록 높은 충성도</p>
+									</div>
+									<div class="divided3">
+										<div class="span-2">
+									<pre><code>
+									<p>팔로워 수 : </p>
+									<p>loyalty_Lv1 : </p>
+									<p>loyalty_Lv2 : </p>
+									<p>loyalty_Lv3 : </p>
+									</pre></code>
+								</div>
+								</div>
 								</div>
 								<div class="inner columns divided">
 									<div class="span-3-25">
@@ -207,10 +187,10 @@
 
 						<!-- Panel -->
 							<section class="panel color2-alt">
-								<div class="intro color2">
+								<!-- <div class="intro color2">
 									<h2 class="major">Elements</h2>
 									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam. </p>
-								</div>
+								</div> -->
 								<div class="inner columns aligned">
 									<div class="span-2-75">
 
