@@ -3783,3 +3783,7 @@ input, select, textarea {
 	.li-mg{
 		margin-bottom: 5px;
 	}
+
+	.info-mg{
+		margin: 50px 0px;
+	}
