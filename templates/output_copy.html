@@ -647,11 +647,11 @@
                       return item.comments_count_mean;
                   })
               }, {
-                  name: 'Like Count(/10)',
+                  name: 'Like Count(%)',
                   data: graph_data.result1.filter(function(item) {
                       return item.year_month >= '2023-01';
                   }).map(function(item) {
-                      return item.like_count_mean / 10;
+                      return item.like_count_mean / 100;
                   })
               }]
           });
@@ -682,9 +682,9 @@
                     return item.comments_count_mean;
                 })
             }, {
-                name: 'Like(/10)',
+                name: 'Like(%)',
                 data: graph_data.result2.map(function(item) {
-                    return item.like_count_mean / 10;
+                    return item.like_count_mean / 100;
                 })
             }]
         });
