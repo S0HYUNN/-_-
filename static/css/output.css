@@ -1483,7 +1483,7 @@ html {
 }
 
 .card-style-major{
-  margin-top: 70px;
+  margin-top: 100px;
   height: 300px;
 }
 
@@ -1568,14 +1568,14 @@ html {
 
 .recommend{
   position: absolute;
-  margin-top: 50px;
+  margin-top: 70px;
   margin-left: 20px;
   color: rgb(158, 34, 129);
 }
 
 .recommend2{
   position: absolute;
-  margin-top: 80px;
+  margin-top: 100px;
   margin-left: 20px;
   color: rgb(158, 34, 129);
 }
@@ -1584,7 +1584,7 @@ html {
   position: absolute;
   width: 80px;
   left: 82%;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 /* .btn-lg-square{
