@@ -3739,4 +3739,9 @@ input, select, textarea {
 		border-style: double;
 		border-width: 3px;
 		border-radius: 20px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 2rem;
+		font-weight: 700;
 	}
