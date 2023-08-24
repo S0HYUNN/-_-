@@ -281,7 +281,22 @@ def projects_output():
     Pseason= request.args.get("Pseason")
     Pstyle = request.args.get("Pstyle")
     Pfocus = request.args.get("Pfocus")
-    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus)
+        # inf_name = json.loads(request.data)
+    sql1= f"select year_month, comments_count_mean, like_count_mean from full_date where username='jiseong'"
+    sql2 = f"select media_product_type, media_type, comments_count_mean, like_count_mean from full_type where username='jiseong'"
+    conn = get_con()
+    sql_result1 = pd.read_sql(sql1, conn)
+    sql_result2 = pd.read_sql(sql2, conn)
+    result1 = sql_result1.to_dict('records')
+    result2 = sql_result2.to_dict('records')
+
+    graph_data = json.dumps({'result1':result1,'result2':result2}, ensure_ascii=False)
+    print(graph_data)
+    sql="select username, followers_count, media_count from total_person "
+    sql_result = pd.read_sql(sql, conn)
+    people = sql_result.to_dict('records')
+    print(people)
+    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus, people=people, data= graph_data)
 
 @app.route('/output', methods=['GET', 'POST'])
 def output():
