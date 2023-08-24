@@ -13,11 +13,11 @@
 
 <body class="is-preload">
 
-	<!-- Page Wrapper -->
-	<div id="page-wrapper">
-
-		<!-- Wrapper -->
-		<div id="wrapper">
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+	<input type="button" value="BACK" onClick="history.go(-1)" style="margin-bottom: 580px; margin-left: -40px; font-weight: 900;">
+	<!-- Wrapper -->
+	<div id="wrapper">
 
 			<!-- Panel (Banner) -->
 			<section class="panel banner right">
@@ -43,11 +43,11 @@
 							<h2>{{inf_info['result1'][0]["username"]}} 's keywords</h2>
 							<br>
 							<ul>
-								<li style="list-style: none;" class="li-size hash-style">#니트조끼</li>
-								<li style="list-style: none;" class="li-size hash-style">#데일리룩</li>
-								<li style="list-style: none;" class="li-size hash-style2">#셔츠</li>
-								<li style="list-style: none;" class="li-size hash-style">#슬렉스</li>
-								<li style="list-style: none;" class="li-size hash-style2">#니트</li>
+								<li style="list-style: none;" class="li-size hash-style2"># 니트</li>
+								<li style="list-style: none;" class="li-size hash-style2"># 데일리룩</li>
+								<li style="list-style: none;" class="li-size hash-style2"># 셔츠</li>
+								<li style="list-style: none;" class="li-size hash-style2"># 슬렉스</li>
+								<li style="list-style: none;" class="li-size hash-style2"># 니트</li>
 							</ul>
 						</div>
 					</div>
@@ -70,10 +70,15 @@
 				<div class="divided3 span-4">
 					<pre><code>
 									<p>팔로워 수 : {{inf_info['result1'][0]["followers_count"]}}</p>
-									<p>loyalty_Lv1 : {{inf_info['result1'][0]["loyalty_lv1"]}}</p>
-									<p>loyalty_Lv2 : {{inf_info['result1'][0]["loyalty_lv2"]}}</p>
-									<p>loyalty_Lv3 : {{inf_info['result1'][0]["loyalty_lv3"]}}</p>
-									</pre></code>
+									<p class="p-mg">loyalty_Lv1 : {{inf_info['result1'][0]["loyalty_lv1"]}}		total : 49844</p>
+									<p>loyalty_Lv1_mean : {{inf_info['result1'][0]["loyalty_Lv1_mean"]}}		total_mean : 378</p>
+									
+									<p class="p-mg">loyalty_Lv2 : {{inf_info['result1'][0]["loyalty_lv2"]}}		total : 86268</p>
+									<p>loyalty_Lv2_mean : {{inf_info['result1'][0]["loyalty_Lv2_mean"]}}		total_mean : 597</p>
+									
+									<p class="p-mg">loyalty_Lv3 : {{inf_info['result1'][0]["loyalty_lv3"]}}			total : 16144</p>
+									<p>loyalty_Lv3_mean : {{inf_info['result1'][0]["loyalty_Lv3_mean"]}}		total_mean : 150</p>		
+					</pre></code>
 				</div>
 				<div class="image filtered tinted" data-position="top right">
 				</div>
@@ -92,12 +97,12 @@
 							<div class="span-2">
 								<h3 class="major">Lists</h3>
 								<ul class="alt">
-									<li>전체 피드 수 : {{inf_info['result1'][0]["media_count"]}}</li>
-									<li>광고 피드 수 : {{inf_info['result1'][0]["ad_media"]}}</li>
-									<li>패션 광고 피드 수 : {{inf_info['result1'][0]["sf_ad_media"]}}</li>
-									<li>광고 피드 수 소모도 : {{inf_info['result1'][0]["image_usage_lv1"]}}</li>
-									<li>패션 광고 피드 수 소모도 : {{inf_info['result1'][0]["image_usage_lv2"]}}</li>
-									<li>댓글 / 좋아요 평균 : </li>
+									<li class="li-mg">전체 피드 수 : {{inf_info['result1'][0]["media_count"]}}</p></li>
+									<li class="li-mg">광고 피드 수 : {{inf_info['result1'][0]["ad_media"]}}</li>
+									<li class="li-mg">패션 광고 피드 수 : {{inf_info['result1'][0]["sf_ad_media"]}}</li>
+									<li class="li-mg">광고 피드 수 소모도 : {{inf_info['result1'][0]["image_usage_lv1"]}}</li>
+									<li class="li-mg">패션 광고 피드 수 소모도 : {{inf_info['result1'][0]["image_usage_lv2"]}}</li>
+									<li class="li-mg">제품관심도 평균 : {{inf_info['result1'][0]["product_interest_mean"]}}</li>
 								</ul>
 							</div>
 						</div>
@@ -106,10 +111,13 @@
 				<div class="gallery">
 					<div class="group span-3">
 						<a href="./static/images/민철/민철4.png" class="image filtered span-3" data-position="bottom"><img src="./static/images/민철/민철4.png" alt="" /></a>
-						<a href="./static/images/민철/민철1.png" class="image filtered span-1-5" data-position="center"><img src="./static/images/민철/민철1.png" alt="" /></a>
-						<a href="./static/images/민철/민철2.png" class="image filtered span-1-5" data-position="bottom"><img src="./static/images/민철/민철2.png" alt="" /></a>
+						<a href="./static/images/민철/민철1.png" class="image filtered span-1-5"
+							data-position="center"><img src="./static/images/민철/민철1.png" alt="" /></a>
+						<a href="./static/images/민철/민철2.png" class="image filtered span-1-5"
+							data-position="bottom"><img src="./static/images/민철/민철2.png" alt="" /></a>
 					</div>
-					<a href="./static/images/민철/민철3.png" class="image filtered span-2-5" data-position="top"><img src="./static/images/민철/민철3.png" alt="" /></a>
+					<a href="./static/images/민철/민철3.png" class="image filtered span-2-5" data-position="top"><img
+							src="./static/images/민철/민철3.png" alt="" /></a>
 				</div>
 			</section>
 
@@ -131,12 +139,12 @@
 						<h3>Marketing Performance
 							↓
 						</h3>
-						<div class="perfo-box"></div>
+						<div class="perfo-box">
+							{{inf_info['result1'][0]["marketing_performance"]}}
+						</div>
 					</div>
 				</div>
 			</section>
-
-			<!-- Scripts -->
 			<script src="./static/js/jquery.min.js"></script>
 			<script src="./static/js/browser.min.js"></script>
 			<script src="./static/js/breakpoints.min.js"></script>
