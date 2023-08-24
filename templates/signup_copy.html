@@ -18,12 +18,13 @@
         <div class="overlay-container">
             <form action="#" method="POST">
                 <h1>Sign Up</h1>
-                <br><br><br>
-                <span class="box_span">or use your account</span>
+                <br>
+                <span class="box_span"><a href="/login" style="text-decoration: none;">or use your account</a></span>
                 {{ form.hidden_tag() }}
-                <div>{{email}}</div>
-                <div>{{name}}</div>
+                <div class="input">{{email}}</div>
+                <div class="input">{{name}}</div>
                 {{form.username}}
+                <small class="text-muted">*Enter your username</small>
                 <br>
                 <button class="bg-gradient-primary-to-secondary">Sign Up</button>
             </form>
