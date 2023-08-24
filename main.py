@@ -298,11 +298,27 @@ def resume():
 
 @app.route('/major')
 def major():
-    return render_template('major.html')
+    # influencer= request.args.get("major")
+    influencer = "jiseong"
+
+    sql = f"select * from inf_info where username='{influencer}'"
+    conn=get_con()
+    sql_result = pd.read_sql(sql, conn)
+    result = sql_result.to_dict('records')
+    print(result)
+    return render_template('major.html', inf_info=result)
 
 @app.route('/minor')
 def minor():
-    return render_template('minor.html')
+     # influencer= request.args.get("minor")
+    influencer = "jiseong"
+
+    sql = f"select * from inf_info where username='{influencer}'"
+    conn=get_con()
+    sql_result = pd.read_sql(sql, conn)
+    result = sql_result.to_dict('records')
+    print(result)
+    return render_template('minor.html', inf_info=result)
 
 @app.route('/minor2')
 def minor2():
