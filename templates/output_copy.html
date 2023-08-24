@@ -621,15 +621,17 @@
           var name = $(".btn_text").text().substr(1);
           if (name != "Select a Influencer"){
           var innerHeight = window.innerHeight;
-
+        
           $('main').css('height', innerHeight - 50 + 'px');
           var graph_data1 = {{ data | safe }}.result1.filter(function(item){
-            return item.username==name;
+            return item.username==name && item.year_month>='2023-01';
           });
+          var halfIndex = Math.floor(graph_data1.length / 2);
+          graph_data1 = graph_data1.slice(0, halfIndex);
+
           var graph_data2 = {{ data | safe }}.result2.filter(function(item){
             return item.username==name;
           });
-          console.log(graph_data1);
 
           var year_months = graph_data1.filter(function(item) {
               return item.year_month >= '2023-01';
@@ -662,17 +664,13 @@
               },
               series: [{
                   name: 'Comments Count',
-                  data: graph_data1.filter(function(item) {
-                      return item.year_month >= '2023-01';
-                  }).map(function(item) {
+                  data: graph_data1.map(function(item) {
                       return item.comments_count_mean;
                   })
               }, {
-                  name: 'Like Count(%)',
-                  data: graph_data1.filter(function(item) {
-                      return item.year_month >= '2023-01';
-                  }).map(function(item) {
-                      return item.like_count_mean / 100;
+                  name: 'Like Count(/10)',
+                  data: graph_data1.map(function(item) {
+                      return item.like_count_mean / 10;
                   })
               }]
           });
@@ -703,9 +701,9 @@
                     return item.comments_count_mean;
                 })
             }, {
-                name: 'Like(%)',
+                name: 'Like(/10)',
                 data: graph_data2.map(function(item) {
-                    return item.like_count_mean / 100;
+                    return item.like_count_mean / 10;
                 })
             }]
         });
