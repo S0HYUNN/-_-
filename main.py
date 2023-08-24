@@ -285,7 +285,12 @@ def projects_output():
 
 @app.route('/output')
 def output():
-    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=session['type'] ,season=session['season'], style=session['style'], focus=session['focus'])
+    sql="select username, followers_count, media_count from total_person "
+    conn = get_con()
+    sql_result = pd.read_sql(sql, conn)
+    people = sql_result.to_dict('records')
+    print(people)
+    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=session['type'] ,season=session['season'], style=session['style'], focus=session['focus'], people=people)
 
 
 @app.route('/base')
@@ -298,33 +303,7 @@ def resume():
 
 @app.route('/major')
 def major():
-    # influencer= request.args.get("major")
-    influencer = "jiseong"
-
-    sql = f"select * from inf_info where username='{influencer}'"
-    conn=get_con()
-    sql_result = pd.read_sql(sql, conn)
-    result = sql_result.to_dict('records')
-    print(result)
-    return render_template('major.html', inf_info=result)
-
-@app.route('/minor')
-def minor():
-     # influencer= request.args.get("minor")
-    influencer = "jiseong"
-
-    sql = f"select * from inf_info where username='{influencer}'"
-    conn=get_con()
-    sql_result = pd.read_sql(sql, conn)
-    result = sql_result.to_dict('records')
-    print(result)
-    return render_template('minor.html', inf_info=result)
-
-@app.route('/minor2')
-def minor2():
-    # influencer= request.args.get("minor")
-    influencer = "jiseong"
-
+    influencer= request.args.get("influencer")
     sql1 = f"select * from inf_info where username='{influencer}'"
     sql2 = f"select * from chk_power_total where username='{influencer}'"
     sql3 = f"select followers_count, media_count from total_person where username='{influencer}'"
@@ -339,8 +318,46 @@ def minor2():
 
     influencer_stuff = json.dumps({'result1':result1,'result2':result2, 'result3':result3}, ensure_ascii=False)
     influencer_stuff = json.loads(influencer_stuff)
-    print("_________________________")
-    print(influencer_stuff["result2"])
+
+    return render_template('major.html', inf_info=influencer_stuff)
+
+@app.route('/minor')
+def minor():
+    influencer= request.args.get("influencer")
+    sql1 = f"select * from inf_info where username='{influencer}'"
+    sql2 = f"select * from chk_power_total where username='{influencer}'"
+    sql3 = f"select followers_count, media_count from total_person where username='{influencer}'"
+
+    conn=get_con()
+    sql_result1 = pd.read_sql(sql1, conn)
+    result1 = sql_result1.to_dict('records')
+    sql_result2 = pd.read_sql(sql2, conn)
+    result2 = sql_result2.to_dict('records')
+    sql_result3 = pd.read_sql(sql3, conn)
+    result3 = sql_result3.to_dict('records')
+
+    influencer_stuff = json.dumps({'result1':result1,'result2':result2, 'result3':result3}, ensure_ascii=False)
+    influencer_stuff = json.loads(influencer_stuff)
+
+    return render_template('minor.html', inf_info=influencer_stuff)
+
+@app.route('/minor2')
+def minor2():
+    influencer= request.args.get("influencer")
+    sql1 = f"select * from inf_info where username='{influencer}'"
+    sql2 = f"select * from chk_power_total where username='{influencer}'"
+    sql3 = f"select followers_count, media_count from total_person where username='{influencer}'"
+
+    conn=get_con()
+    sql_result1 = pd.read_sql(sql1, conn)
+    result1 = sql_result1.to_dict('records')
+    sql_result2 = pd.read_sql(sql2, conn)
+    result2 = sql_result2.to_dict('records')
+    sql_result3 = pd.read_sql(sql3, conn)
+    result3 = sql_result3.to_dict('records')
+
+    influencer_stuff = json.dumps({'result1':result1,'result2':result2, 'result3':result3}, ensure_ascii=False)
+    influencer_stuff = json.loads(influencer_stuff)
 
     return render_template('minor2.html', inf_info=influencer_stuff)
 
