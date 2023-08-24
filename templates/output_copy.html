@@ -563,9 +563,22 @@
       </div>
     </div>
     <br><br>
+    <div>
+      <div class="dropdown">
+        <button class="dropbtn"> 
+          <span class="dropbtn_icon">more_horiz</span>
+          <span class="btn_text">Select a Influencer</span>
+        </button>
+        <div class="dropdown-content">
+          <a href="#" data-text="Major1">Major1</a>
+          <a href="#" data-text="Minor1">Minor1</a>
+          <a href="#" data-text="Minor2">Minor2</a>
+        </div>
+      </div>
     <div id="container_line"></div>
     <br>
     <div id="container_bar"></div>
+    </div>
   
   </figure>
 
@@ -599,6 +612,21 @@
     <script src=".\static\js\chart.js"></script>
 
     <script>
+      $(document).ready(function() {
+        $(".dropdown-content a").click(function(event) {
+          event.preventDefault();
+          var newText = $(this).data("text");
+          $(".btn_text").text(newText);
+          $(".dropbtn_icon").hide();
+          $(".dropdown-content").hide();
+        });
+      
+        $(".dropbtn").click(function() {
+          $(".dropbtn_icon").toggle();
+          $(".dropdown-content").toggle();
+        });
+      });
+
       $(document).ready(function () {
           var innerHeight = window.innerHeight;
           $('main').css('height', innerHeight - 50 + 'px');
@@ -682,7 +710,10 @@
                 })
             }]
         });
+
       });
+
+      
       </script>
 
     <style>
