@@ -319,7 +319,7 @@ def major():
     influencer_stuff = json.dumps({'result1':result1,'result2':result2, 'result3':result3}, ensure_ascii=False)
     influencer_stuff = json.loads(influencer_stuff)
 
-    return render_template('minor2.html', inf_info=influencer_stuff)
+    return render_template('major.html', inf_info=influencer_stuff)
 
 @app.route('/minor')
 def minor():
@@ -339,7 +339,7 @@ def minor():
     influencer_stuff = json.dumps({'result1':result1,'result2':result2, 'result3':result3}, ensure_ascii=False)
     influencer_stuff = json.loads(influencer_stuff)
 
-    return render_template('minor2.html', inf_info=influencer_stuff)
+    return render_template('minor.html', inf_info=influencer_stuff)
 
 @app.route('/minor2')
 def minor2():
