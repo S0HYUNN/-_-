@@ -124,8 +124,8 @@ def callback():
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     #     # 임시
-    # session["email"]="jiwoongmun@gmail.com"
-    # session["name"] = "Jiwoong"
+    session["email"]="jiwoongmun@gmail.com"
+    session["name"] = "Jiwoong"
     ## 회원 가입 절차 시작 ##
     form = Login()
     if form.validate_on_submit():
@@ -203,7 +203,8 @@ def get_rel_word():
     # 모델
     model = Word2Vec.load("data_working/model/Word2Vec.model")
     result = model.wv.most_similar(positive=keyword_param.get("keyword"), topn=10)
-
+    print("___________________")
+    print(result)
     return json.dumps(result,ensure_ascii=False)
 
 @app.route("/influencer", methods=['GET', 'POST'])
@@ -314,6 +315,7 @@ def output():
     sql="select username, followers_count, media_count from total_person "
     sql_result = pd.read_sql(sql, conn)
     people = sql_result.to_dict('records')
+    
     print(people)
     return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=session['type'] ,season=session['season'], style=session['style'], focus=session['focus'], people=people, data= graph_data)
 

@@ -41,8 +41,8 @@
         keyword: keyList
       }),
       success: function (result) {
-        // console.log(result);
-        // console.log(result[0][0], result[0][1]);
+        console.log(result);
+        console.log(result[0][0], result[0][1]);
         // 데이터 넣기
         result.forEach((item, idx) => {
           $('#hashtag_rank_table tbody tr').eq(idx).find('td').eq(1).text(item[0]);
@@ -248,7 +248,7 @@
                   Focus
                 </div>
                 <div class="input-tab">
-                {{focus}}
+                <span>{{focus}}</span>
                 </div>        
               
                 
