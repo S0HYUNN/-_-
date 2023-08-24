@@ -23,52 +23,133 @@
 						<!-- Panel (Banner) -->
 							<section class="panel banner right">
 								<div class="content color0 span-3-75">
-									<h2 class="major">@계정이름</h2>
-									<div class="span-1-25">
-
-										<h3 class="major">Lists</h3>
-										<ul>
-											<li>Lorem ipsum dolor sit.</li>
-											<li>Dolor pulvinar etiam.</li>
-											<li>Etiam vel felis viverra.</li>
-										</ul>
-									</div>
+									<h1 class="major">Hello, my name<br />
+									is {{inf_info[0]["username"]}}</h1>
+									<span class="button primary color2 disabled">팔로워 수 : </span>
+									<br>
+									<span class="button primary color2 disabled">게시물 수 : </span>
+									<br>
 									<ul class="actions">
-										<!-- <li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li> -->
+										<li><a href="#first" class="button color1 circle icon solid fa-angle-right">1</a></li>
+										<li><a href="#second" class="button color1 circle icon solid fa-angle-right">2</a></li>
+										<li><a href="#third" class="button color1 circle icon solid fa-angle-right">3</a></li>
 									</ul>
 								</div>
 								<div class="image filtered span-1-75" data-position="25% 25%">
-									<img src="./static/images/feed.png" alt="" />
+									<img src="./static/images/pic01.jpg" alt="" />
+								</div>
+							</section>
+	
+						<!-- Panel (Spotlight) -->
+							<section class="panel spotlight large left" id="first">
+								<div class="inner columns aligned">
+									<div class="span-4">
+										<h3 class="major">About {{inf_info[0]["username"]}}</h3>
+										<h2>Influencer Status</h2>
+										<br>
+										<ul>
+											<li style="list-style: none;" class="li-size">#</li>
+											<li style="list-style: none;" class="li-size">#</li>
+											<li style="list-style: none;" class="li-size">#</li>
+											<li style="list-style: none;" class="li-size">#</li>
+											<li style="list-style: none;" class="li-size">#</li>
+										</ul>
+									</div>
+									<div class="span-5">
+										<h3 class="major">Marketing Figures</Figure></h3>
+										<div class="table-wrapper">
+											<table>
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Description</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Ad Percentage</td>
+														<td>click to find more about media analysis</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>Item Two</td>
+														<td>Vis ac commodo adipiscing arcu aliquet.</td>
+														<td>19.99</td>
+													</tr>
+													<tr>
+														<td>Item Three</td>
+														<td> Morbi faucibus arcu accumsan lorem.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Four</td>
+														<td>Vitae integer tempus condimentum.</td>
+														<td>19.99</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="image filtered tinted" data-position="top right">
+									<img src="./static/images/pic03.jpg" alt="" />
 								</div>
 							</section>
 
-						<!-- Panel -->
-							<section class="panel">
-								<div class="intro color2">
-									<h3 class="major">피드 사진들</h3>
-									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam.</p>
+							<section class="panel" id="second">
+								<div class="intro color2 inner.columns.aligned">
+									<div class="span-1-75">
+										<h2 class="major">Media Analysis</h2>
+										<p>인플루언서 피드 수에 관한 분석 정보를 보여드립니다.<br>
+											<br>
+										소모도는 전체 피드 수중에 광고 피드 수와 패션 광고 피드 수의 비율이
+										어느 정도인지, 댓글/좋아요 평균은 광고 피드 평균에 관한 패션 광고 피드 평균 비율을 나타냅니다.
+										</p>
+									<div class="divided2">
+										<div class="span-2">
+										<h3 class="major">Lists</h3>
+										<ul class="alt">
+											<li>전체 피드 수 : </li>
+											<li>광고 피드 수 :</li>
+											<li>패션 광고 피드 수 : </li>
+											<li>광고 피드 수 소모도 :</li>
+											<li>패션 광고 피드 수 소모도 :</li>
+											<li>댓글 / 좋아요 평균 : </li> 
+										</ul>
+										</div>
+									</div>
+									</div>
 								</div>
 								<div class="gallery">
 									<div class="group span-3">
-										<a href="./static/images/gallery/fulls/01.jpg" class="image filtered span-3" data-position="bottom"><img src="images/gallery/thumbs/01.jpg" alt="" /></a>
-										<a href="./static/images/gallery/fulls/02.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/thumbs/02.jpg" alt="" /></a>
-										<a href="./static/images/gallery/fulls/03.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/03.jpg" alt="" /></a>
+										<a href="./static/images/민철/민철4.png" class="image filtered span-3" data-position="bottom"><img src="./static/images/민철/민철4.png" alt="" /></a>
+										<a href="./static/images/민철/민철1.png" class="image filtered span-1-5" data-position="center"><img src="./static/images/민철/민철1.png" alt="" /></a>
+										<a href="./static/images/민철/민철2.png" class="image filtered span-1-5" data-position="bottom"><img src="./static/images/민철/민철2.png" alt="" /></a>
 									</div>
-									<a href="./static/images/gallery/fulls/04.jpg" class="image filtered span-2-5" data-position="top"><img src="images/gallery/thumbs/04.jpg" alt="" /></a>
-									<!-- <div class="group span-4-5">
-										<a href="./static/images/gallery/fulls/05.jpg" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/05.jpg" alt="" /></a>
-										<a href="./static/images/gallery/fulls/06.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/thumbs/06.jpg" alt="" /></a>
-										<a href="./static/images/gallery/fulls/07.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/07.jpg" alt="" /></a>
-										<a href="./static/images/gallery/fulls/08.jpg" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/08.jpg" alt="" /></a>
-									</div> -->
-									</div>
+									<a href="./static/images/민철/민철3.png" class="image filtered span-2-5" data-position="top"><img src="./static/images/민철/민철3.png" alt="" /></a>
+								</div>
 							</section>
 
 						<!-- Panel -->
-							<section class="panel color4-alt">
+							<section class="panel color4-alt" id="third">
 								<div class="intro color4">
-									<h2 class="major">Contact</h2>
-									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam.</p>
+									<div class="span-2-25">
+									<h2 class="major">Follower Analysis</h2>
+									
+									<p>인플루언서가 광고하는 제품에 대한 관심도 평균<br>
+										loyalt가 증가할수록 높은 충성도</p>
+									</div>
+									<div class="divided3">
+										<div class="span-2">
+									<pre><code>
+									<p>팔로워 수 : </p>
+									<p>loyalty_Lv1 : </p>
+									<p>loyalty_Lv2 : </p>
+									<p>loyalty_Lv3 : </p>
+									</pre></code>
+								</div>
+								</div>
 								</div>
 								<div class="inner columns divided">
 									<div class="span-3-25">
@@ -106,13 +187,196 @@
 
 						<!-- Panel -->
 							<section class="panel color2-alt">
-								<div class="intro color2">
+								<!-- <div class="intro color2">
 									<h2 class="major">Elements</h2>
 									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam. </p>
-								</div>
+								</div> -->
 								<div class="inner columns aligned">
-									
-									<!-- <div class="span-2-25">
+									<div class="span-2-75">
+
+										<h3 class="major">Text</h3>
+										<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+										This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+										This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+
+										<h1>Heading Level 1</h1>
+										<h2>Heading Level 2</h2>
+										<h3>Heading Level 3</h3>
+										<h4>Heading Level 4</h4>
+										<h5>Heading Level 5</h5>
+										<h6>Heading Level 6</h6>
+
+									</div>
+									<div class="span-3">
+
+										<h4>Blockquote</h4>
+										<blockquote>Lorem ipsum dolor sit amet. Felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in vestibulum. Blandit adipiscing eu iaculis volutpat ac adipiscing volutpat ac adipiscing faucibus.</blockquote>
+
+										<h4>Preformatted</h4>
+										<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+    print 'Iteration ' + (i++);
+    deck.shuffle();
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+
+									</div>
+									<div class="span-1-25">
+
+										<h3 class="major">Lists</h3>
+
+										<h4>Unordered</h4>
+										<ul>
+											<li>Lorem ipsum dolor sit.</li>
+											<li>Dolor pulvinar etiam.</li>
+											<li>Etiam vel felis viverra.</li>
+										</ul>
+
+										<h4>Alternate</h4>
+										<ul class="alt">
+											<li>Lorem ipsum dolor sit.</li>
+											<li>Dolor pulvinar etiam.</li>
+											<li>Etiam vel felis viverra.</li>
+											<li>Felis enim feugiat.</li>
+										</ul>
+
+									</div>
+									<div class="span-1-5">
+
+										<h4>Ordered</h4>
+										<ol>
+											<li>Lorem ipsum dolor sit.</li>
+											<li>Dolor pulvinar etiam.</li>
+											<li>Etiam vel felis viverra.</li>
+											<li>Felis enim feugiat.</li>
+											<li>Etiam vel felis lorem.</li>
+										</ol>
+
+										<h4>Actions</h4>
+										<ul class="actions">
+											<li><a href="#" class="button primary color2">Default</a></li>
+											<li><a href="#" class="button">Default</a></li>
+										</ul>
+										<ul class="actions stacked">
+											<li><a href="#" class="button primary color2">Default</a></li>
+											<li><a href="#" class="button">Default</a></li>
+										</ul>
+
+									</div>
+									<div class="span-1-25">
+
+										<h4>Icons</h4>
+										<ul class="icons">
+											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+											<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+											<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+										</ul>
+
+										<h4>Contact Icons</h4>
+										<ul class="contact-icons color2">
+											<li class="icon brands fa-twitter"><a href="#">Twitter</a></li>
+											<li class="icon brands fa-facebook-f"><a href="#">Facebook</a></li>
+											<li class="icon brands fa-instagram"><a href="#">Instagram</a></li>
+											<li class="icon brands fa-github"><a href="#">GitHub</a></li>
+											<li class="icon brands fa-medium-m"><a href="#">Medium</a></li>
+										</ul>
+
+									</div>
+									<div class="span-3">
+										<h3 class="major">Table</h3>
+										<h4>Default</h4>
+										<div class="table-wrapper">
+											<table>
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Description</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Item One</td>
+														<td>Ante turpis integer aliquet porttitor.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Two</td>
+														<td>Vis ac commodo adipiscing arcu aliquet.</td>
+														<td>19.99</td>
+													</tr>
+													<tr>
+														<td>Item Three</td>
+														<td> Morbi faucibus arcu accumsan lorem.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Four</td>
+														<td>Vitae integer tempus condimentum.</td>
+														<td>19.99</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="2"></td>
+														<td>100.00</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+									<div class="span-3">
+										<h4>Alternate</h4>
+										<div class="table-wrapper">
+											<table class="alt">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Description</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Item One</td>
+														<td>Ante turpis integer aliquet porttitor.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Two</td>
+														<td>Vis ac commodo adipiscing arcu aliquet.</td>
+														<td>19.99</td>
+													</tr>
+													<tr>
+														<td>Item Three</td>
+														<td> Morbi faucibus arcu accumsan lorem.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Four</td>
+														<td>Vitae integer tempus condimentum.</td>
+														<td>19.99</td>
+													</tr>
+													<tr>
+														<td>Item Five</td>
+														<td>Ante turpis integer aliquet porttitor.</td>
+														<td>29.99</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="2"></td>
+														<td>100.00</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+									<div class="span-2-25">
 										<h3 class="major">Buttons</h3>
 										<ul class="actions">
 											<li><a href="#" class="button primary color2">Primary</a></li>
@@ -135,7 +399,7 @@
 											<li><a href="#" class="button primary color2 circle icon solid fa-cog">Icon</a></li>
 											<li><a href="#" class="button circle icon fa-gem">Icon</a></li>
 										</ul>
-									</div> -->
+									</div>
 									<div class="span-4-5">
 										<h3 class="major">Form</h3>
 										<form method="post" action="#">
@@ -191,7 +455,7 @@
 							</section>
 
 						<!-- Copyright -->
-							<!-- <div class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</div> -->
+							<div class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
 
 					</div>
 

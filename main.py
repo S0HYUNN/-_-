@@ -124,8 +124,8 @@ def callback():
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     #     # 임시
-    session["email"]="jiwoongmun@gmail.com"
-    session["name"] = "Jiwoong"
+    # session["email"]="jiwoongmun@gmail.com"
+    # session["name"] = "Jiwoong"
     ## 회원 가입 절차 시작 ##
     form = Login()
     if form.validate_on_submit():
@@ -281,7 +281,22 @@ def projects_output():
     Pseason= request.args.get("Pseason")
     Pstyle = request.args.get("Pstyle")
     Pfocus = request.args.get("Pfocus")
-    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus)
+        # inf_name = json.loads(request.data)
+    sql1= f"select year_month, comments_count_mean, like_count_mean from full_date where username='jiseong'"
+    sql2 = f"select media_product_type, media_type, comments_count_mean, like_count_mean from full_type where username='jiseong'"
+    conn = get_con()
+    sql_result1 = pd.read_sql(sql1, conn)
+    sql_result2 = pd.read_sql(sql2, conn)
+    result1 = sql_result1.to_dict('records')
+    result2 = sql_result2.to_dict('records')
+
+    graph_data = json.dumps({'result1':result1,'result2':result2}, ensure_ascii=False)
+    print(graph_data)
+    sql="select username, followers_count, media_count from total_person "
+    sql_result = pd.read_sql(sql, conn)
+    people = sql_result.to_dict('records')
+    print(people)
+    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus, people=people, data= graph_data)
 
 @app.route('/output', methods=['GET', 'POST'])
 def output():
@@ -296,7 +311,11 @@ def output():
 
     graph_data = json.dumps({'result1':result1,'result2':result2}, ensure_ascii=False)
     print(graph_data)
-    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=session['type'] ,season=session['season'], style=session['style'], focus=session['focus'], data= graph_data)
+    sql="select username, followers_count, media_count from total_person "
+    sql_result = pd.read_sql(sql, conn)
+    people = sql_result.to_dict('records')
+    print(people)
+    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=session['type'] ,season=session['season'], style=session['style'], focus=session['focus'], people=people, data= graph_data)
 
 
 @app.route('/base')
@@ -309,23 +328,63 @@ def resume():
 
 @app.route('/major')
 def major():
-    return render_template('major.html')
+    influencer= request.args.get("influencer")
+    sql1 = f"select * from inf_info where username='{influencer}'"
+    sql2 = f"select * from chk_power_total where username='{influencer}'"
+    sql3 = f"select followers_count, media_count from total_person where username='{influencer}'"
+
+    conn=get_con()
+    sql_result1 = pd.read_sql(sql1, conn)
+    result1 = sql_result1.to_dict('records')
+    sql_result2 = pd.read_sql(sql2, conn)
+    result2 = sql_result2.to_dict('records')
+    sql_result3 = pd.read_sql(sql3, conn)
+    result3 = sql_result3.to_dict('records')
+
+    influencer_stuff = json.dumps({'result1':result1,'result2':result2, 'result3':result3}, ensure_ascii=False)
+    influencer_stuff = json.loads(influencer_stuff)
+
+    return render_template('major.html', inf_info=influencer_stuff)
 
 @app.route('/minor')
 def minor():
-    return render_template('minor.html')
+    influencer= request.args.get("influencer")
+    sql1 = f"select * from inf_info where username='{influencer}'"
+    sql2 = f"select * from chk_power_total where username='{influencer}'"
+    sql3 = f"select followers_count, media_count from total_person where username='{influencer}'"
+
+    conn=get_con()
+    sql_result1 = pd.read_sql(sql1, conn)
+    result1 = sql_result1.to_dict('records')
+    sql_result2 = pd.read_sql(sql2, conn)
+    result2 = sql_result2.to_dict('records')
+    sql_result3 = pd.read_sql(sql3, conn)
+    result3 = sql_result3.to_dict('records')
+
+    influencer_stuff = json.dumps({'result1':result1,'result2':result2, 'result3':result3}, ensure_ascii=False)
+    influencer_stuff = json.loads(influencer_stuff)
+
+    return render_template('minor.html', inf_info=influencer_stuff)
 
 @app.route('/minor2')
 def minor2():
-    # influencer= request.args.get("minor")
-    influencer = "jiseong"
+    influencer= request.args.get("influencer")
+    sql1 = f"select * from inf_info where username='{influencer}'"
+    sql2 = f"select * from chk_power_total where username='{influencer}'"
+    sql3 = f"select followers_count, media_count from total_person where username='{influencer}'"
 
-    sql = f"select * from inf_info where username='{influencer}'"
     conn=get_con()
-    sql_result = pd.read_sql(sql, conn)
-    result = sql_result.to_dict('records')
-    print(result)
-    return render_template('minor2.html', inf_info=result)
+    sql_result1 = pd.read_sql(sql1, conn)
+    result1 = sql_result1.to_dict('records')
+    sql_result2 = pd.read_sql(sql2, conn)
+    result2 = sql_result2.to_dict('records')
+    sql_result3 = pd.read_sql(sql3, conn)
+    result3 = sql_result3.to_dict('records')
+
+    influencer_stuff = json.dumps({'result1':result1,'result2':result2, 'result3':result3}, ensure_ascii=False)
+    influencer_stuff = json.loads(influencer_stuff)
+
+    return render_template('minor2.html', inf_info=influencer_stuff)
 
 if __name__ == '__main__':
     app.run(port="5000", debug = True)
