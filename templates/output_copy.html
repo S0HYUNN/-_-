@@ -156,9 +156,23 @@
         success: function (hashtags) {
           const sortedInf = [...hashtags].sort((a, b) => b.score - a.score);
           console.log(sortedInf);
-        
+          var inf_1 = sortedInf[0]["username"];
+          var inf_2 = sortedInf[1]["username"] ;
+          var inf_3 = sortedInf[2]["username"] ;
+          $(".inf_1").text("@"+inf_1);
+          $(".inf_2").text("@"+inf_2);
+          $(".inf_3").text("@"+inf_3);
+          var people = {{people|tojson|safe}};
+          var inf_1_detail = people.find(person => person.username === inf_1);
+          var inf_2_detail = people.find(person => person.username === inf_2);
+          var inf_3_detail = people.find(person => person.username === inf_3);
+          $(".inf_1_follower").text(inf_1_detail.followers_count)
+          $(".inf_1_media").text(inf_1_detail.media_count)
+          $(".inf_2_follower").text(inf_2_detail.followers_count)
+          $(".inf_2_media").text(inf_2_detail.media_count)          
+          $(".inf_3_follower").text(inf_3_detail.followers_count)
+          $(".inf_3_media").text(inf_3_detail.media_count)
         }
-
     })
       }
     })
@@ -238,13 +252,13 @@
                   <h4 class="card-title">Influencer Information</h4>
                   <br>
                   <ul>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">insta ID : @</li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">insta ID : <span class="inf_1"></span></li>
                     <br>
                     <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline"></li>
                     <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">팔로워 수 : </li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">팔로워 수 : <span class="inf_1_follower"></span></li>
                     <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">게시물 수 : </li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">게시물 수 : <span class="inf_1_media"></span></li>
                   </ul>
                 </div>
             </div>
@@ -263,13 +277,13 @@
                   <h4 class="card-title">Influencer Information</h4>
                   <br>
                   <ul>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">insta ID : @</li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">insta ID : <span class="inf_2"></span></li>
                     <br>
                     <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline"></li>
                     <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">팔로워 수 : </li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">팔로워 수 : <span class="inf_2_follower"></span></li>
                     <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">게시물 수 : </li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">게시물 수 : <span class="inf_2_media"></span></li>
                   </ul>
                 </div>
               </div>
@@ -288,13 +302,13 @@
                   <h4 class="card-title">Influencer Information</h4>
                   <br>
                   <ul>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">insta ID : @</li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">insta ID : <span class="inf_3"></span></li>
                     <br>
                     <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline"></li>
                     <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">팔로워 수 : </li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">팔로워 수 : <span class="inf_3_follower"></span></li>
                     <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">게시물 수 : </li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">게시물 수 : <span class="inf_3_media"></span></li>
                   </ul>
                 </div>
               </div>
@@ -452,13 +466,13 @@
                       </figure>
                     </div>
                     <div class="col-md-8">
-                      <h2 class="text-white text-center text-md-left">--Major--</h2>
-                      <p class="text-white text-center text-md-left">@major</p>
+                      <h2 class="inf_1 text-white text-center text-md-left">--Major--</h2>
+                      <p class="text-white text-center text-md-left">major</p>
                       <div class="d-flex align-items-center justify-content-between info pt-2">
                         <div class=" blur">
                           <div>
-                            <p class="text-white font-weight-bold">Birth date</p>
-                            <p class="text-white font-weight-bold">Birth city</p>
+                            <p class="text-white font-weight-bold">Birth date: 2023.04.02</p>
+                            <p class="text-white font-weight-bold">Birth city: 대한민국 서울 </p>
                           </div>
                           <div>
                             <p class="text-white">16 Sep 2019</p>
@@ -482,13 +496,13 @@
                       </figure>
                     </div>
                     <div class="col-md-7">
-                      <h4 class="text-white text-center text-md-left">--Minor--</h4>
-                      <p class="text-white text-center text-md-left">@minor</p>
+                      <h4 class="inf_2 text-white text-center text-md-left">--Minor--</h4>
+                      <p class="text-white text-center text-md-left">minor</p>
                       <div class="d-flex align-items-center justify-content-between info pt-2">
                         <div class=" blur">
                           <div>
-                            <p class="text-white font-weight-bold">Birth date</p>
-                            <p class="text-white font-weight-bold">Birth city</p>
+                            <p class="text-white font-weight-bold">2023.09.10</p>
+                            <p class="text-white font-weight-bold">골드 마운틴</p>
                           </div>
                           <div>
                             <p class="text-white">16 Sep 2019</p>
@@ -512,13 +526,13 @@
                       </figure>
                     </div>
                     <div class="col-md-7">
-                      <h4 class="text-white text-center text-md-left">--Minor--</h4>
-                      <p class="text-white text-center text-md-left">@minor</p>
+                      <h4 class="inf_3 text-white text-center text-md-left">--Minor--</h4>
+                      <p class="text-white text-center text-md-left">minor</p>
                       <div class="d-flex align-items-center justify-content-between info pt-2">
                         <div class=" blur">
                           <div>
-                            <p class="text-white font-weight-bold">Birth date</p>
-                            <p class="text-white font-weight-bold">Birth city</p>
+                            <p class="text-white font-weight-bold">2023.05.16</p>
+                            <p class="text-white font-weight-bold">대한민국 서울</p>
                           </div>
                           <div>
                             <p class="text-white">16 Sep 2019</p>

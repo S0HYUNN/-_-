@@ -285,7 +285,12 @@ def projects_output():
 
 @app.route('/output')
 def output():
-    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=session['type'] ,season=session['season'], style=session['style'], focus=session['focus'])
+    sql="select username, followers_count, media_count from total_person "
+    conn = get_con()
+    sql_result = pd.read_sql(sql, conn)
+    people = sql_result.to_dict('records')
+    print(people)
+    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=session['type'] ,season=session['season'], style=session['style'], focus=session['focus'], people=people)
 
 
 @app.route('/base')
