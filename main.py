@@ -283,8 +283,8 @@ def projects_output():
     Pstyle = request.args.get("Pstyle")
     Pfocus = request.args.get("Pfocus")
         # inf_name = json.loads(request.data)
-    sql1= f"select year_month, comments_count_mean, like_count_mean from full_date where username='jiseong'"
-    sql2 = f"select media_product_type, media_type, comments_count_mean, like_count_mean from full_type where username='jiseong'"
+    sql1= f"select username, year_month, comments_count_mean, like_count_mean from full_date"
+    sql2 = f"select username, media_product_type, media_type, comments_count_mean, like_count_mean from full_type"
     conn = get_con()
     sql_result1 = pd.read_sql(sql1, conn)
     sql_result2 = pd.read_sql(sql2, conn)
@@ -301,9 +301,9 @@ def projects_output():
 
 @app.route('/output', methods=['GET', 'POST'])
 def output():
-    # inf_name = json.loads(request.data)
-    sql1= f"select year_month, comments_count_mean, like_count_mean from full_date where username='jiseong'"
-    sql2 = f"select media_product_type, media_type, comments_count_mean, like_count_mean from full_type where username='jiseong'"
+
+    sql1= f"select username, year_month, comments_count_mean, like_count_mean from full_date"
+    sql2 = f"select username, media_product_type, media_type, comments_count_mean, like_count_mean from full_type"
     conn = get_con()
     sql_result1 = pd.read_sql(sql1, conn)
     sql_result2 = pd.read_sql(sql2, conn)
@@ -314,7 +314,8 @@ def output():
         'result1': result1,
         'result2': result2
     }
-   
+
+    print(graph_data)
     sql="select username, followers_count, media_count from total_person "
     sql_result = pd.read_sql(sql, conn)
     people = sql_result.to_dict('records')
