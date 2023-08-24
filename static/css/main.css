@@ -324,7 +324,7 @@ input, select, textarea {
 	}
 
 	p {
-		/* margin: 0 0 1.5rem 0; */
+		margin-bottom: -10px;
 	}
 
 		body.is-ie p {
@@ -431,7 +431,7 @@ input, select, textarea {
 		background: rgba(255, 255, 255, 0.075);
 		border-radius: 0.25rem;
 		font-family: "Courier New", monospace;
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 		margin: 0 0.25rem;
 		padding: 0.25rem 0.65rem;
 	}
@@ -439,8 +439,8 @@ input, select, textarea {
 	pre {
 		-webkit-overflow-scrolling: touch;
 		font-family: "Courier New", monospace;
-		font-size: 1rem;
-		margin: 0 0 1.5rem 0;
+		font-size: 1.5rem;
+		/* margin: 0 0 1.5rem 0; */
 		white-space: pre-wrap;
 	}
 
@@ -449,10 +449,9 @@ input, select, textarea {
 			line-height: 1.625;
 			padding: 1rem 1.5rem;
 			overflow-x: auto;
-			margin: 0;
 			font-family: "Source Sans Pro", Helvetica, sans-serif;
 			font-weight: bold;
-			font-size: medium;
+			margin-top: -30px;
 		}
 
 	hr {
@@ -3744,4 +3743,8 @@ input, select, textarea {
 		align-items: center;
 		font-size: 2rem;
 		font-weight: 700;
+	}
+
+	.p-mg{
+		margin-bottom: -40px;
 	}
