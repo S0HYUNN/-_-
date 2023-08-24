@@ -367,7 +367,7 @@ def minor():
 
     influencer_stuff = json.dumps({'result1':result1,'result2':result2, 'result3':result3}, ensure_ascii=False)
     influencer_stuff = json.loads(influencer_stuff)
-
+    print(influencer_stuff.get('result1'))
     return render_template('minor.html', inf_info=influencer_stuff)
 
 @app.route('/minor2')
