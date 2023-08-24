@@ -1698,7 +1698,7 @@ input, select, textarea {
 		.button:disabled {
 			pointer-events: none;
 			cursor: default;
-			opacity: 0.5;
+			opacity: 0.8;
 		}
 
 /* Gallery */
@@ -3696,7 +3696,7 @@ input, select, textarea {
 	.divided2{
 		position: absolute;
 		right: 10%;
-		top: 20%;
+		top: 15%;
 	}
 
 	.divided3{
@@ -3747,4 +3747,19 @@ input, select, textarea {
 
 	.p-mg{
 		margin-bottom: -40px;
+	}
+
+	.hash-style{
+		border-style: double;
+			border-width: 2px;
+			border-radius: 20px;
+			width: 90px;
+			margin-bottom: 10px;
+			background-color: #e1e6e1;
+			opacity: 0.8;
+			color: #e37b7c;
+	}
+
+	.li-mg{
+		margin-bottom: 5px;
 	}
