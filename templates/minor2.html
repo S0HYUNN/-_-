@@ -24,10 +24,10 @@
 							<section class="panel banner right">
 								<div class="content color0 span-3-75">
 									<h1 class="major">Hello, my name<br />
-									is {{inf_info[0]["username"]}}</h1>
-									<span class="button primary color2 disabled">팔로워 수 : {{}}</span>
+									is {{inf_info['result1'][0]["username"]}}</h1>
+									<span class="button primary color2 disabled">팔로워 수 : {{inf_info['result1'][0]["followers_count"]}}</span>
 									<br>
-									<span class="button primary color2 disabled">게시물 수 : </span>
+									<span class="button primary color2 disabled">게시물 수 : {{inf_info['result1'][0]["media_count"]}}</span>
 									<br>
 									<ul class="actions">
 										<li><a href="#first" class="button color1 circle icon solid fa-angle-right">1</a></li>
@@ -44,7 +44,7 @@
 							<section class="panel spotlight large left" id="first">
 								<div class="inner columns aligned">
 									<div class="span-4">
-										<h3 class="major">About {{inf_info[0]["username"]}}</h3>
+										<h3 class="major">About {{inf_info['result1'][0]["username"]}}</h3>
 										<h2>Influencer Status</h2>
 										<br>
 										<ul>
@@ -110,12 +110,12 @@
 										<div class="span-2">
 										<h3 class="major">Lists</h3>
 										<ul class="alt">
-											<li>전체 피드 수 : </li>
-											<li>광고 피드 수 :</li>
-											<li>패션 광고 피드 수 : </li>
-											<li>광고 피드 수 소모도 :</li>
-											<li>패션 광고 피드 수 소모도 :</li>
-											<li>댓글 / 좋아요 평균 : </li> 
+											<li>전체 피드 수 : {{inf_info['result1'][0]["media_count"]}}</li>
+											<li>광고 피드 수 : {{inf_info['result1'][0]["ad_media"]}}</li>
+											<li>패션 광고 피드 수 : {{inf_info['result1'][0]["sf_ad_media"]}}</li>
+											<li>광고 피드 수 소모도 : {{inf_info['result1'][0]["image_usage_lv1"]}}</li>
+											<li>패션 광고 피드 수 소모도 : {{inf_info['result1'][0]["image_usage_lv2"]}}</li>
+											<li>댓글 / 좋아요 평균 :  </li> 
 										</ul>
 										</div>
 									</div>
@@ -143,10 +143,10 @@
 									<div class="divided3">
 										<div class="span-2">
 									<pre><code>
-									<p>팔로워 수 : </p>
-									<p>loyalty_Lv1 : </p>
-									<p>loyalty_Lv2 : </p>
-									<p>loyalty_Lv3 : </p>
+									<p>팔로워 수 : {{inf_info['result1'][0]["followers_count"]}}</p>
+									<p>loyalty_Lv1 : {{inf_info['result1'][0]["loyalty_lv1"]}}</p>
+									<p>loyalty_Lv2 : {{inf_info['result1'][0]["loyalty_lv2"]}}</p>
+									<p>loyalty_Lv3 : {{inf_info['result1'][0]["loyalty_lv3"]}}</p>
 									</pre></code>
 								</div>
 								</div>
