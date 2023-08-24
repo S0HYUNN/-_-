@@ -281,7 +281,12 @@ def projects_output():
     Pseason= request.args.get("Pseason")
     Pstyle = request.args.get("Pstyle")
     Pfocus = request.args.get("Pfocus")
-    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus)
+    sql="select username, followers_count, media_count from total_person "
+    conn = get_con()
+    sql_result = pd.read_sql(sql, conn)
+    people = sql_result.to_dict('records')
+    print(people)
+    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=Ptype ,season=Pseason, style=Pstyle, focus=Pfocus, people=people)
 
 @app.route('/output')
 def output():
