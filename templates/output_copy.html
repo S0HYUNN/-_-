@@ -175,13 +175,15 @@
           $("#major_url").attr("href", inf_1_url);
           $("#minor_url").attr("href", inf_2_url);
           $("#minor2_url").attr("href", inf_3_url);
-
-
+          $("#drop_inf1").attr("data-text","@"+inf_1);
+          $("#drop_inf2").attr("data-text","@"+inf_2);
+          $("#drop_inf3").attr("data-text","@"+inf_3);
         }
     })
       }
     })
   });
+
 
 </script>
 <!-- Spinner Start -->
@@ -270,7 +272,7 @@
                   <ul>
                     <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">insta ID : <span class="inf_1"></span></li>
                     <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline"></li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Focus : 직장인, 위스키, 뷰티</li>
                     <br>
                     <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">팔로워 수 : <span class="inf_1_follower"></span></li>
                     <br>
@@ -292,7 +294,7 @@
                   <ul>
                     <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">insta ID : <span class="inf_2"></span></li>
                     <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline"></li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Focus : 모델, 무신사크루</li>
                     <br>
                     <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">팔로워 수 : <span class="inf_2_follower"></span></li>
                     <br>
@@ -314,7 +316,7 @@
                   <ul>
                     <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">insta ID : <span class="inf_3"></span></li>
                     <br>
-                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline"></li>
+                    <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">Focus : 모델, 핫플</li>
                     <br>
                     <li style="list-style: none"><img src="./static/images/check.png" width="30" style="display: inline">팔로워 수 : <span class="inf_3_follower"></span></li>
                     <br>
@@ -566,9 +568,9 @@
           <span class="btn_text">Select a Influencer</span>
         </button>
         <div class="dropdown-content">
-          <a href="#" data-text="Major1">Major1</a>
-          <a href="#" data-text="Minor1">Minor1</a>
-          <a href="#" data-text="Minor2">Minor2</a>
+          <a id="drop_inf1" class="inf_1" href="#" data-text="Major1">Major1</a>
+          <a id="drop_inf2" class="inf_2" href="#" data-text="Minor1">Minor1</a>
+          <a id="drop_inf3" class="inf_3" href="#" data-text="Minor2">Minor2</a>
         </div>
       </div>
     <div id="container_line"></div>
@@ -615,20 +617,21 @@
           $(".btn_text").text(newText);
           $(".dropbtn_icon").hide();
           $(".dropdown-content").hide();
-        });
-      
-        $(".dropbtn").click(function() {
-          $(".dropbtn_icon").toggle();
-          $(".dropdown-content").toggle();
-        });
-      });
-
-      $(document).ready(function () {
+          //그래프 그리기
+          var name = $(".btn_text").text().substr(1);
+          if (name != "Select a Influencer"){
           var innerHeight = window.innerHeight;
+
           $('main').css('height', innerHeight - 50 + 'px');
-  
-          var graph_data = {{ data | safe }};
-          var year_months = graph_data.result1.filter(function(item) {
+          var graph_data1 = {{ data | safe }}.result1.filter(function(item){
+            return item.username==name;
+          });
+          var graph_data2 = {{ data | safe }}.result2.filter(function(item){
+            return item.username==name;
+          });
+          console.log(graph_data1);
+
+          var year_months = graph_data1.filter(function(item) {
               return item.year_month >= '2023-01';
           }).map(function(item) {
               return item.year_month;
@@ -659,14 +662,14 @@
               },
               series: [{
                   name: 'Comments Count',
-                  data: graph_data.result1.filter(function(item) {
+                  data: graph_data1.filter(function(item) {
                       return item.year_month >= '2023-01';
                   }).map(function(item) {
                       return item.comments_count_mean;
                   })
               }, {
                   name: 'Like Count(%)',
-                  data: graph_data.result1.filter(function(item) {
+                  data: graph_data1.filter(function(item) {
                       return item.year_month >= '2023-01';
                   }).map(function(item) {
                       return item.like_count_mean / 100;
@@ -682,7 +685,7 @@
                 text: 'Total_Type'
             },
             xAxis: {
-                categories: graph_data.result2.map(function(item) {
+                categories: graph_data2.map(function(item) {
                     return item.media_product_type + ' / ' + item.media_type;
                 })
             },
@@ -696,17 +699,26 @@
             },
             series: [{
                 name: 'Comments',
-                data: graph_data.result2.map(function(item) {
+                data: graph_data2.map(function(item) {
                     return item.comments_count_mean;
                 })
             }, {
                 name: 'Like(%)',
-                data: graph_data.result2.map(function(item) {
+                data: graph_data2.map(function(item) {
                     return item.like_count_mean / 100;
                 })
             }]
         });
 
+          };
+
+        });
+      
+        $(".dropbtn").click(function() {
+          $(".dropbtn_icon").toggle();
+          $(".dropdown-content").toggle();
+        });
+ 
       });
 
       
