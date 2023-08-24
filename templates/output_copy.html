@@ -668,9 +668,9 @@
                       return item.comments_count_mean;
                   })
               }, {
-                  name: 'Like Count(%)',
+                  name: 'Like Count(/10)',
                   data: graph_data1.map(function(item) {
-                      return item.like_count_mean / 100;
+                      return item.like_count_mean / 10;
                   })
               }]
           });
@@ -701,9 +701,9 @@
                     return item.comments_count_mean;
                 })
             }, {
-                name: 'Like(%)',
+                name: 'Like(/10)',
                 data: graph_data2.map(function(item) {
-                    return item.like_count_mean / 100;
+                    return item.like_count_mean / 10;
                 })
             }]
         });
