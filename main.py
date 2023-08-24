@@ -310,14 +310,16 @@ def output():
     result1 = sql_result1.to_dict('records')
     result2 = sql_result2.to_dict('records')
 
-    graph_data = json.dumps({'result1':result1,'result2':result2}, ensure_ascii=False)
-    print(graph_data)
+    graph_data = {
+        'result1': result1,
+        'result2': result2
+    }
+   
     sql="select username, followers_count, media_count from total_person "
     sql_result = pd.read_sql(sql, conn)
     people = sql_result.to_dict('records')
-    
-    print(people)
-    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=session['type'] ,season=session['season'], style=session['style'], focus=session['focus'], people=people, data= graph_data)
+    # print(people)
+    return render_template('output_copy.html', name=session['name'], username=session.get('username'), type=session['type'] ,season=session['season'], style=session['style'], focus=session['focus'], people=people, data=json.dumps(graph_data))
 
 
 @app.route('/base')

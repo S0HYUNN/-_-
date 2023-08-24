@@ -608,42 +608,54 @@
       $(document).ready(function () {
           var innerHeight = window.innerHeight;
           $('main').css('height', innerHeight - 50 + 'px');
-
-          Highcharts.chart('container_line', {
-            title: {
-              text: 'Full_Data'
-            },
-            yAxis: {
-              title: {
-                text: '수'
-              }
-            },
-
-            xAxis: {
-              categories: ['2023-01', '2023-02', '2023-03', '2023-04']
-            },
-
-            legend: {
-              layout: 'horizontal',
-              align: 'center'
-            },
-
-            plotOptions: {
-              series: {
-                label: {
-                  connectorAllowed: false
-                }
-              }
-            },
-            series: [{
-              name: 'Comments Count',
-              data: [200, 220, 210, 250]
-            }, {
-              name: 'Like Count(/10)',
-              data: [90, 100, 130, 110]
-            }]
+  
+          var graph_data = {{ data | safe }};
+          var year_months = graph_data.result1.filter(function(item) {
+              return item.year_month >= '2023-01';
+          }).map(function(item) {
+              return item.year_month;
           });
-
+  
+          Highcharts.chart('container_line', {
+              title: {
+                  text: 'Full_Data'
+              },
+              yAxis: {
+                  title: {
+                      text: 'Values'
+                  }
+              },
+              xAxis: {
+                  categories: year_months
+              },
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center'
+              },
+              plotOptions: {
+                  series: {
+                      label: {
+                          connectorAllowed: false
+                      }
+                  }
+              },
+              series: [{
+                  name: 'Comments Count',
+                  data: graph_data.result1.filter(function(item) {
+                      return item.year_month >= '2023-01';
+                  }).map(function(item) {
+                      return item.comments_count_mean;
+                  })
+              }, {
+                  name: 'Like Count(/10)',
+                  data: graph_data.result1.filter(function(item) {
+                      return item.year_month >= '2023-01';
+                  }).map(function(item) {
+                      return item.like_count_mean / 10;
+                  })
+              }]
+          });
+      
           Highcharts.chart('container_bar', {
             chart: {
                 type: 'column'
@@ -652,7 +664,9 @@
                 text: 'Total_Type'
             },
             xAxis: {
-                categories: ['FEED / CAROUSEL_ALBUM	', 'FEED / IMAGE', 'FEED / VIDEO', 'REELS / VIDEO']
+                categories: graph_data.result2.map(function(item) {
+                    return item.media_product_type + ' / ' + item.media_type;
+                })
             },
             credits: {
                 enabled: false
@@ -664,16 +678,18 @@
             },
             series: [{
                 name: 'Comments',
-                data: [160, 84, 44, 286]
+                data: graph_data.result2.map(function(item) {
+                    return item.comments_count_mean;
+                })
             }, {
                 name: 'Like(/10)',
-                data: [236, 184, 163, 330]
+                data: graph_data.result2.map(function(item) {
+                    return item.like_count_mean / 10;
+                })
             }]
         });
-        
-
-        });
-    </script>
+      });
+      </script>
 
     <style>
       ::-webkit-scrollbar{
