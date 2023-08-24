@@ -324,7 +324,7 @@ input, select, textarea {
 	}
 
 	p {
-		margin: 0 0 1.5rem 0;
+		/* margin: 0 0 1.5rem 0; */
 	}
 
 		body.is-ie p {
@@ -452,6 +452,7 @@ input, select, textarea {
 			margin: 0;
 			font-family: "Source Sans Pro", Helvetica, sans-serif;
 			font-weight: bold;
+			font-size: medium;
 		}
 
 	hr {
@@ -1513,7 +1514,7 @@ input, select, textarea {
 		text-decoration: none;
 		text-transform: uppercase;
 		white-space: nowrap;
-		width: 60%;
+		/* width: 60%; */
 	}
 
 		input[type="submit"]:hover,
@@ -2324,7 +2325,7 @@ input, select, textarea {
 				display: -webkit-flex;
 				display: -ms-flex;
 				display: flex;
-				-moz-justify-content: center;
+				/* -moz-justify-content: center;
 				-webkit-justify-content: center;
 				-ms-justify-content: center;
 				justify-content: center;
@@ -2335,7 +2336,7 @@ input, select, textarea {
 				-moz-flex-direction: row;
 				-webkit-flex-direction: row;
 				-ms-flex-direction: row;
-				flex-direction: row;
+				flex-direction: row; */
 			}
 
 				.panel > .inner.columns > * {
@@ -2351,7 +2352,7 @@ input, select, textarea {
 				}
 
 				.panel > .inner.columns > :first-child {
-					margin-left: 0;
+					/* margin-left: 0; */
 				}
 
 				.panel > .inner.columns.divided > * {
@@ -2380,7 +2381,7 @@ input, select, textarea {
 					-moz-align-items: -moz-flex-start;
 					-webkit-align-items: -webkit-flex-start;
 					-ms-align-items: -ms-flex-start;
-					align-items: flex-start;
+					/* align-items: flex-start; */
 				}
 
 		.panel .span-0-25 {
@@ -3286,6 +3287,7 @@ input, select, textarea {
 			-webkit-flex-shrink: 0;
 			-ms-flex-shrink: 0;
 			flex-shrink: 0;
+			width: 60rem;
 		}
 
 			.panel.banner .content > .actions:last-child {
@@ -3704,6 +3706,37 @@ input, select, textarea {
 		top: 10%;
 	}
 
+	.divided4{
+		position: absolute;
+		left: 55%;
+	}
+
 	.li-size{
 		font-size: x-large;
+	}
+
+	.button-mg{
+		margin-bottom: 10px;
+	}
+
+	.button-mg2{
+		margin-bottom: 30px;
+	}
+
+	.plus{
+		text-align: center;
+	}
+
+	.flex-w{
+		width: 50%;
+		height: 100%;
+	}
+
+	.perfo-box{
+		width: 250px;
+		height: 150px;
+		border: #e1e6e1;
+		border-style: double;
+		border-width: 3px;
+		border-radius: 20px;
 	}
