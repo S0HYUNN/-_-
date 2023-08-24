@@ -439,7 +439,7 @@ input, select, textarea {
 	pre {
 		-webkit-overflow-scrolling: touch;
 		font-family: "Courier New", monospace;
-		font-size: 0.8rem;
+		font-size: 1rem;
 		margin: 0 0 1.5rem 0;
 		white-space: pre-wrap;
 	}
@@ -450,6 +450,8 @@ input, select, textarea {
 			padding: 1rem 1.5rem;
 			overflow-x: auto;
 			margin: 0;
+			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			font-weight: bold;
 		}
 
 	hr {
@@ -1064,6 +1066,7 @@ input, select, textarea {
 
 		ul li {
 			padding-left: 0.5rem;
+			font-weight: bold;
 		}
 
 		ul.alt {
@@ -3693,4 +3696,14 @@ input, select, textarea {
 		position: absolute;
 		right: 10%;
 		top: 20%;
+	}
+
+	.divided3{
+		position: absolute;
+		right: 10%;
+		top: 10%;
+	}
+
+	.li-size{
+		font-size: x-large;
 	}
