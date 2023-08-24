@@ -175,6 +175,7 @@
           var inf_1_url = "{{ url_for('major') }}?influencer=" + encodeURIComponent(inf_1);
           var inf_2_url = "{{ url_for('minor') }}?influencer=" + encodeURIComponent(inf_2);
           var inf_3_url = "{{ url_for('minor2') }}?influencer=" + encodeURIComponent(inf_3);
+          console.log(inf_1_url);
           $("#major_url").attr("href", inf_1_url);
           $("#minor_url").attr("href", inf_2_url);
           $("#minor2_url").attr("href", inf_3_url);
