@@ -179,60 +179,72 @@
   <main class="flex-shrink-0" style="overflow-y:scroll;">
     <!-- Header Start -->
     <div class="container-xxl py-2">
-      <h3 class="margin-title">맞춤 인플루언서 3명을 추천해드리겠습니다♡</h3>
-      <div class="mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-        <!-- <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Testimonial</div> -->
-      </div>
-      <div class="mb-5 wow fadeInUp">
-        <h3 class="margin-left">SURVEY RESULTS</h3>
-      </div>
-      <div class="container1 wow fadeInUp">
+      <h3 class="margin-title wow fadeInUp"><img src="./static/assets/output_title.png" style="width: 60px;"> 맞춤 인플루언서 추천 결과</h3>
+      <hr>
+      <h3 class="margin-title2">SURVEY RESULTS</h3>
+      <h6>선택한 결과를 보여드립니다.</h6>
+      <div class="bg-box">
+        <!--<div class="container1 wow fadeInUp">-->
         <div id="survey-form">
+          <div class="row-width col-md-12">
+            <div class="card col-md-2 card-mg left-mg wow fadeInUp">
+              <div class="card-body">
+                <div class="labels">
+                  Type of Clothing
+                </div>
+                <div class="input-tab">
+                  <span>{{type}}</span>
+                </div>
+              </div>
+            </div>
 
-          <div class="labels">
-            Type of Clothing
-          </div>
-          <div class="input-tab">
-            <span>{{type}}</span>
-          </div>
+            <div class="card col-md-2 card-mg wow fadeInUp">
+              <div class="card-body">
+                <div class="labels">
+                  Target Season
+                </div>
+                <div class="input-tab">
+                  <span>{{season}}</span>
+                </div>
+              </div>
+            </div>
 
-          <div class="labels">
-            Target Season
-          </div>
-          <div class="input-tab">
-            <span>{{season}}</span>
-          </div>
+            <div class="card col-md-2 card-mg wow fadeInUp">
+              <div class="card-body">
+                <div class="labels">
+                  Style
+                </div>
+                <div class="input-tab">
+                  <span>{{style}}</span>
+                </div>
+              </div>
+            </div>
 
-          <div class="labels">
-            Style
+            <div class="card col-md-2 card-mg wow fadeInUp">
+              <div class="card-body">
+                <div class="labels">
+                  Focus
+                </div>
+                <div class="input-tab">
+                {{focus}}
+                </div>        
+              
+                
+              </div>
+            </div>
           </div>
-          <div class="input-tab">
-            <span>{{style}}</span>
-          </div>
-
-          <div class="labels">
-            Focus
-          </div>
-          <div class="input-tab">
-            <span>{{focus}}</span>
-          </div>
-
 
         </div>
       </div>
-      <div class="wow fadeInUp margin-1">
-        <h3 class="margin-left">Influencer Feed</h3>
-      </div>
+      <h3 class="margin-title3">Influencer Feed</h3>
+      <h6>추천된 인플루언서의 피드와 정보입니다.</h6>
       <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
         <div class="testimonial-item text-center row-width">
-          <!-- <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg"
-            style="width: 100px; height: 100px;"> -->
               <div class="testimonial-text rounded text-center p-3 col-md-6">
                 <img src="./static/images/feed.png" width="100%" height="90%">
                 <br>
                 <h5 class="mb-1">1</h5>
               </div>
-                <!-- <span class="fst-italic">Profession</span> -->
               <div class="card col-md-6">
                 <div class="card-body">
                   <h4 class="card-title">Influencer Information</h4>
@@ -250,13 +262,10 @@
             </div>
           </div>
             <div class="testimonial-item text-center row-width">
-              <!-- <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg"
-            style="width: 100px; height: 100px;"> -->
               <div class="testimonial-text rounded text-center p-3 col-md-6">
                 <img src="./static/images/feed.png" width="100%" height="85%">
                 <br>
                 <h5 class="mb-1">2</h5>
-                <!-- <span class="fst-italic">Profession</span> -->
               </div>
               <div class="card col-md-6">
                 <div class="card-body">
@@ -275,13 +284,10 @@
               </div>
             </div>
             <div class="testimonial-item text-center row-width">
-              <!-- <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg"
-            style="width: 100px; height: 100px;"> -->
               <div class="testimonial-text rounded text-center p-3 col-md-6">
                 <img src="./static/images/feed.png" width="100%" height="85%">
                 <br>
                 <h5 class="mb-1">3</h5>
-                <!-- <span class="fst-italic">Profession</span> -->
               </div>
               <div class="card col-md-6">
                 <div class="card-body">
@@ -440,93 +446,95 @@
           </div>
         </div>
 
-        <div class="col-md-12 col-xl-6 grid-margin">
-          <div class="row-width">
-            <div class="col-md-12 col-xl-12 grid-margin stretch-card margin-up">
-              <div class="card profile-card bg-gradient-primary card-style-major" data-wow-delay="0.1s">
-                <div class="card-body">
-                  <div class="row align-items-center h-100">
-                    <div class="col-md-4">
-                      <figure class="avatar mx-auto mb-4 mb-md-0">
-                        <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
-                      </figure>
-                    </div>
-                    <div class="col-md-8">
-                      <h2 class="text-white text-center text-md-left">--Major--</h2>
-                      <p class="text-white text-center text-md-left">@major</p>
-                      <div class="d-flex align-items-center justify-content-between info pt-2">
-                        <div class=" blur">
-                          <div>
-                            <p class="text-white font-weight-bold">Birth date</p>
-                            <p class="text-white font-weight-bold">Birth city</p>
-                          </div>
-                          <div>
-                            <p class="text-white">16 Sep 2019</p>
-                            <p class="text-white">Netherlands</p>
-                          </div>
+        <div class="col-md-12 col-xl-6 grid-margin bg-middle">
+          <h4 class="recommend">Influencer Dashboard</h4>
+          <h6 class="recommend2">해시태그 분석에 따라 추천된 인플루언서입니다.</h6>
+          <img src="./static/assets/recommend.png" class="recommend-img">
+        <div class="row-width">
+          <div class="col-md-12 col-xl-12 grid-margin stretch-card margin-up">
+            <div class="card2 profile-card bg-gradient-primary card-style-major" data-wow-delay="0.1s">
+              <div class="card-body">
+                <div class="row align-items-center h-100">
+                  <div class="col-md-4">
+                    <figure class="avatar mx-auto mb-4 mb-md-0">
+                      <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
+                    </figure>
+                  </div>
+                  <div class="col-md-8">
+                    <h2 class="text-white text-center text-md-left">--Major--</h2>
+                    <p class="text-white text-center text-md-left">@major</p>
+                    <div class="d-flex align-items-center justify-content-between info pt-2">
+                      <div class=" blur">
+                        <div>
+                          <p class="text-white font-weight-bold">Birth date</p>
+                          <p class="text-white font-weight-bold">Birth city</p>
                         </div>
-                        <h4><a class="major" href="{{('major')}}" style="color: yellow;">more data</a></h4>
+                        <div>
+                          <p class="text-white">16 Sep 2019</p>
+                          <p class="text-white">Netherlands</p>
+                        </div>
                       </div>
+                      <h4><a class="major" href="{{('major')}}" style="color: yellow;">more data</a></h4>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 col-xl-6 grid-margin stretch-card align-items-center">
-              <div class="card profile-card bg-gradient-primary2 card-style-minor" data-wow-delay="0.1s">
-                <div class="card-body">
-                  <div class="row align-items-center h-100">
-                    <div class="col-md-5">
-                      <figure class="avatar mx-auto mb-4 mb-md-0">
-                        <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
-                      </figure>
-                    </div>
-                    <div class="col-md-7">
-                      <h4 class="text-white text-center text-md-left">--Minor--</h4>
-                      <p class="text-white text-center text-md-left">@minor</p>
-                      <div class="d-flex align-items-center justify-content-between info pt-2">
-                        <div class=" blur">
-                          <div>
-                            <p class="text-white font-weight-bold">Birth date</p>
-                            <p class="text-white font-weight-bold">Birth city</p>
-                          </div>
-                          <div>
-                            <p class="text-white">16 Sep 2019</p>
-                            <p class="text-white">Netherlands</p>
-                          </div>
+          </div>
+          <div class="col-md-6 grid-margin stretch-card align-items-center">
+            <div class="card2 profile-card bg-gradient-primary2 card-style-minor" data-wow-delay="0.1s">
+              <div class="card-body">
+                <div class="row align-items-center h-100">
+                  <div class="col-md-5">
+                    <figure class="avatar mx-auto mb-4 mb-md-0">
+                      <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
+                    </figure>
+                  </div>
+                  <div class="col-md-7">
+                    <h4 class="text-white text-center text-md-left">--Minor--</h4>
+                    <p class="text-white text-center text-md-left">@minor</p>
+                    <div class="d-flex align-items-center justify-content-between info pt-2">
+                      <div class=" blur">
+                        <div>
+                          <p class="text-white font-weight-bold">Birth date</p>
+                          <p class="text-white font-weight-bold">Birth city</p>
                         </div>
-                        <h5><a class="minor" href="{{('minor')}}" style="color: yellow;">more data</a></h5>
+                        <div>
+                          <p class="text-white">16 Sep 2019</p>
+                          <p class="text-white">Netherlands</p>
+                        </div>
                       </div>
+                      <h5><a class="minor" href="{{('minor')}}" style="color: yellow;">more data</a></h5>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 col-xl-6 grid-margin stretch-card align-items-center">
-              <div class="card profile-card bg-gradient-primary2 card-style-minor" data-wow-delay="0.1s">
-                <div class="card-body">
-                  <div class="row align-items-center h-100">
-                    <div class="col-md-5">
-                      <figure class="avatar mx-auto mb-4 mb-md-0">
-                        <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
-                      </figure>
-                    </div>
-                    <div class="col-md-7">
-                      <h4 class="text-white text-center text-md-left">--Minor--</h4>
-                      <p class="text-white text-center text-md-left">@minor</p>
-                      <div class="d-flex align-items-center justify-content-between info pt-2">
-                        <div class=" blur">
-                          <div>
-                            <p class="text-white font-weight-bold">Birth date</p>
-                            <p class="text-white font-weight-bold">Birth city</p>
-                          </div>
-                          <div>
-                            <p class="text-white">16 Sep 2019</p>
-                            <p class="text-white">Netherlands</p>
-                          </div>
+          </div>
+          <div class="col-md-6 grid-margin stretch-card align-items-center">
+            <div class="card2 profile-card bg-gradient-primary2 card-style-minor" data-wow-delay="0.1s">
+              <div class="card-body">
+                <div class="row align-items-center h-100">
+                  <div class="col-md-5">
+                    <figure class="avatar mx-auto mb-4 mb-md-0">
+                      <!-- <img src="images/faces/face20.jpg" alt="avatar"> -->
+                    </figure>
+                  </div>
+                  <div class="col-md-7">
+                    <h4 class="text-white text-center text-md-left">--Minor--</h4>
+                    <p class="text-white text-center text-md-left">@minor</p>
+                    <div class="d-flex align-items-center justify-content-between info pt-2">
+                      <div class=" blur">
+                        <div>
+                          <p class="text-white font-weight-bold">Birth date</p>
+                          <p class="text-white font-weight-bold">Birth city</p>
                         </div>
-                        <h5><a class="minor" href="{{('minor2')}}" style="color: yellow;">more data</a></h5>
+                        <div>
+                          <p class="text-white">16 Sep 2019</p>
+                          <p class="text-white">Netherlands</p>
+                        </div>
                       </div>
+                      <h5><a class="minor" href="{{('minor2')}}" style="color: yellow;">more data</a></h5>
                     </div>
                   </div>
                 </div>
@@ -534,6 +542,8 @@
             </div>
           </div>
         </div>
+      </div>
+
 
       </div>
     </div>
